@@ -4,7 +4,7 @@ from os import walk
 from pathlib import Path
 from threading import Event, RLock
 from typing import TypeAlias
-import snoop
+
 
 from cscopy import CSCopy
 from de import DE, FSe
@@ -16,8 +16,6 @@ from localcopy import LocalCopy
 from opbase import OpBase
 from sd import CS, SD, Ext3, Fat32
 
-# from snoop import pp
-# from snoop import snoop
 
 
 quit_ev = Event()
