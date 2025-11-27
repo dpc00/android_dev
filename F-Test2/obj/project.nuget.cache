@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wsvw8l3DdcuTphkoyTJwvg2333YJ43Y75wwnQhInSsuOJjgYovVTdjMJmi7tuQVa+FI0lvoJfzeEJq0sKOPYmg==",
+  "success": true,
+  "projectFilePath": "C:\\projects\\F-Test2\\F-Test2.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Donald Chitester\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

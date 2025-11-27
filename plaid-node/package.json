@@ -1,0 +1,16 @@
+{
+  "name": "plaid-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "plaid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node plaid.js",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "plaid": "latest"
+  },
+  "author": "",
+  "license": "ISC"
+}

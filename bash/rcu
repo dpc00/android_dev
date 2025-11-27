@@ -1,0 +1,22 @@
+export sp1=$(realpath .)
+echo ${sp1}
+export rp1=$(echo ${sp1} | sed 's/^\/storage\/emulated\/0//')
+echo ${rp1}
+
+export tp1=GoogleDrive:${rp1}
+echo ${tp1}
+export cmd1="rclone sync ${sp1} ${tp1} --exclude __pycache__/ --exclude node_modules/ --exclude .git/ --exclude .ropeproject/ --exclude .mypyproject/ --exclude .mypy_cache/ --progress -v --use-json-log"
+echo ${cmd1}
+${cmd1}
+
+export tp1=DropBox:${rp1}
+echo ${tp1}
+export cmd1="rclone sync ${sp1} ${tp1} --exclude __pycache__/ --exclude node_modules/ --exclude .git/ --exclude .ropeproject/ --exclude .mypyproject/ --exclude .mypy_cache/ --progress -v --use-json-log"
+echo ${cmd1}
+${cmd1}
+
+export tp1=OneDrive:${rp1}
+echo ${tp1}
+export cmd1="rclone sync ${sp1} ${tp1} --exclude __pycache__/ --exclude node_modules/ --exclude .git/ --exclude .ropeproject/ --exclude .mypyproject/ --exclude .mypy_cache/ --progress -v --use-json-log"
+echo ${cmd1}
+${cmd1}

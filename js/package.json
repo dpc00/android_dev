@@ -1,0 +1,9 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "backup utils",
+  "main": "agb1.js",
+  "author": "phil",
+  "license": "MIT",
+  "dependencies": {}
+}

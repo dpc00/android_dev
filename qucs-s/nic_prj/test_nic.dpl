@@ -1,0 +1,32 @@
+<Qucs Schematic 0.0.22>
+<Properties>
+  <View=-221,140,552,798,1.13374,0,0>
+  <Grid=10,10,0>
+  <DataSet=test_nic.dat>
+  <DataDisplay=test_nic.sch>
+  <OpenDisplay=1>
+  <Script=test_nic.m>
+  <RunScript=0>
+  <showFrame=0>
+  <FrameText0=Title>
+  <FrameText1=Drawn By:>
+  <FrameText2=Date:>
+  <FrameText3=Revision:>
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+</Components>
+<Wires>
+</Wires>
+<Diagrams>
+  <Smith -40 700 200 200 3 #c0c0c0 1 00 1 0 1 1 1 0 4 1 1 0 1 1 315 0 225 "" "" "">
+	<"ngspice/ac.v(ns11)" #0000ff 0 3 0 0 0>
+  </Smith>
+  <Rect -80 463 525 283 3 #c0c0c0 1 00 1 0 5e+06 3e+07 1 0.75 0.05 1.01606 1 -1 0.5 1 315 0 225 "" "" "">
+	<"ngspice/ac.v(ns11)" #0000ff 0 3 0 0 0>
+	<"ngspice/ac.vswr" #ff0000 0 3 0 0 0>
+  </Rect>
+</Diagrams>
+<Paintings>
+</Paintings>

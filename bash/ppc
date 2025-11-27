@@ -1,0 +1,2 @@
+cp /data/data/com.termux/files/usr/lib/python3.11/site-packages/$1 -u -p -r .
+#cp /data/data/com.termux/files/usr/lib/python3.11/$1.py -u -p -r .

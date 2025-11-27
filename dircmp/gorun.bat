@@ -1,0 +1,1 @@
+bin\dircmp.exe %FLASH0%\ %FLASH1%\

@@ -1,0 +1,29 @@
+<Qucs Schematic 0.0.19>
+<Properties>
+  <View=-968,110,33,1148,1.25,256,0>
+  <Grid=10,10,0>
+  <DataSet=ant-interface.dat>
+  <DataDisplay=ant-interface.sch>
+  <OpenDisplay=1>
+  <Script=ant-interface.m>
+  <RunScript=0>
+  <showFrame=0>
+  <FrameText0=Title>
+  <FrameText1=Drawn By:>
+  <FrameText2=Date:>
+  <FrameText3=Revision:>
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+</Components>
+<Wires>
+</Wires>
+<Diagrams>
+  <Rect -720 634 609 484 3 #c0c0c0 1 00 1 1e+06 2e+06 3e+07 1 -1.4e+14 2e+13 1.23884e+13 1 -1 0.2 1 315 0 225 "" "" "">
+	<"S[1,1]" #0000ff 0 3 0 0 0>
+	  <Mkr 1.70917e+07/1000 398 -503 3 0 0>
+  </Rect>
+</Diagrams>
+<Paintings>
+</Paintings>

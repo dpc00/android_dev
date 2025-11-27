@@ -1,0 +1,1 @@
+curl https://raw.githubusercontent.com/erlanger/swipl-termux/master/install -sSf > /sdcard/projects/bash/swipl-install.sh

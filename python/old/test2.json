@@ -1,0 +1,16 @@
+{
+    "_default": {},
+    "opdep": {
+        "1": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "scrdev",
+            "dd": "git",
+            "sd": "scrdev",
+            "options": {
+                "add": true,
+                "commit": true
+            }
+        }
+    }
+}

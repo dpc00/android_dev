@@ -1,0 +1,696 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"DirSyn",
+				"DirSyncApp"
+			],
+			[
+				"dst",
+				"dst_native"
+			],
+			[
+				"Non",
+				"NonFatal"
+			],
+			[
+				"In",
+				"InterruptedException"
+			],
+			[
+				"I",
+				"InterruptedException"
+			],
+			[
+				"CNE_REN",
+				"CNE_RENAMED_OLD_NAME"
+			],
+			[
+				"run",
+				"runPartialSyncs"
+			],
+			[
+				"to",
+				"toString"
+			],
+			[
+				"read",
+				"ReadDirectoryChangesW"
+			],
+			[
+				"Work",
+				"WorkerStateEvent"
+			]
+		]
+	},
+	"build_system": "Packages/User/go.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/User/go.sublime-build",
+					""
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"backup"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"build"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"format"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"run"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"test"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"vars"
+				]
+			],
+			[
+				"Packages/User/go.sublime-build",
+				"backup"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/go.sublime-build",
+					""
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"build"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"run"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"backup"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"vars"
+				]
+			],
+			[
+				"Packages/User/go.sublime-build",
+				"build"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/go.sublime-build",
+					""
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"build"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"run"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"format"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"backup"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"vars"
+				]
+			],
+			[
+				"Packages/User/go.sublime-build",
+				"build"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/go.sublime-build",
+					""
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"build"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"run"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"vars"
+				]
+			],
+			[
+				"Packages/User/go.sublime-build",
+				"run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/go.sublime-build",
+					""
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"go run $file"
+				]
+			],
+			[
+				"Packages/User/go.sublime-build",
+				"go run $file"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/go.sublime-build",
+					""
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"run"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"build"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"fmt"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"vars"
+				]
+			],
+			[
+				"Packages/User/go.sublime-build",
+				"run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/User/go.sublime-build",
+					""
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"run"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"build"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"install"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"fmt"
+				],
+				[
+					"Packages/User/go.sublime-build",
+					"vars"
+				]
+			],
+			[
+				"Packages/User/go.sublime-build",
+				"run"
+			]
+		]
+	],
+	"build_varint": "backup",
+	"command_palette":
+	{
+		"height": 376.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"J",
+				"JSON Reindent: reindent file or selection"
+			],
+			[
+				"Build",
+				"Build With: go - vars"
+			],
+			[
+				"build with: go -",
+				"Build With: go - run"
+			],
+			[
+				"rindent",
+				"JSON Reindent: reindent file or selection"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"go",
+				"Build With: go - run"
+			],
+			[
+				"go build",
+				"Build With: go - build"
+			],
+			[
+				"g",
+				"GoSublime: Run build command"
+			],
+			[
+				"build",
+				"Build With: go - run"
+			],
+			[
+				"build with: gradle",
+				"Build With: gradle - jar"
+			],
+			[
+				"",
+				"Build With: gradle - :jar"
+			],
+			[
+				"git: ",
+				"Git: Push"
+			],
+			[
+				"git:",
+				"Git: Status"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 401.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/F/Projects/DirCmp/test-sub1.bat",
+		"/F/Projects/DirCmp/src/org/dc/dircmp.go",
+		"/F/Projects/DirCmp/src/org/dc/app.go",
+		"/F/Projects/DirCmp/temp.bat",
+		"/F/Projects/DirCmp/test-sub2.bat",
+		"/F/Projects/DirCmp/test.bat",
+		"/G/Projects/DirCmp/test.bat",
+		"/G/Projects/DirCmp/test-sub2.bat",
+		"/G/Projects/DirCmp/temp.bat",
+		"/G/Projects/DirCmp/test-sub1.bat",
+		"/G/Projects/DirCmp/.hgignore",
+		"/G/Projects/DirCmp/temp.txt",
+		"/G/Projects/DirCmp/gobuild.bat",
+		"/G/Projects/DirCmp/gorun.bat",
+		"/G/Projects/DirCmp/hgstatus.bat",
+		"/G/Projects/DirCmp/hgbackup.bat",
+		"/G/Programs/Sublime Text Build 3126 x64/Data/Packages/User/go.sublime-build",
+		"/G/Projects/DirCmp/test-sub1-tmp.bat",
+		"/G/Projects/DirCmp/src/org/dc/dircmp.go",
+		"/G/Projects/DirCmp/DirCmp.sublime-project",
+		"/F/Programs/Sublime Text Build 3126 x64/Data/Packages/User/go.sublime-build",
+		"/G/Programs/Sublime Text Build 3126 x64/Data/Packages/JSON Reindent/JSONReindent.sublime-settings",
+		"/G/Programs/Sublime Text Build 3126 x64/Data/Packages/User/JSONReindent.sublime-settings",
+		"/G/.bat/idea DirSyncApp.bat",
+		"/F/Projects/DirCmp/gorun.bat",
+		"/F/Projects/DirCmp/.hgignore",
+		"/F/Projects/DirCmp/src/org/dc/fn/oplist.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/contents.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/misc.go",
+		"/F/Projects/DirCmp/gobuild.bat",
+		"/F/Projects/DirCmp/src/org/dc/dt/st.go",
+		"/F/Programs/Sublime Text Build 3126 x64/Data/Packages/User/Preferences.sublime-settings",
+		"/F/Projects/DirCmp/src/org/dc/dt/kernel32.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/de.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/ditem.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/dstats.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/types.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/vars.go",
+		"/F/Projects/DirCmp/src/org/dc/fn/copyfile.go",
+		"/F/Projects/DirCmp/src/org/dc/fn/dirscan.go",
+		"/F/Projects/DirCmp/src/org/dc/fn/dirsync.go",
+		"/F/Projects/DirCmp/src/org/dc/fn/git.go",
+		"/F/Projects/DirCmp/src/org/dc/fn/pathgen.go",
+		"/F/Projects/DirCmp/src/org/dc/dt/intfmt.go",
+		"/F/Projects/DirCmp/dircmp",
+		"/F/Projects/DirCmp/hgbackup.bat",
+		"/F/Projects/Go-Test/dirsyncapp.log",
+		"/F/Projects/Go-Test/Go-Test.sublime-project",
+		"/F/Projects/Go-Test/Go-Test.sublime-workspace",
+		"/D/Projects/Go-Test/dirsyncapp.log",
+		"/J/Projects/Go-Test/dirsyncapp.log",
+		"/J/Projects/Go-Test/src/org/ds/fn/dirsync.go",
+		"/J/Projects/Go-Test/ds.log",
+		"/J/Programs/Sublime Text Build 3126 x64/Data/Packages/User/go.sublime-build",
+		"/J/Projects/Go-Test/src/org/ds/app.go",
+		"/J/Programs/Sublime Text Build 3126 x64/Data/Packages/JSON Reindent/JSONReindent.sublime-settings",
+		"/J/Programs/Sublime Text Build 3126 x64/Data/Packages/User/JSONReindent.sublime-settings",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/User/go.sublime-build",
+		"/E/Projects/Go-Test/src/org/ds/main/main.go",
+		"/E/Projects/Go-Test/src/org/ds/l3/contents.go",
+		"/E/Projects/Go-Test/src/org/ds/l2/de.go",
+		"/E/Projects/DirSyncApp/src/org/ds/l3/CC.java",
+		"/E/Projects/DirSyncApp/src/org/ds/l2/DE.java",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/GoSublime/Default (Windows).sublime-keymap",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/User/GoSublime.sublime-settings",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/GoSublime/GoSublime.sublime-settings",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/GoSublime/9o.md",
+		"/E/Projects/Go-Test/src/org/ds/l2/DE.go",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/GoSublime/README.md",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/GoSublime/CHANGELOG.md",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/User/gradle.sublime-build",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/User/groovyConsole.sublime-build",
+		"/E/.bat/gogland Projects.bat",
+		"/E/.bat/do_git_backup.bat",
+		"/G/.bat/sublimetext.bat",
+		"/G/.bat/backup.bat",
+		"/G/Projects/DirSyncApp/src/org/ds/app/VarDump.java",
+		"/G/.bat/bat.sublime-project",
+		"/G/.bat/git_backup.bat",
+		"/G/Projects/py-test/GitRepo.py",
+		"/G/Projects/DirSyncApp/src/org/ds/l3/DSubs.java",
+		"/G/.bat/do_git_backup.bat",
+		"/F/Projects/DirSyncApp/src/org/ds/app/VarDump.java",
+		"/F/Projects/DirSyncApp/.classpath",
+		"/F/.bat/DirSyncApp Projects - EclipseWorkspace.bat",
+		"/F/Projects/DirSyncApp/DirSyncApp - EclipseWorkspace.bat",
+		"/E/Projects/DirSyncApp/DirSyncApp - test.bat",
+		"/F/.bat/killtasks.bat",
+		"/F/Programs/Sublime Text Build 3126 x64/Data/Packages/SideBarEnhancements/Side Bar.sublime-settings",
+		"/F/Programs/Sublime Text Build 3126 x64/Data/Packages/SublimeGit/SublimeGit.sublime-settings",
+		"/F/Programs/Sublime Text Build 3126 x64/Data/Packages/User/SublimeGit.sublime-settings",
+		"/F/.bat/sublimetext bat.bat",
+		"/F/Projects/DirSyncApp/build.gradle",
+		"/F/Programs/DirSyncApp/bin/DirSyncApp.bat",
+		"/F/.bat/DirSyncApp.bat",
+		"/F/Programs/Sublime Text Build 3126 x64/Data/Packages/User/gradle.sublime-build",
+		"/F/Projects/DirSyncApp/DirSyncApp.bat",
+		"/F/Projects/DirSyncApp/hs_err_pid5048.log",
+		"/F/Projects/DirSyncApp/dirsync.bat",
+		"/F/Projects/DirSyncApp/src/main/java/DE.java",
+		"/F/Projects/DirSyncApp/src/main/java/OpLists.java",
+		"/F/Projects/DirSyncApp/src/main/scala/DirSyncApp.scala",
+		"/F/Projects/DirSyncApp/src/main/scala/ActivityRecord.scala",
+		"/F/.bat/eclipse1.bat",
+		"/F/.bat/eclipse2.bat",
+		"/F/Projects/DirSyncApp/DirSyncApp2.bat",
+		"/E/Projects/DirSyncApp/src/main/scala/ActivityRecord.scala",
+		"/E/Projects/DirSyncApp/src/main/java/ChangeNotifier.java",
+		"/E/Projects/DirSyncApp/src/main/java/FILE_NOTIFY_INFORMATION.java",
+		"/E/Projects/DirSyncApp/src/main/java/JavaDEStream.java",
+		"/E/Projects/DirSyncApp/src/main/java/Kernel32.java",
+		"/E/Projects/DirSyncApp/src/main/java/KSubs.java",
+		"/E/Projects/DirSyncApp/build.gradle",
+		"/E/Projects/DirSyncApp/src/main/scala/DirSyncApp.scala",
+		"/E/Projects/DirSyncApp/src/main/scala/DirSync.scala",
+		"/F/Projects/DirSyncApp/src/main/scala/DSubs.scala",
+		"/F/Projects/py-test/GitRepo.py",
+		"/F/Projects/py-test/utils.py",
+		"/F/Projects/DirSyncApp/src/main/scala/DirSync.scala",
+		"/D/Projects/DirSyncApp/src/main/scala/DSubs.scala",
+		"/D/Projects/DirSyncApp/src/main/scala/DirSync.scala",
+		"/D/Projects/DirSyncApp/DirSyncApp4.bat",
+		"/D/.bat/DirSyncApp4.bat",
+		"/D/Projects/DirSyncApp/.vscode/settings.json",
+		"/D/Projects/DirSyncApp/DirSyncApp.bat",
+		"/D/Projects/DirSyncApp/Řሰ",
+		"/D/Projects/DirSyncApp/temp.bat",
+		"/D/.bat/remove_git_from_eclipse.bat"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 104.0,
+		"where_history":
+		[
+			"<project>\\src\\org\\dc,*.go",
+			"<project>\\src\\org\\dc\\**\\*.go",
+			"<project>\\src",
+			"D:\\Projects\\DirSyncApp\\src",
+			"<open folders>",
+			"<project>\\src",
+			"<project>",
+			"E:\\Projects\\DirSyncApp\\src",
+			"f:\\Projects\\DirSyncApp\\src",
+			"E:\\Projects\\DirSyncApp\\src",
+			"E:\\Projects\\DirSyncApp\\src\\main\\scala"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"%",
+			"!",
+			"1]",
+			"Opcodes",
+			"import",
+			"isfile",
+			"isdir",
+			"size",
+			"mtime",
+			"fname",
+			"\t",
+			"\t ",
+			"\t",
+			"\\t\\t",
+			"!= 0",
+			"!=",
+			"Stack",
+			"dir_exists",
+			"p1",
+			"Pointer.getPeer(Pointer.NULL)",
+			"MSSet",
+			"logError",
+			"logDir",
+			"E:\\",
+			"Projects",
+			" [E:\\CLONE]",
+			"dss",
+			"  ",
+			"dss",
+			"file_exists",
+			"DirSyncApp.cancelled",
+			"KSubs",
+			"forEach",
+			"dir_exists",
+			"remove_dir",
+			"delete_file",
+			"Success()",
+			"Kernel32",
+			"Success",
+			"Success()",
+			"ocd",
+			"scd",
+			"scf",
+			"ocf",
+			"relativize",
+			"filecopy",
+			"failed to copy",
+			"ActivityRecord.this.",
+			"relativize",
+			"syncDir",
+			"rt",
+			"ScanDir",
+			"Kernel32.ScanDir",
+			"de",
+			"deso.release()",
+			"deso",
+			";\n",
+			"<DE, DE>",
+			"Consumer[String]",
+			"HashMap<String, DE>",
+			"close",
+			"ch",
+			"close",
+			"ocf",
+			"scf",
+			"scala.collections.mutable.",
+			":HashMap<String, DE>",
+			"Worker.State.Running",
+			"Worker.State.Scheduled",
+			".state",
+			"isCancelled()"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"!",
+			"%",
+			"",
+			"\\t",
+			"> 0",
+			"Queue",
+			"nullPtr",
+			"TreeSet",
+			"rmdir E:\\",
+			"E:\\CLONE\\Projects",
+			"",
+			"    ",
+			"foreach",
+			"Success(())",
+			"",
+			"srt",
+			"WindowsScanDir",
+			"ScanDir",
+			"cde",
+			"<String, DE>",
+			"Consumer[DE]",
+			"Set<String>",
+			"",
+			"RUNNING",
+			"SCHEDULED",
+			".state.value",
+			"cancelled"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.9o://E:\\Programs\\Sublime Text Build 3126 x64\\Data\\Packages\\GoSublime":
+	{
+		"height": 102.0
+	},
+	"output.9o://E:\\Projects\\Go-Test\\src\\org\\ds\\l2":
+	{
+		"height": 299.0
+	},
+	"output.9o://E:\\Projects\\Go-Test\\src\\org\\ds\\main":
+	{
+		"height": 363.0
+	},
+	"output.exec":
+	{
+		"height": 313.0
+	},
+	"output.find_results":
+	{
+		"height": 317.0
+	},
+	"pinned_build_system": "Packages/User/go.sublime-build",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 217.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

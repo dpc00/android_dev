@@ -1,0 +1,9 @@
+.title Test vector-fitted S-Parameter file derived subcircuit
+.include temp.cir
+
+Vin 1 0 dc 0 ac 1 0
+X1 1 s_equivalent
+Vout 2 0 dc 0 ac 0 0
+
+
+.end

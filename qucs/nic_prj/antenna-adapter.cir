@@ -1,0 +1,75 @@
+* Qucs 0.0.22 C:/projects/qucs/nic_prj/antenna-adapter.sch
+.INCLUDE "C:/Qucs-S/share/qucs-s/xspice_cmlib/include/ngspice_mathfunc.inc"
+* Qucs 0.0.22  C:/projects/qucs/nic_prj/antenna-adapter.sch
+* Qucs 0.0.22  aa-network.sch
+.SUBCKT aa_network _net3 _net0 L1=1e-6 R1a=10 R1b=10e9 v1=1 C1=1e-12 
+.PARAM v2=1-v1
+L1 _net0 _net1  {L1} 
+C1 _net2 _net3  {C1} 
+S1 _net2 _net5 _net4 _net6 MOD_S1 OFF
+.MODEL  MOD_S1 sw vt=0.5 vh=0.1 ron=0 roff=1E12 
+S2 _net2 _net0 _net7 _net8 MOD_S2 OFF
+.MODEL  MOD_S2 sw vt=0.5 vh=0.1 ron=0 roff=1E12 
+V1 _net4 _net6 DC {V2}
+S3 _net3 _net5 _net9 _net7 MOD_S3 OFF
+.MODEL  MOD_S3 sw vt=0.5 vh=0.1 ron=0 roff=1E12 
+V2 _net9 _net8 DC {V1}
+R1a _net1 _net5  {R1A}
+R1b _net2 _net3  {R1B}
+.ENDS
+* Qucs 0.0.22  FloatL_NIC.sch
+.SUBCKT FloatL_NIC _net5 _net6 _net3 
+QT2 _net1 _net0 _net2 QMOD_T2 AREA=1.0 TEMP=26.85
+.MODEL QMOD_T2 npn (Is=1e-16 Nf=1 Nr=1 Ikf=0 Ikr=0 Vaf=0 Var=0 Ise=0 Ne=1.5 Isc=0 Nc=2 Bf=100 Br=1 Rbm=0 Irb=0 Rc=0 Re=0 Rb=0 Cje=0 Vje=0.75 Mje=0.33 Cjc=0 Vjc=0.75 Mjc=0.33 Xcjc=1 Cjs=0 Vjs=0.75 Mjs=0 Fc=0.5 Tf=0 Xtf=0 Vtf=0 Itf=0 Tr=0 Kf=0 Af=1 Ptf=0 Xtb=0 Xti=3 Eg=1.11 Tnom=26.85 )
+QT1 _net0 _net0 _net3 QMOD_T1 AREA=1.0 TEMP=26.85
+.MODEL QMOD_T1 npn (Is=1e-16 Nf=1 Nr=1 Ikf=0 Ikr=0 Vaf=0 Var=0 Ise=0 Ne=1.5 Isc=0 Nc=2 Bf=100 Br=1 Rbm=0 Irb=0 Rc=0 Re=0 Rb=0 Cje=0 Vje=0.75 Mje=0.33 Cjc=0 Vjc=0.75 Mjc=0.33 Xcjc=1 Cjs=0 Vjs=0.75 Mjs=0 Fc=0.5 Tf=0 Xtf=0 Vtf=0 Itf=0 Tr=0 Kf=0 Af=1 Ptf=0 Xtb=0 Xti=3 Eg=1.11 Tnom=26.85 )
+C2 0 _net4  10U 
+V1 _net4 0 DC 10
+R1 _net7 _net4  1K
+C1 0 _net7  1U 
+K1 L1 L2 0.999 
+K2 L3 L4 0.999 
+L1 _net4  _net1 200e-6
+L2 _net0  _net7 200e-6
+L3 _net5  _net6 200e-6
+L4 _net2  0 200e-6
+.ENDS
+.INCLUDE "C:/projects/python-win-rf/temp.cir"
+.PARAM L1=20e-6
+.PARAM L2=20e-6
+.PARAM C1=200e-12
+.PARAM C2=200e-12
+.PARAM R1a=200
+.PARAM R2a=200
+.PARAM R1b=20e6
+.PARAM R2b=20e6
+.PARAM v1=0
+.PARAM v2=0
+XNET2 0 _net0 aa_network L1={L2} R1a={R2A} R1b={R2B} v1={V2} C1={C2}
+XNET1 0 _net0 aa_network L1={L1} R1a={R1A} R1b={R1B} v1={V1} C1={C1}
+R1 0 _net1  50
+V1 _net2 0 DC 0 SIN(0 1M 1G 0 0 0) AC 1M
+XX2  _net3 _net1 s_equivalent 
+XNIC2 _net4 _net3 _net0 FloatL_NIC
+R2 _net2 _net4  50
+.control
+echo "" > spice4qucs.cir.noise
+echo "" > spice4qucs.cir.pz
+let L1=20e-6
+let L2=20e-6
+let C1=200e-12
+let C2=200e-12
+let R1a=200
+let R2a=200
+let R1b=20e6
+let R2b=20e6
+let v1=0
+let v2=0
+ac lin 30 1meg 30meg 
+write antenna-adapter_ac.txt 
+destroy all
+reset
+
+exit
+.endc
+.END

@@ -1,0 +1,20 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[user]
+	name = Donald Chitester
+	email = dpchitester@gmail.com
+[remote "bitbucket"]
+	url = https://dpchitester:arcdpc00@bitbucket.org/dpchitester/android_dev.git
+	fetch = +refs/heads/*:refs/remotes/bitbucket/*
+	annex-ignore = true
+[remote "local"]
+	url = /sdcard/backups/projects.git
+	fetch = +refs/heads/*:refs/remotes/local/*
+[branch "master"]
+	remote = bitbucket
+	merge = refs/heads/master

@@ -1,0 +1,15 @@
+﻿,,,AVIATION-Mike SDRplay-2021,,,,
+,,,,,,,
+,,,ARINC,,,,
+3494000,Y,USB,Long Distance Operational Control,,,2800,HiZ
+6640000,Y,USB,Long Distance Operational Control,,,2800,AntC
+8933000,Y,USB,Long Distance Operational Control,,,2800,AntC
+11342000,Y,USB,Long Distance Operational Control,,,2800,AntC
+13348000,Y,USB,Long Distance Operational Control,,,2800,AntC
+17925000,Y,USB,Long Distance Operational Control,,,2800,AntC
+21964000,Y,USB,Long Distance Operational Control,,,2800,AntC
+,,,,,,,
+,,,ACARS-USA,,,,
+130025000,Y,AM,ACARS-1,,,8000,AntC
+131550000,Y,AM,ACARS-2,,,8000,AntC
+131725000,Y,AM,ACARS-3,,,8000,AntC

@@ -1,0 +1,4 @@
+export FDB_PATH=/sdcard/Android/data/com.smartphoneremote.androidscriptfree/files/Droidscript/blog
+pushd /sdcard/projects/pybackup
+    clear && python -m pybackup
+popd

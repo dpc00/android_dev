@@ -1,0 +1,142 @@
+* Qucs 0.0.22 C:/projects/qucs-s/nic_prj/antenna-adapter3.sch
+.INCLUDE "C:/Qucs-S/share/qucs-s/xspice_cmlib/include/ngspice_mathfunc.inc"
+* Qucs 0.0.22  C:/projects/qucs-s/nic_prj/antenna-adapter3.sch
+* Qucs 0.0.22  S11_Probe.sch
+.SUBCKT S11_Probe nP nS11 Z0=50 
+ESRC1 _net0 0 nP 0 2
+V1 _net0  nS11 DC 0 AC 1
+R1 0 nS11  {Z0}
+.ENDS
+
+* EQUIVALENT CIRCUIT FOR VECTOR FITTED S-MATRIX
+* Created using scikit-rf vectorFitting.py
+*
+.SUBCKT s_equivalent p1 p2 
+*
+* port 1
+R1 a1 0 50.0
+V1 p1 a1 0
+H1 nt1 nts1 V1 50.0
+E1 nts1 0 p1 0 1
+* transfer network for s11
+F11 0 a1 V11 0.02
+F11_inv a1 0 V11_inv 0.02
+V11 nt1 nt11 0
+V11_inv nt1 nt11_inv 0
+* transfer admittances for S11
+R11 nt11_inv 0 120.902T
+X1 nt11 0 rl_admittance res=806.789m ind=6.430n
+X2 nt11 0 rcl_vccs_admittance res=119.964T cap=20.519y ind=662.233k gm=4.691f mult=-1
+X3 nt11 0 rl_admittance res=51.303T ind=1.067meg
+X4 nt11 0 rl_admittance res=82.145T ind=3.510meg
+X5 nt11_inv 0 rl_admittance res=806.789m ind=60.130n
+* transfer network for s12
+F12 0 a1 V12 0.02
+F12_inv a1 0 V12_inv 0.02
+V12 nt2 nt12 0
+V12_inv nt2 nt12_inv 0
+* transfer admittances for S12
+R12 nt12 0 1.000
+X6 nt12_inv 0 rl_admittance res=806.789m ind=6.430n
+X7 nt12_inv 0 rcl_vccs_admittance res=137.786T cap=17.865y ind=760.615k gm=4.415f mult=-1
+X8 nt12_inv 0 rl_admittance res=44.181T ind=918.750k
+X9 nt12_inv 0 rl_admittance res=141.301T ind=6.038meg
+X10 nt12 0 rl_admittance res=806.789m ind=60.130n
+*
+* port 2
+R2 a2 0 50.0
+V2 p2 a2 0
+H2 nt2 nts2 V2 50.0
+E2 nts2 0 p2 0 1
+* transfer network for s21
+F21 0 a2 V21 0.02
+F21_inv a2 0 V21_inv 0.02
+V21 nt1 nt21 0
+V21_inv nt1 nt21_inv 0
+* transfer admittances for S21
+R21 nt21 0 1.000
+X11 nt21_inv 0 rl_admittance res=806.789m ind=6.430n
+X12 nt21_inv 0 rcl_vccs_admittance res=137.786T cap=17.865y ind=760.615k gm=4.415f mult=-1
+X13 nt21_inv 0 rl_admittance res=44.181T ind=918.750k
+X14 nt21_inv 0 rl_admittance res=141.301T ind=6.038meg
+X15 nt21 0 rl_admittance res=806.789m ind=60.130n
+* transfer network for s22
+F22 0 a2 V22 0.02
+F22_inv a2 0 V22_inv 0.02
+V22 nt2 nt22 0
+V22_inv nt2 nt22_inv 0
+* transfer admittances for S22
+R22 nt22_inv 0 120.498T
+X16 nt22 0 rl_admittance res=806.789m ind=6.430n
+X17 nt22 0 rcl_vccs_admittance res=125.844T cap=19.561y ind=694.692k gm=4.486f mult=-1
+X18 nt22 0 rl_admittance res=53.662T ind=1.116meg
+X19 nt22 0 rl_admittance res=78.050T ind=3.335meg
+X20 nt22_inv 0 rl_admittance res=806.789m ind=60.130n
+.ENDS s_equivalent
+*
+.SUBCKT rcl_vccs_admittance n_pos n_neg res=1k cap=1n ind=100p gm=1m mult=1
+L1 n_pos 1 {ind}
+C1 1 2 {cap}
+R1 2 n_neg {res}
+G1 n_pos n_neg 1 2 {gm} m={mult}
+.ENDS rcl_vccs_admittance
+*
+.SUBCKT rl_admittance n_pos n_neg res=1k ind=100p
+L1 n_pos 1 {ind}
+R1 1 n_neg {res}
+.ENDS rl_admittance
+
+
+.SUBCKT Transformers_PositiveCouplingPS gnd PL1neg PL1plus PL2plus PL2neg K=0.99 L1=0.5 L2=0.125 Rp=2 Rs=1 
+L2 nS1  PL2neg L2
+L1 nP1  PL1neg L1
+K1 L1 L2 {K} 
+R1 PL1plus nP1  {RP}
+R2 nS1 PL2plus  {RS}
+.ENDS
+  
+* Qucs 0.0.22  FloatLNic.sch
+.SUBCKT FloatLNic _net6 _net7 _net8 _net9 
+Q2N2222A_1 _net1 _net0 _net2 QMOD_Q2N2222A_1 AREA=1 TEMP=26.85
+.MODEL QMOD_Q2N2222A_1 npn (Is=8.11e-14 Nf=1 Nr=1 Ikf=0.5 Ikr=0.225 Vaf=113 Var=24 Ise=1.06e-11 Ne=2 Isc=0 Nc=2 Bf=205 Br=4 Rbm=0 Irb=0 Rc=0.137 Re=0.343 Rb=1.37 Cje=2.95e-11 Vje=0.75 Mje=0.33 Cjc=1.52e-11 Vjc=0.75 Mjc=0.33 Xcjc=1 Cjs=0 Vjs=0.75 Mjs=0 Fc=0.5 Tf=3.97e-10 Xtf=0 Vtf=0 Itf=0 Tr=8.5e-08 Kf=0 Af=1 Ptf=0 Xtb=1.5 Xti=3 Eg=1.11 Tnom=26.85 )
+Q2N2222A_2 _net0 _net0 _net3 QMOD_Q2N2222A_2 AREA=1 TEMP=26.85
+.MODEL QMOD_Q2N2222A_2 npn (Is=8.11e-14 Nf=1 Nr=1 Ikf=0.5 Ikr=0.225 Vaf=113 Var=24 Ise=1.06e-11 Ne=2 Isc=0 Nc=2 Bf=205 Br=4 Rbm=0 Irb=0 Rc=0.137 Re=0.343 Rb=1.37 Cje=2.95e-11 Vje=0.75 Mje=0.33 Cjc=1.52e-11 Vjc=0.75 Mjc=0.33 Xcjc=1 Cjs=0 Vjs=0.75 Mjs=0 Fc=0.5 Tf=3.97e-10 Xtf=0 Vtf=0 Itf=0 Tr=8.5e-08 Kf=0 Af=1 Ptf=0 Xtb=1.5 Xti=3 Eg=1.11 Tnom=26.85 )
+R1 _net4 _net5  1K
+C1 _net5 0  1U 
+V1 _net4 0 DC 10
+XTRAN2 0  0 _net3 _net8 _net9 Transformers_PositiveCouplingPS K=0.99 L1=200E-6 L2=200E-6 Rp=0.001 Rs=0.001
+XTRAN3 0  _net7 _net6 _net2 0 Transformers_PositiveCouplingPS K=0.99 L1=200E-6 L2=200E-6 Rp=0.001 Rs=0.001
+XTRAN1 0  _net1 _net4 _net0 _net5 Transformers_PositiveCouplingPS K=0.99 L1=200E-6 L2=200E-6 Rp=0.001 Rs=0.001
+R2 0 _net7  1E12
+R3 0 _net9  1E12
+.ENDS
+* Qucs 0.0.22  S12_Probe.sch
+.SUBCKT S12_Probe nP nS12 Z0=50 
+ESRC1 nS12 0 nP 0 2
+R1 0 nS12  {Z0}
+.ENDS
+* Qucs 0.0.22  magant-net.sch
+.SUBCKT magant_net _net1 _net0 L1=1e-6 C1=1e-12 R1=10 
+R1 _net0 _net2  {R1}
+C1 _net0 _net1  {C1} 
+L1 _net2 _net1  {L1} 
+.ENDS
+R1 _net0 _net1  50
+V1 _net0 0 DC 0 SIN(0 1 1G 0 0 0) AC 1
+XS11_Probe1 _net1 nS11 S11_Probe Z0=50
+X1 _net2 _net3 s_equivalent
+XSUB1 _net1 _net2 _net4 _net5 FloatLNic
+R2 0 _net3  50
+XS12_Probe1 _net3 nS12 S12_Probe Z0=50
+XMAGANT1 _net4 _net5 magant_net L1=110E-6 C1=110E-12 R1=5
+.control
+echo "" > spice4qucs.cir.noise
+echo "" > spice4qucs.cir.pz
+ac dec 51 1e6 30e6 
+write antenna-adapter3_ac.txt v(nS11) v(nS12) 
+destroy all
+reset
+
+exit
+.endc
+.END

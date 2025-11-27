@@ -1,0 +1,8 @@
+To create:
+curl -X DELETE --user user:password https://api.bitbucket.org/1.0/repositories/ --data name=$line --data is_private=true --data owner=OWNER
+
+curl -X POST --user dpchitester:arcdpc00 https://api.bitbucket.org/2.0/repositories/dpchitester/{repo}
+To delete:
+
+curl -X DELETE --user dpchitester:arcdpc00 https://api.bitbucket.org/2.0/repositories/dpchitester/{repo}
+DELETE https://dpchitester:arcdpc00@api.bitbucket.org/2.0/repositories/{owner}/{repo_slug}

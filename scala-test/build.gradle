@@ -1,0 +1,105 @@
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+    jcenter()
+    mavenCentral()
+	flatDir {	name 'localJars'
+		dirs System.env.FLASH0 + '/Projects/lib', System.env.FLASH0 + '/PortableApps/jEditPortable/App/jEdit'
+	}
+  }
+  dependencies {
+    classpath "gradle.plugin.com.hierynomus.gradle.plugins:scalariform-gradle-plugin:0.1.3"  // format scala code
+	classpath 'io.dcow.gradle:sublime:0.9.+' // makes files for sublime
+	classpath 'org.ajoberstar:gradle-git:0.4.0' // ??
+	classpath ':jedit:' // for startup of jedit task (from gradle-gui)
+  }
+}
+
+plugins {
+	id "com.github.hierynomus.scalariform" version "0.1.3" // format scala code
+}
+
+scalariform {
+  alignParameters = false
+  alignSingleLineCaseStatements = true
+  indentWithTabs = true
+}
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: "com.github.hierynomus.scalariform"
+apply plugin: 'io.dcow.sublime'
+
+configurations {
+	scalaCompile
+	editSource
+}
+
+
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    jcenter()
+    mavenCentral()
+	flatDir {	name 'localJars'
+		dirs System.env.FLASH0 + '/Projects/lib', System.env.FLASH0 + '/PortableApps/jEditPortable/App/jEdit'
+	}
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+	compile group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
+	compile group: 'org.scalafx', name: 'scalafx_2.11', version: '8.0.102-R11'
+	compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'
+
+	runtime group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
+	runtime group: 'org.scalafx', name: 'scalafx_2.11', version: '8.0.102-R11'
+	runtime group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'
+
+	scalaCompile group: 'com.nativelibs4java', name: 'bridj', version: '0.7.0'
+	scalaCompile group: 'org.scala-lang', name: 'scala-compiler', version: '2.11.8'
+	scalaCompile group: 'org.scalafx', name: 'scalafx_2.11', version: '8.0.102-R11'
+	scalaCompile group: 'org.scala-lang', name: 'scala-library', version: '2.11.8'
+
+	zinc 'com.typesafe.zinc:zinc:0.3.13'
+	
+	editSource name: 'jedit'
+}
+
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'DirSyncApp'
+    }
+}
+
+task run(type: JavaExec, dependsOn: Collections.EMPTY_SET) { // for running the prog from gradle-gui
+	main = 'DirSyncApp'
+    classpath sourceSets.main.runtimeClasspath
+    classpath configurations.runtime
+    ArrayList<String> sl = new ArrayList<String>()
+    sl.add(System.env.FLASH0 + "\\")
+    if("FLASH1" in System.env) {
+    	sl.add(System.env.FLASH1 + "\\" + System.env.CLONE_DIR)
+    }
+    if("FLASH2" in System.env) {
+    	sl.add(System.env.FLASH2 + "\\" + System.env.CLONE_DIR)
+    }
+    if("FLASH3" in System.env) {
+    	sl.add(System.env.FLASH3 + "\\" + System.env.CLONE_DIR)
+    }
+    args sl
+}
+
+tasks.create(name: 'jEdit', type: JavaExec, dependsOn: Collections.EMPTY_SET) {
+	main = "org.gjt.sp.jedit.jEdit"
+    // classpath sourceSets.main.runtimeClasspath
+    // classpath configurations.runtime
+	classpath System.env.FLASH0 + '/PortableApps/jEditPortable/App/jEdit/jedit.jar'
+	args "-settings=" + System.env.FLASH0 + "\\PortableApps\\jEditPortable\\Data\\.jedit"
+	workingDir System.env.FLASH0 + '\\Projects\\scala-test'
+}

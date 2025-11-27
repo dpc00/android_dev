@@ -1,0 +1,40 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "finance record",
+  "main": "node-blog.js",
+  "devDependencies": {
+      "acorn":"latest",
+      "escodegen":"latest"
+  },
+  "scripts": {
+    "build":"node transform.js",
+    "copy": "cp blog-sorted.js blog.js",
+    "backup": "pbu",
+    "lint": "eslint --fix blog.js"
+  },
+  "keywords": [
+    "finance",
+    "database",
+    "reporting",
+    "logging",
+    "calfresh",
+    "directexpress",
+    "netspend",
+    "oap",
+    "ssi"
+  ],
+  "author": "phil",
+  "license": "ISC",
+  "prettier": {
+      "overrides": [
+        {
+          "files": "*.js",
+          "options": {
+            "parser": "acorn",
+            "tabWidth":4
+          }
+        }
+      ]
+  }
+}

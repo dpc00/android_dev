@@ -1,0 +1,573 @@
+{
+    "_default": {},
+    "opdep": {
+        "1": {
+            "op": "scpy",
+            "di": "scrdev",
+            "si": "home_as_src",
+            "dd": "scrdev",
+            "sd": "home_as_src",
+            "opts": {
+                "files": [
+                    ".config/rclone/rclone.conf"
+                ]
+            }
+        },
+        "2": {
+            "op": "scpy",
+            "di": "home",
+            "si": "scrdev",
+            "dd": "home",
+            "sd": "scrdev",
+            "opts": {
+                "files": [
+                    ".termux/**",
+                    ".bash*",
+                    ".swi*",
+                    ".profile",
+                    ".config/rclone/rclone.conf",
+                    ".clang-format",
+                    "rsyncd.conf"
+                ]
+            }
+        },
+        "3": {
+            "op": "scpy",
+            "di": "etc",
+            "si": "scrdev",
+            "dd": "etc",
+            "sd": "scrdev",
+            "opts": {
+                "files": [
+                    "rsyncd.conf",
+                    "rsyncd.secrets"
+                ]
+            }
+        },
+        "4": {
+            "op": "scpy",
+            "di": "bin",
+            "si": "scrdev",
+            "dd": "bin",
+            "sd": "scrdev",
+            "opts": {
+                "files": [
+                    "termux-*"
+                ],
+                "exec": true
+            }
+        },
+        "5": {
+            "op": "scpy",
+            "di": "sh",
+            "si": "scrdev",
+            "dd": "sh",
+            "sd": "scrdev",
+            "opts": {
+                "files": [
+                    "*.sh",
+                    "*.env"
+                ],
+                "exec": true
+            }
+        },
+        "6": {
+            "op": "scpy",
+            "di": "py",
+            "si": "pyth",
+            "dd": "py",
+            "sd": "pyth",
+            "opts": {
+                "files": [
+                    "*.py"
+                ],
+                "exec": true
+            }
+        },
+        "7": {
+            "op": "scpy",
+            "di": "pl",
+            "si": "pro",
+            "dd": "pl",
+            "sd": "pro",
+            "opts": {
+                "files": [
+                    "*.pl"
+                ],
+                "exec": true
+            }
+        },
+        "8": {
+            "op": "scpy",
+            "di": "fdbak",
+            "si": "fdb",
+            "dd": "fdbak",
+            "sd": "docs",
+            "opts": {
+                "files": [
+                    "Finance.db"
+                ]
+            }
+        },
+        "9": {
+            "op": "scpy",
+            "di": "backups",
+            "si": "fdb",
+            "dd": "backups",
+            "sd": "docs",
+            "opts": {
+                "files": [
+                    "Finance.db"
+                ]
+            }
+        },
+        "10": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "blog",
+            "dd": "git",
+            "sd": "blog",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "add": true,
+                "commit": true
+            }
+        },
+        "11": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "fdbak",
+            "dd": "git",
+            "sd": "fdbak",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "add": true,
+                "commit": true
+            }
+        },
+        "12": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "scrdev",
+            "dd": "git",
+            "sd": "scrdev",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "add": true,
+                "commit": true
+            }
+        },
+        "13": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "bash2",
+            "dd": "git",
+            "sd": "bash2",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "add": true,
+                "commit": true
+            }
+        },
+        "14": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "pyth",
+            "dd": "git",
+            "sd": "pyth",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "add": true,
+                "commit": true
+            }
+        },
+        "15": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "pro",
+            "dd": "git",
+            "sd": "pro",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "add": true,
+                "commit": true
+            }
+        },
+        "16": {
+            "op": "gitbackup",
+            "di": "git",
+            "si": "js",
+            "dd": "git",
+            "sd": "js",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "add": true,
+                "commit": true
+            }
+        },
+        "17": {
+            "op": "gitbackup",
+            "di": "local",
+            "si": "git",
+            "dd": "local",
+            "sd": "git",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "rmt": "local",
+                "push": true
+            }
+        },
+        "18": {
+            "op": "gitbackup",
+            "di": "bitbucket",
+            "si": "git",
+            "dd": "bitbucket",
+            "sd": "git",
+            "opts": {
+                "wt": "/sdcard/projects",
+                "rmt": "bitbucket",
+                "push": true
+            }
+        },
+        "19": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "blog",
+            "dd": "db",
+            "sd": "blog",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "20": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "fdbak",
+            "dd": "db",
+            "sd": "fdbak",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "21": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "scrdev",
+            "dd": "db",
+            "sd": "scrdev",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "22": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "bash2",
+            "dd": "db",
+            "sd": "bash2",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "23": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "pyth",
+            "dd": "db",
+            "sd": "pyth",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "24": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "pro",
+            "dd": "db",
+            "sd": "pro",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "25": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "js",
+            "dd": "db",
+            "sd": "js",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "26": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "blog",
+            "dd": "od",
+            "sd": "blog",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "27": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "fdbak",
+            "dd": "od",
+            "sd": "fdbak",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "28": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "scrdev",
+            "dd": "od",
+            "sd": "scrdev",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "29": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "bash2",
+            "dd": "od",
+            "sd": "bash2",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "30": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "pyth",
+            "dd": "od",
+            "sd": "pyth",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "31": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "pro",
+            "dd": "od",
+            "sd": "pro",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "32": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "js",
+            "dd": "od",
+            "sd": "js",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "33": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "blog",
+            "dd": "gd",
+            "sd": "blog",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "34": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "fdbak",
+            "dd": "gd",
+            "sd": "fdbak",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "35": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "scrdev",
+            "dd": "gd",
+            "sd": "scrdev",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "36": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "bash2",
+            "dd": "gd",
+            "sd": "bash2",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "37": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "pyth",
+            "dd": "gd",
+            "sd": "pyth",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "38": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "pro",
+            "dd": "gd",
+            "sd": "pro",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "39": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "js",
+            "dd": "gd",
+            "sd": "js",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "40": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "docs",
+            "dd": "db",
+            "sd": "docs",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "41": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "docs",
+            "dd": "od",
+            "sd": "docs",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "42": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "docs",
+            "dd": "gd",
+            "sd": "docs",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "43": {
+            "op": "csbackup",
+            "di": "db",
+            "si": "refs",
+            "dd": "db",
+            "sd": "refs",
+            "opts": {
+                "sname": "DropBox"
+            }
+        },
+        "44": {
+            "op": "csbackup",
+            "di": "od",
+            "si": "refs",
+            "dd": "od",
+            "sd": "refs",
+            "opts": {
+                "sname": "OneDrive"
+            }
+        },
+        "45": {
+            "op": "csbackup",
+            "di": "gd",
+            "si": "refs",
+            "dd": "gd",
+            "sd": "refs",
+            "opts": {
+                "sname": "GoogleDrive"
+            }
+        },
+        "46": {
+            "op": "mkzip",
+            "di": "zip",
+            "si": "blog",
+            "dd": "backups",
+            "sd": "proj",
+            "opts": {
+                "zipfile": "projects.zip"
+            }
+        },
+        "47": {
+            "op": "mkzip",
+            "di": "zip",
+            "si": "fdbak",
+            "dd": "backups",
+            "sd": "proj",
+            "opts": {
+                "zipfile": "projects.zip"
+            }
+        },
+        "48": {
+            "op": "mkzip",
+            "di": "zip",
+            "si": "scrdev",
+            "dd": "backups",
+            "sd": "proj",
+            "opts": {
+                "zipfile": "projects.zip"
+            }
+        },
+        "49": {
+            "op": "mkzip",
+            "di": "zip",
+            "si": "bash2",
+            "dd": "backups",
+            "sd": "proj",
+            "opts": {
+                "zipfile": "projects.zip"
+            }
+        },
+        "50": {
+            "op": "mkzip",
+            "di": "zip",
+            "si": "pyth",
+            "dd": "backups",
+            "sd": "proj",
+            "opts": {
+                "zipfile": "projects.zip"
+            }
+        },
+        "51": {
+            "op": "mkzip",
+            "di": "zip",
+            "si": "pro",
+            "dd": "backups",
+            "sd": "proj",
+            "opts": {
+                "zipfile": "projects.zip"
+            }
+        },
+        "52": {
+            "op": "mkzip",
+            "di": "zip",
+            "si": "js",
+            "dd": "backups",
+            "sd": "proj",
+            "opts": {
+                "zipfile": "projects.zip"
+            }
+        }
+    }
+}

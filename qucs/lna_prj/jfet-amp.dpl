@@ -1,0 +1,27 @@
+<Qucs Schematic 0.0.19>
+<Properties>
+  <View=-114,5,1591,883,0.771842,61,0>
+  <Grid=10,10,0>
+  <DataSet=jfet-amp.dat>
+  <DataDisplay=jfet-amp.sch>
+  <OpenDisplay=1>
+  <Script=jfet-amp.m>
+  <RunScript=0>
+  <showFrame=0>
+  <FrameText0=Title>
+  <FrameText1=Drawn By:>
+  <FrameText2=Date:>
+  <FrameText3=Revision:>
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+</Components>
+<Wires>
+</Wires>
+<Diagrams>
+  <Rect 300 685 524 595 3 #c0c0c0 1 00 1 0 0.2 2 1 -0.0418871 0.005 0 1 -1 0.2 1 315 0 225 "" "" "">
+  </Rect>
+</Diagrams>
+<Paintings>
+</Paintings>

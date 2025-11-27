@@ -1,0 +1,1 @@
+am start -a org.chromium.chrome.browser.document.ChromeLauncherActivity -d index.html com.android.chrome

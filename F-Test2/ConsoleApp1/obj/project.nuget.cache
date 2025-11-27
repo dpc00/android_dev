@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wZbIXA+39UifqiYA5TcgJrGWhiBG3Omt1J4SJ1G9TasBvIJgytbD+f1TVeOmTu9c91Zg8dWNH6iAHkcEa94RNA==",
+  "success": true,
+  "projectFilePath": "C:\\projects\\F-Test2\\ConsoleApp1\\ConsoleApp1.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Donald Chitester\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

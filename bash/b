@@ -1,0 +1,1 @@
+am start -n com.android.chrome/org.chromium.chrome.browser.ChromeTabbedActivity -d "$1" -activity-clear-task

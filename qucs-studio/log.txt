@@ -1,0 +1,26 @@
+Starting "antenna-adapter2.sch" on Tue 29. Jun 2021 at 19:55:44
+
+creating netlist... done.
+analysing circuit... done.
+solving circuit... 
+
+Errors occured after 0.156 sec
+Aborted.
+
+
+-------------
+
+Error in 'SUB3': Unknown variable 'R1' in equation "R1".
+Error in 'SUB3': Unknown variable 'C1' in equation "C1".
+Error in 'SUB3': Unknown variable 'C2' in equation "C2".
+Error in 'SUB3': Unknown variable 'L2' in equation "L2".
+Error in 'SUB3': Unknown variable 'L1' in equation "L1".
+Error in 'SUB2': Unknown variable 'R1' in equation "R1".
+Error in 'SUB2': Unknown variable 'C1' in equation "C1".
+Error in 'SUB2': Unknown variable 'C2' in equation "C2".
+Error in 'SUB2': Unknown variable 'L2' in equation "L2".
+Error in 'SUB2': Unknown variable 'L1' in equation "L1".
+Error in 'Eqn2': Unknown variable 'LmOpt' in equation "LmOpt*1e-6".
+Error in 'Eqn2': Unknown variable 'LmOpt' in equation "LmOpt*1e-6".
+Error in 'Eqn2': Unknown variable 'LmOpt' in equation "LmOpt*1e-6".
+

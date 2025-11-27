@@ -1,0 +1,77 @@
+# Qucs 0.0.19  C:/projects/qucs-s/nic_prj/antenna-adapter2.sch
+
+.Def:FloatL_NIC _net6 _net8 _net7 _net9
+BJT:Q2N2222A_1 _net0 _net1 _net2 _net1 Type="npn" Is="8.11e-14" Nf="1" Nr="1" Ikf="0.5" Ikr="0.225" Vaf="113" Var="24" Ise="1.06e-11" Ne="2" Isc="0" Nc="2" Bf="205" Br="4" Rbm="0" Irb="0" Rc="0.137" Re="0.343" Rb="1.37" Cje="2.95e-11" Vje="0.75" Mje="0.33" Cjc="1.52e-11" Vjc="0.75" Mjc="0.33" Xcjc="1" Cjs="0" Vjs="0.75" Mjs="0" Fc="0.5" Tf="3.97e-10" Xtf="0" Vtf="0" Itf="0" Tr="8.5e-08" Temp="26.85" Kf="0" Af="1" Ffe="1" Kb="0" Ab="1" Fb="1" Ptf="0" Xtb="1.5" Xti="3" Eg="1.11" Tnom="26.85" Area="1"
+BJT:Q2N2222A_2 _net0 _net0 _net3 _net0 Type="npn" Is="8.11e-14" Nf="1" Nr="1" Ikf="0.5" Ikr="0.225" Vaf="113" Var="24" Ise="1.06e-11" Ne="2" Isc="0" Nc="2" Bf="205" Br="4" Rbm="0" Irb="0" Rc="0.137" Re="0.343" Rb="1.37" Cje="2.95e-11" Vje="0.75" Mje="0.33" Cjc="1.52e-11" Vjc="0.75" Mjc="0.33" Xcjc="1" Cjs="0" Vjs="0.75" Mjs="0" Fc="0.5" Tf="3.97e-10" Xtf="0" Vtf="0" Itf="0" Tr="8.5e-08" Temp="26.85" Kf="0" Af="1" Ffe="1" Kb="0" Ab="1" Fb="1" Ptf="0" Xtb="1.5" Xti="3" Eg="1.11" Tnom="26.85" Area="1"
+R:R1 _net4 _net5 R="1k Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+C:C1 _net5 gnd C="1 uF" V=""
+Vdc:V1 _net4 gnd U="10 V"
+Tr:Tr1 _net6 _net2 gnd _net8 T="1"
+Tr:Tr2 _net3 _net7 _net9 gnd T="1"
+Tr:Tr3 _net4 _net0 _net5 _net1 T="1"
+R:R2 _net7 gnd R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R4 _net6 gnd R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R3 _net9 gnd R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R5 _net8 gnd R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+.Def:End
+
+.Def:plex _net2 _net4 _net1 _net0
+Relais:S1 _net0 _net1 _net2 gnd Vt="0.5 V" Vh="0.1 V" Ron="0" Roff="1e12" Temp="26.85"
+Inv:Y1 _net3 _net0 V="1 V" t="0" TR="10"
+Relais:S5 _net3 _net1 _net4 gnd Vt="0.5 V" Vh="0.1 V" Ron="0" Roff="1e12" Temp="26.85"
+Relais:S4 _net0 gnd _net4 gnd Vt="0.5 V" Vh="0.1 V" Ron="0" Roff="1e12" Temp="26.85"
+R:R1 _net4 gnd R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R2 _net2 _net1 R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R3 _net4 _net1 R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+.Def:End
+
+.Def:capacitor _net1 _net0 R1="10" V1="10e9"
+R:R1 _net0 _net1 R="R1" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+C:C1 _net0 _net1 C="V1" V=""
+.Def:End
+
+.Def:inductor _net0 _net1 R1="10" V1="1e-6"
+R:R1 _net1 _net2 R="R1" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+L:L1 _net2 _net0 L="V1" I=""
+.Def:End
+
+.Def:ant_net _net1 _net3 _net5 V1="1e-6" R1="1"
+Relais:S1 _net0 _net1 _net2 gnd Vt="0.5 V" Vh="0.1 V" Ron="0" Roff="1e12" Temp="26.85"
+Relais:S2 _net0 _net3 _net4 gnd Vt="0.5 V" Vh="0.1 V" Ron="0" Roff="1e12" Temp="26.85"
+Relais:S3 _net5 _net1 _net6 gnd Vt="0.5 V" Vh="0.1 V" Ron="0" Roff="1e12" Temp="26.85"
+Relais:S4 _net5 _net3 _net7 gnd Vt="0.5 V" Vh="0.1 V" Ron="0" Roff="1e12" Temp="26.85"
+R:R1 _net2 _net1 R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R2 _net4 _net3 R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R3 _net6 _net1 R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+R:R4 _net7 _net3 R="9e9 Ohm" Temp="26.85" Tc1="0.0" Tc2="0.0" Tnom="26.85"
+Inv:Y1 _net0 _net5 V="1 V" t="0" TR="10"
+Sub:CAP1 _net4 _net2 Type="capacitor" R1="R1" V1="V1"
+Sub:IND1 _net7 _net6 Type="inductor" R1="R1" V1="V1"
+.Def:End
+
+Vdc:V1 _net0 gnd U="SS1"
+SPfile:X1 _net1 gnd File="{C:/projects/sNp/4mloop.s1p}" Data="polar" Interpolator="linear" duringDC="open"
+Vdc:V2 _net2 gnd U="SS2"
+.DC:DC1 Temp="26.85" reltol="0.001" abstol="1 pA" vntol="1 uV" saveOPs="yes" MaxIter="150" saveAll="yes" convHelper="none" Solver="CroutLU"
+#
+# ASCO configuration file(s) created
+#
+
+Sub:NIC2 _net3 _net4 _net5 _net6 Type="FloatL_NIC"
+Sub:NIC1 _net7 _net8 _net9 _net10 Type="FloatL_NIC"
+Sub:PLEX1 _net7 _net8 _net1 _net0 Type="plex"
+Sub:PLEX2 _net3 _net4 _net7 _net2 Type="plex"
+Eqn:Eqn1 F1="1e6" F2="30e6" VSWR="(1+abs(S[1,1]))/(1-abs(S[1,1]))" OG2="min(VSWR,F1:F2)" OG3="max(VSWR,F1:F2)" Z0="50" Zup="Z0*(TR^2)" Export="yes"
+Vdc:V4 _net11 gnd U="CL2"
+Vdc:V3 _net12 gnd U="CL1"
+Pac:P2 _net14 gnd Num="1" Z="50" P="-40 dBm" f="1 GHz" Temp="26.85"
+Sub:NIC3 _net13 _net15 _net16 _net17 Type="FloatL_NIC"
+Sub:PLEX3 _net13 _net15 _net3 _net18 Type="plex"
+Vdc:V5 _net18 gnd U="SS3"
+Vdc:V6 _net19 gnd U="CL3"
+.SP:SP1 Type="lin" Start="F1" Stop="F2" Points="101" Noise="no" NoiseIP="1" NoiseOP="2" saveCVs="yes" saveAll="yes"
+Sub:CLNET1 _net9 _net10 _net12 Type="ant_net" V1="M1V1" R1="M1R1"
+Sub:CLNET2 _net5 _net6 _net11 Type="ant_net" V1="M2V1" R1="M2R1"
+Sub:CLNET3 _net16 _net17 _net19 Type="ant_net" V1="M3V1" R1="M3R1"
+Eqn:OptValues1 SS1="1" TR="1" SS2="1" M1R1="5.56" M2R1="4.72" M1V1="0.000991" M2V1="0.000998" CL1="1" CL2="1" SS3="1.000000E+000" M3R1="1.033289E+001" M3V1="9.917369E-004" CL3="1.000000E+000" Export="yes"
+Tr:Tr1 _net14 _net13 gnd gnd T="TR"

@@ -1,0 +1,32 @@
+# EESchema Netlist created by QucsStudio 3.3.2
+(
+ ( /P2 SUBCLICK P2 2
+  ( 1 _net0 )
+  ( 2 gnd )
+ )
+ ( /L1 SELF-WE-PD3S L1 L1
+  ( 1 _net1 )
+  ( 2 _net2 )
+ )
+ ( /R1 SMD0603 R1 R1
+  ( 1 _net1 )
+  ( 2 _net3 )
+ )
+ ( /X1 SOT23 X1 C:/projects/sNp/temp.s2p
+  ( 1 gnd )
+  ( 2 _net7 )
+  ( 3 _net0 )
+ )
+ ( /P1 SUBCLICK P1 1
+  ( 1 _net7 )
+  ( 2 gnd )
+ )
+ ( /R2 SMD0603 R2 R2
+  ( 1 _net5 )
+  ( 2 _net6 )
+ )
+ ( /C1 SMD0603 C1 C1
+  ( 1 _net5 )
+  ( 2 _net6 )
+ )
+)

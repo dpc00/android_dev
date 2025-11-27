@@ -1,0 +1,9 @@
+matplotlib~=3.3.4
+scikit-rf~=0.18.1
+pillow
+pyserial~=3.5
+
+numpy~=1.20.1
+scipy~=1.6.2
+pyspice~=1.4.3
+lark-parser~=0.11.3

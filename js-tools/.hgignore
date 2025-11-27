@@ -1,0 +1,10 @@
+.*workspace\.xml$
+^.*\.log$
+^.*\.sublime-.*$
+^\.hg/
+^bin/
+^hgbackup\.bat$
+^pkg/
+^plaunch.*\.json$
+^node_modules/
+^.bat - Copy/

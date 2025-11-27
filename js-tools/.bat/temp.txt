@@ -1,0 +1,349 @@
+
+D:\.bat>setlocal enabledelayedexpansion 
+
+D:\.bat>for /F "usebackq skip=1 delims=" %i in (`wmic OS get OSArchitecture`) do (
+set sline=%i  
+ set dw=!SLINE:~0,2!  
+ if [!dw!] EQU [32-bit] (set ARCH=x32 )  
+ if [!dw!] EQU [64-bit] (set ARCH=x64 ) 
+) 
+
+D:\.bat>(
+set sline=32-bit            
+ set dw=!SLINE:~0,2!  
+ if [!dw!] EQU [32-bit] (set ARCH=x32 )  
+ if [!dw!] EQU [64-bit] (set ARCH=x64 ) 
+) 
+
+D:\.bat>(
+set sline=  
+ set dw=!SLINE:~0,2!  
+ if [!dw!] EQU [32-bit] (set ARCH=x32 )  
+ if [!dw!] EQU [64-bit] (set ARCH=x64 ) 
+) 
+
+D:\.bat>for /F "usebackq skip=1 delims=" %i in (`wmic VOLUME get label,driveletter`) do (
+set sline=%i  
+ set dl=!SLINE:~0,2!  
+ set vl=!SLINE:~13,5!  
+ if [!vl!] EQU [CODE0] (
+set FLASH0=!dl!  
+ echo CODE0 drive found on  
+)  
+ if [!vl!] EQU [CODE1] (
+set FLASH1=!dl!  
+ echo CODE1 drive found on  
+)  
+ if [!vl!] EQU [CODE2] (
+set FLASH2=!dl!  
+ echo CODE2 drive found on  
+)  
+ if [!vl!] EQU [CODE3] (
+set FLASH3=!dl!  
+ echo CODE3 drive found on  
+)  
+ if [!vl!] EQU [CODE4] (
+set FLASH4=!dl!  
+ echo CODE4 drive found on  
+)  
+ if [!vl!] EQU [CODE5] (
+set FLASH5=!dl!  
+ echo CODE5 drive found on  
+)  
+ if [!vl!] EQU [CODE6] (
+set FLASH6=!dl!  
+ echo CODE6 drive found on  
+) 
+) 
+
+D:\.bat>(
+set sline=C:                         
+ set dl=!SLINE:~0,2!  
+ set vl=!SLINE:~13,5!  
+ if [!vl!] EQU [CODE0] (
+set FLASH0=!dl!  
+ echo CODE0 drive found on  
+)  
+ if [!vl!] EQU [CODE1] (
+set FLASH1=!dl!  
+ echo CODE1 drive found on  
+)  
+ if [!vl!] EQU [CODE2] (
+set FLASH2=!dl!  
+ echo CODE2 drive found on  
+)  
+ if [!vl!] EQU [CODE3] (
+set FLASH3=!dl!  
+ echo CODE3 drive found on  
+)  
+ if [!vl!] EQU [CODE4] (
+set FLASH4=!dl!  
+ echo CODE4 drive found on  
+)  
+ if [!vl!] EQU [CODE5] (
+set FLASH5=!dl!  
+ echo CODE5 drive found on  
+)  
+ if [!vl!] EQU [CODE6] (
+set FLASH6=!dl!  
+ echo CODE6 drive found on  
+) 
+) 
+
+D:\.bat>(
+set sline=E:           CODE5         
+ set dl=!SLINE:~0,2!  
+ set vl=!SLINE:~13,5!  
+ if [!vl!] EQU [CODE0] (
+set FLASH0=!dl!  
+ echo CODE0 drive found on  
+)  
+ if [!vl!] EQU [CODE1] (
+set FLASH1=!dl!  
+ echo CODE1 drive found on  
+)  
+ if [!vl!] EQU [CODE2] (
+set FLASH2=!dl!  
+ echo CODE2 drive found on  
+)  
+ if [!vl!] EQU [CODE3] (
+set FLASH3=!dl!  
+ echo CODE3 drive found on  
+)  
+ if [!vl!] EQU [CODE4] (
+set FLASH4=!dl!  
+ echo CODE4 drive found on  
+)  
+ if [!vl!] EQU [CODE5] (
+set FLASH5=!dl!  
+ echo CODE5 drive found on  
+)  
+ if [!vl!] EQU [CODE6] (
+set FLASH6=!dl!  
+ echo CODE6 drive found on  
+) 
+) 
+CODE5 drive found on 
+
+D:\.bat>(
+set sline=D:           CODE0         
+ set dl=!SLINE:~0,2!  
+ set vl=!SLINE:~13,5!  
+ if [!vl!] EQU [CODE0] (
+set FLASH0=!dl!  
+ echo CODE0 drive found on  
+)  
+ if [!vl!] EQU [CODE1] (
+set FLASH1=!dl!  
+ echo CODE1 drive found on  
+)  
+ if [!vl!] EQU [CODE2] (
+set FLASH2=!dl!  
+ echo CODE2 drive found on  
+)  
+ if [!vl!] EQU [CODE3] (
+set FLASH3=!dl!  
+ echo CODE3 drive found on  
+)  
+ if [!vl!] EQU [CODE4] (
+set FLASH4=!dl!  
+ echo CODE4 drive found on  
+)  
+ if [!vl!] EQU [CODE5] (
+set FLASH5=!dl!  
+ echo CODE5 drive found on  
+)  
+ if [!vl!] EQU [CODE6] (
+set FLASH6=!dl!  
+ echo CODE6 drive found on  
+) 
+) 
+CODE0 drive found on 
+
+D:\.bat>(
+set sline=R:           ThawSpace0    
+ set dl=!SLINE:~0,2!  
+ set vl=!SLINE:~13,5!  
+ if [!vl!] EQU [CODE0] (
+set FLASH0=!dl!  
+ echo CODE0 drive found on  
+)  
+ if [!vl!] EQU [CODE1] (
+set FLASH1=!dl!  
+ echo CODE1 drive found on  
+)  
+ if [!vl!] EQU [CODE2] (
+set FLASH2=!dl!  
+ echo CODE2 drive found on  
+)  
+ if [!vl!] EQU [CODE3] (
+set FLASH3=!dl!  
+ echo CODE3 drive found on  
+)  
+ if [!vl!] EQU [CODE4] (
+set FLASH4=!dl!  
+ echo CODE4 drive found on  
+)  
+ if [!vl!] EQU [CODE5] (
+set FLASH5=!dl!  
+ echo CODE5 drive found on  
+)  
+ if [!vl!] EQU [CODE6] (
+set FLASH6=!dl!  
+ echo CODE6 drive found on  
+) 
+) 
+
+D:\.bat>(
+set sline=  
+ set dl=!SLINE:~0,2!  
+ set vl=!SLINE:~13,5!  
+ if [!vl!] EQU [CODE0] (
+set FLASH0=!dl!  
+ echo CODE0 drive found on  
+)  
+ if [!vl!] EQU [CODE1] (
+set FLASH1=!dl!  
+ echo CODE1 drive found on  
+)  
+ if [!vl!] EQU [CODE2] (
+set FLASH2=!dl!  
+ echo CODE2 drive found on  
+)  
+ if [!vl!] EQU [CODE3] (
+set FLASH3=!dl!  
+ echo CODE3 drive found on  
+)  
+ if [!vl!] EQU [CODE4] (
+set FLASH4=!dl!  
+ echo CODE4 drive found on  
+)  
+ if [!vl!] EQU [CODE5] (
+set FLASH5=!dl!  
+ echo CODE5 drive found on  
+)  
+ if [!vl!] EQU [CODE6] (
+set FLASH6=!dl!  
+ echo CODE6 drive found on  
+) 
+) 
+
+D:\.bat>if [D:] EQU [] (
+echo No CODE0 drive found!  
+ pause 
+ exit /B 
+) 
+
+D:\.bat>set CLONE_DIR= 
+
+D:\.bat>set EXE4J_JAVA_HOME=D:\Programs\jDK 
+
+D:\.bat>set GOLAND_PROPERTIES=D:\Programs\GoLand\idea.properties 
+
+D:\.bat>set GOROOT=D:\Programs\go. 
+
+D:\.bat>set GOPATH=D:\Projects\go 
+
+D:\.bat>set HGUSER=Donald Chitester <dpchitester@gmail.com> 
+
+D:\.bat>set HOME=D:\ 
+
+D:\.bat>set IDEA_PROPERTIES=D:\Programs\idea\idea.properties 
+
+D:\.bat>set JAVA_HOME=D:\Programs\jDK\jre 
+
+D:\.bat>set JDK_HOME=D:\Programs\jDK 
+
+D:\.bat>set M2_HOME=D:\Projects\lib\.m2 
+
+D:\.bat>set NODE_PATH=D:\Programs\node-v8.9.1-win-\node_modules;D:\Projects\tools\lib 
+
+D:\.bat>set PUB_CACHE=D:\Programs\Pub\Cache 
+
+D:\.bat>set PYTHONHOME=D:\Programs\Python36 
+
+D:\.bat>set PYTHONPATH=D:\Projects\py-test 
+
+D:\.bat>path D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path "D:\Programs\Sublime Text Build 3143 ";D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\Utils;"D:\Programs\Sublime Text Build 3143 ";D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Projects\go\bin;D:\Programs\Utils;"D:\Programs\Sublime Text Build 3143 ";D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\go.\bin;D:\Projects\go\bin;D:\Programs\Utils;"D:\Programs\Sublime Text Build 3143 ";D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path D:\Programs\Pub\Cache\bin;D:\Programs\go.\bin;D:\Projects\go\bin;D:\Programs\Utils;"D:\Programs\Sublime Text Build 3143 ";D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>path "D:\Programs\eclipse ";D:\Programs\Pub\Cache\bin;D:\Programs\go.\bin;D:\Projects\go\bin;D:\Programs\Utils;"D:\Programs\Sublime Text Build 3143 ";D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86 
+
+D:\.bat>set
+ALLUSERSPROFILE=C:\ProgramData
+APPDATA=C:\Users\bplpatron\AppData\Roaming
+CommonProgramFiles=C:\Program Files\Common Files
+COMPUTERNAME=BPLNOB-P1-12512
+ComSpec=C:\Windows\system32\cmd.exe
+dl=
+dw=
+EXE4J_JAVA_HOME=D:\Programs\jDK
+FLASH0=D:
+FLASH5=E:
+FP_NO_HOST_CHECK=NO
+GOLAND_PROPERTIES=D:\Programs\GoLand\idea.properties
+GOPATH=D:\Projects\go
+GOROOT=D:\Programs\go.
+HGUSER=Donald Chitester <dpchitester@gmail.com>
+HOME=D:\
+HOMEDRIVE=C:
+HOMEPATH=\Users\bplpatron
+IDEA_PROPERTIES=D:\Programs\idea\idea.properties
+JAVA_HOME=D:\Programs\jDK\jre
+JDK_HOME=D:\Programs\jDK
+LDMS_LOCAL_DIR=C:\Program Files\LANDesk\LDClient\Data
+LOCALAPPDATA=C:\Users\bplpatron\AppData\Local
+LOGONSERVER=\\BPLNOB-P1-12512
+M2_HOME=D:\Projects\lib\.m2
+NODE_PATH=D:\Programs\node-v8.9.1-win-\node_modules;D:\Projects\tools\lib
+NUMBER_OF_PROCESSORS=4
+OS=Windows_NT
+Path="D:\Programs\eclipse ";D:\Programs\Pub\Cache\bin;D:\Programs\go.\bin;D:\Projects\go\bin;D:\Programs\Utils;"D:\Programs\Sublime Text Build 3143 ";D:\Programs\Python36;D:\Programs\node-v8.9.1-win-;D:\Programs\Mercurial;D:\Programs\jDK\jre\lib;D:\Programs\jDK\jre\bin;D:\Programs\jDK\lib;D:\Programs\jDK\bin;D:\Programs\dart-sdk.\bin;D:\Programs\7-Zip;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86;C:\Windows\CCM;C:\Program Files\Intel\OpenCL SDK\2.0\bin\x86
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PROCESSOR_ARCHITECTURE=x86
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 58 Stepping 9, GenuineIntel
+PROCESSOR_LEVEL=6
+PROCESSOR_REVISION=3a09
+ProgramData=C:\ProgramData
+ProgramFiles=C:\Program Files
+PROMPT=$P$G
+PSModulePath=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\
+PUBLIC=C:\Users\Public
+PUB_CACHE=D:\Programs\Pub\Cache
+PYTHONHOME=D:\Programs\Python36
+PYTHONPATH=D:\Projects\py-test
+SESSIONNAME=Console
+sline=
+SystemDrive=C:
+SystemRoot=C:\Windows
+TEMP=C:\Users\BPLPAT~1\AppData\Local\Temp
+TMP=C:\Users\BPLPAT~1\AppData\Local\Temp
+USERDOMAIN=BPLNOB-P1-12512
+USERNAME=bplpatron
+USERPROFILE=C:\Users\bplpatron
+windir=C:\Windows

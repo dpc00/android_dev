@@ -1,0 +1,20 @@
+* Qucs 0.0.22 C:/projects/qucs/nic_prj/antenna-adapter3.sch
+* Qucs 0.0.22  C:/projects/qucs/nic_prj/antenna-adapter3.sch
+VPr1 _net0 Vp1 DC 0
+VPr2 _net1 Vp2 DC 0
+R2 _net2 _net1  50
+R1 _net3 _net0  50
+V1 _net3 0 DC 0 SIN(0 1 1G 0 0 0) AC 1
+V2 _net2 0 DC 0 SIN(0 0 1G 0 0 0) AC 0
+L1 Vp1 Vp2  100U 
+.control
+echo "" > spice4qucs.cir.noise
+echo "" > spice4qucs.cir.pz
+ac dec 10 1e6 30e6 
+write antenna-adapter3_ac.txt VPr1#branch VPr2#branch v(Vp1) v(Vp2) 
+destroy all
+reset
+
+exit
+.endc
+.END

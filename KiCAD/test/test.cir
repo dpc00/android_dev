@@ -1,0 +1,10 @@
+.title KiCad schematic
+R1 VCC Net-_C1-Pad1_ 500
+R2 Net-_C2-Pad1_ VEE 1k
+R3 Net-_C2-Pad2_ VEE 1.2k
+C2 Net-_C2-Pad1_ Net-_C2-Pad2_ 3nF
+C1 Net-_C1-Pad1_ Net-_C1-Pad2_ 1nF
+V1 Net-_C1-Pad2_ GND sin(0 1 1k)
+Q2 VCC Net-_C1-Pad1_ Net-_C2-Pad2_ NC_01 QNPN
+Q1 Net-_C1-Pad1_ GND Net-_C2-Pad1_ NC_02 QNPN
+.end

@@ -1,0 +1,38 @@
+# QucsStudio 3.3.2  C:/projects/qucs-studio/nic_prj/antenna-adapter2.sch
+
+.Def:CFloatLNic _net8 _net9 _net2 _net6
+_BJT:Q2N2222A_2 _net0 _net0 _net1 "npn" "8.11e-14" "1" "1" "0.5" "0.225" "113" "24" "1.06e-11" "2" "0" "2" "205" "4" "0" "0" "0.137" "0.343" "1.37" "2.95e-11" "0.75" "0.33" "1.52e-11" "0.75" "0.33" "1" "0" "0.75" "0" "0.5" "3.97e-10" "0" "0" "0" "8.5e-08" "26.85" "0" "1" "1" "0" "1" "1" "0" "1.5" "3" "1.11" "26.85" "1" "7.02e-4" "1108.0" "SOT23"
+Tr:Tr1 _net3 _net0 _net4 _net5 "1"
+Tr:Tr3 _net1 _net2 _net6 gnd "1"
+_BJT:Q2N2222A_1 _net0 _net5 _net7 "npn" "8.11e-14" "1" "1" "0.5" "0.225" "113" "24" "1.06e-11" "2" "0" "2" "205" "4" "0" "0" "0.137" "0.343" "1.37" "2.95e-11" "0.75" "0.33" "1.52e-11" "0.75" "0.33" "1" "0" "0.75" "0" "0.5" "3.97e-10" "0" "0" "0" "8.5e-08" "26.85" "0" "1" "1" "0" "1" "1" "0" "1.5" "3" "1.11" "26.85" "1" "7.02e-4" "1108.0" "SOT23"
+Tr:Tr2 _net8 _net7 gnd _net9 "1"
+C:C1 _net4 gnd "1 uF" "1e-12" "0" "neutral" "SMD0603"
+R:R1 _net3 _net4 "1e3 Ohm" "26.85" "0.0" "0.0" "26.85" "US" "SMD0603"
+Vdc:V1 _net3 gnd "10 V" "battery" "SIL-2"
+.Def:End
+
+.Def:Cmagant_net _net0 _net1 L1="1e-6" L2="1e-6" C1="1e-12" C2="1e-12" R1="10"
+L:L1 _net1 _net0 "L1V" "0" "0" "SELF-WE-PD3S"
+L:L2 _net0 _net2 "L2V" "0" "0" "SELF-WE-PD3S"
+C:C2 _net2 _net3 "C2V" "1e-12" "0" "neutral" "SMD0603"
+C:C1 _net1 _net0 "C1V" "1e-12" "0" "neutral" "SMD0603"
+Eqn:Eqn1 "L1V=L1*1e-6" "L2V=L2*1e-6" "C1V=C1*1e-12" "C2V=C2*1e-12" "yes"
+R:R2 _net1 _net3 "R1" "26.85" "0.0" "0.0" "26.85" "US" "SMD0603"
+.Def:End
+
+Pac:P2 _net0 gnd "1" "50" "-40 dBm" "1 GHz" "26.85" "SUBCLICK"
+Pac:P3 _net1 gnd "2" "50" "-40 dBm" "1 GHz" "26.85" "SUBCLICK"
+SPfile:X2 gnd _net0 "C:/projects/sNp/4mloop.s1p" "1" "polar" "linear" "short" "none" "block" "SOT23"
+Sub:NIC2 _net2 gnd _net3 gnd "CFloatLNic"
+L:L5 _net3 gnd "Lm" "0" "" "SELF-WE-PD3S"
+L:L3 _net4 _net2 "Lm" "0" "" "SELF-WE-PD3S"
+L:L4 _net2 _net5 "Lm" "0" "" "SELF-WE-PD3S"
+Pac:P4 _net4 gnd "3" "50" "-40 dBm" "1 GHz" "26.85" "SUBCLICK"
+Eqn:Eqn1 "F1=1e6" "F2=30e6" "Fp=101" "Z0=50" "ms1=mag(S[1,1])" "vs1=(1+ms1)/(1-ms1)" "yes"
+Sub:NIC1 _net5 _net6 _net7 _net8 "CFloatLNic"
+.SP:SP1 "lin" "F1" "F2" "101" "no" "1" "2" "none"
+Eqn:Eqn3 "ms2=mag(S[2,2])" "vs2=(1+ms2)/(1-ms2)" "msDiff=ms2-ms1" "OG5=sum(msDiff^2)" "yes"
+Eqn:Eqn2 "Lm=LmOpt*1e-6" "yes"
+SPfile:X1 gnd _net6 "C:/projects/sNp/4mloop.s1p" "1" "polar" "linear" "short" "none" "block" "SOT23"
+Sub:SUB2 _net7 _net8 "Cmagant_net" "L1" "L2" "C1" "C2" "R1"
+Sub:SUB3 _net1 gnd "Cmagant_net" "L1" "L2" "C1" "C2" "R1"

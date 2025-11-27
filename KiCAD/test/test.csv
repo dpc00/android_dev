@@ -1,0 +1,8 @@
+Reference, Value, Footprint, Datasheet
+"Q1","2N2219","Package_TO_SOT_THT:TO-39-3","http://www.onsemi.com/pub_link/Collateral/2N2219-D.PDF"
+"Q2","2N2219","Package_TO_SOT_THT:TO-39-3","http://www.onsemi.com/pub_link/Collateral/2N2219-D.PDF"
+"R1","500","","~"
+"R2","1k","","~"
+"R3","1.2k","","~"
+"C2","3nF","","~"
+"C1","1nF","","~"

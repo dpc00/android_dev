@@ -1,0 +1,9 @@
+{
+   "maxdl":  [ "tick" ],
+   "davg":  [ "cashb","dxb" ],
+   "dtot":  [ "cashb","dxb" ],
+   "dallow":  [ "cashb","dxb","maxdl" ],
+   "tleft":  [ "cashb","dxb","davg" ],
+   "inec":  [ "davg","dallow","maxdl" ]
+}
+ 

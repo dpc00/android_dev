@@ -1,0 +1,7 @@
+.*workspace\.xml$
+^.*\.log$
+^.*\.sublime-.*$
+^\.hg/
+^bin/
+^pkg/
+^temp.*\.bat

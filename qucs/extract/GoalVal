@@ -1,0 +1,10 @@
+# Info #
+#
+
+# Commands #
+#
+
+# Post Processing #
+MEASURE_VAR:#SYMBOL#:SEARCH_FOR:'<indep GoalVal ':S_COL:01:P_LINE:01:P_COL:01:31
+#
+

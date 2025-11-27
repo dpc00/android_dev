@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "allowJs": false,
+    "charset": "ascii",
+    "declaration": true,
+    "listFiles": true,
+    "module": "es6",
+    "newLine": "CRLF",
+    "noEmitOnError": true,
+    "noEmitHelpers": false,
+    "noResolve": false,
+    "noLib": false,
+    "outDir": ".",
+    "pretty": true,
+    "removeComments": false,
+    "rootDir": ".",
+    "sourceMap": true,
+    "target": "es6",
+    "watch": false
+  },
+  "files": [
+    "index.ts"
+  ]
+}

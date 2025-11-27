@@ -1,0 +1,12 @@
+export f1=$FDB_PATH/blog.js
+export f2=/sdcard/projects/blog/blog.js
+
+if [[ "$f2" -nt "$f1" ]];
+then
+  cp $f2 $f1;
+fi
+
+if [[ "$f1" -nt "$f2" ]];
+then
+  cp $f1 $f2;
+fi

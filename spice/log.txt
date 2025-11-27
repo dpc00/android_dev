@@ -1,0 +1,31 @@
+Output:
+-------
+
+Starting new simulation on Tue 27. Apr 2021 at 17:52:37:598
+
+creating netlist... done.
+Starting C:/Users/Donald Chitester/AppData/Local/qucs-0.0.19-win32-mingw482-asco-freehdl-adms/bin/qucsator.exe
+
+project location: 
+modules to load: 0
+factorycreate.size() is 0
+factorycreate has registered:
+parsing netlist...
+checking netlist...
+netlist content
+      2 TWIST instances
+      1 VProbe instances
+      1 R instances
+      1 Vac instances
+      1 TR instances
+creating netlist...
+
+Errors occurred during simulation on Tue 27. Apr 2021 at 17:52:43:342
+Aborted.
+
+
+
+Errors and Warnings:
+--------------------
+
+Simulation aborted by the user!

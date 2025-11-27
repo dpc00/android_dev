@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0d399ab3-f622-4111-bc6d-99c4e124a367}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>pybackup.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="notes.txt" />
+    <Content Include="old\temp.txt" />
+    <Content Include="pshebang.txt" />
+    <Content Include="temp.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include=".ropeproject\config.py" />
+    <Compile Include="asyncrun.py" />
+    <Compile Include="bhash.py" />
+    <Compile Include="config.py" />
+    <Compile Include="config_funcs.py" />
+    <Compile Include="cscopy.py" />
+    <Compile Include="csrestore.py" />
+    <Compile Include="dirlist.py" />
+    <Compile Include="edge.py" />
+    <Compile Include="fmd5h.py" />
+    <Compile Include="gitops.py" />
+    <Compile Include="localcopy.py" />
+    <Compile Include="mkzip.py" />
+    <Compile Include="netup.py" />
+    <Compile Include="old\agb1.py" />
+    <Compile Include="old\bks.py" />
+    <Compile Include="old\blog.py" />
+    <Compile Include="old\csbackups.py" />
+    <Compile Include="old\csnetops.py" />
+    <Compile Include="old\dbsetup.py" />
+    <Compile Include="old\fdbackup.py" />
+    <Compile Include="old\funcs.py" />
+    <Compile Include="old\gb_env.py" />
+    <Compile Include="old\inotify_simple.py" />
+    <Compile Include="old\netup.py" />
+    <Compile Include="old\ppe.py" />
+    <Compile Include="old\prologrfmt.py" />
+    <Compile Include="old\refactor.py" />
+    <Compile Include="old\rfmt.py" />
+    <Compile Include="old\rfmt2.py" />
+    <Compile Include="old\scpy.py" />
+    <Compile Include="old\test1.py" />
+    <Compile Include="old\test10.py" />
+    <Compile Include="old\test11.py" />
+    <Compile Include="old\test12.py" />
+    <Compile Include="old\test13.py" />
+    <Compile Include="old\test14.py" />
+    <Compile Include="old\test15.py" />
+    <Compile Include="old\test2.py" />
+    <Compile Include="old\test3.py" />
+    <Compile Include="old\test4.py" />
+    <Compile Include="old\test7.py" />
+    <Compile Include="old\test8.py" />
+    <Compile Include="old\test9.py" />
+    <Compile Include="opbase.py" />
+    <Compile Include="opexec.py" />
+    <Compile Include="pybackup.py" />
+    <Compile Include="status.py" />
+    <Compile Include="statushash.py" />
+    <Compile Include="tf.py" />
+    <Compile Include="toposort.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".ropeproject" />
+    <Folder Include="old" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

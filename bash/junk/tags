@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+a1=	findcmds.sh	/^    a1=()$/;"	f
+a2=	findcmds.sh	/^a2=()$/;"	f
+a=	gitbackup.sh	/^    a=()$/;"	f
+a=	pka.sh	/^a=()$/;"	f
+a=	sti.sh	/^a=()$/;"	f
+b=	pka.sh	/^    b=()$/;"	f
+cer	gitbackup.sh	/^function cer {$/;"	f
+cftdc	csbackup.sh	/^function cftdc() {$/;"	f
+csb	csbackup.sh	/^function csb {$/;"	f
+eex	gitprune.sh	/^function eex {$/;"	f
+inw1	agb1.sh	/^function inw1 {$/;"	f
+inw2	agb1.sh	/^function inw2 {$/;"	f
+inw3	agb1.sh	/^function inw3 {$/;"	f
+isold	csbackup.sh	/^function isold {$/;"	f
+lk	bkfunc.sh	/^function lk {$/;"	f
+r_csbackups	agb1.sh	/^function r_csbackups {$/;"	f
+r_dropbox	csbackup.sh	/^function r_dropbox {$/;"	f
+r_fdbackup	agb1.sh	/^function r_fdbackup {$/;"	f
+r_gitbackups	agb1.sh	/^function r_gitbackups {$/;"	f
+r_googledrive	csbackup.sh	/^function r_googledrive {$/;"	f
+r_onedrive	csbackup.sh	/^function r_onedrive {$/;"	f
+r_scpy	agb1.sh	/^function r_scpy {$/;"	f
+src	bkfunc.sh	/^function src {$/;"	f
+twops	csbackup.sh	/^function twops {$/;"	f
+unlk	bkfunc.sh	/^function unlk {$/;"	f
+usage	rcinst.sh	/^usage() { echo "Usage: curl https:\/\/rclone.org\/install.sh | sudo bash [-s beta]" 1>&2; exit 1/;"	f

@@ -1,0 +1,15 @@
+Settings file, QucsStudio 4.2.2
+Position=-32000,-32000
+Size=536,557
+Font=Arial,-1,16,5,50,0,0,0,0,0
+TextFont=Courier New,12,-1,5,50,0,0,0,0,0
+Language=
+BGColor=#fffae1
+maxUndo=50
+tabSize=4
+SyntaxColor=#a0a0a4,#ff0000,#0000ff,#800080,#ff00ff,#800000,#008080,#008000
+numCPU=1
+cmdEXE=%SRC% -o%OUT% -Wall -O2 -s -lm -D__MINGW32__
+cmdDLL=%SRC% -o%OUT% -Wall -O2 -s -shared -D__MINGW32__ -DBUILD_DLL
+cmdVA=%SRC% -o%OUT% -O2 -s -shared -D__MINGW32__ -DBUILD_DLL
+cmdMEX=%SRC% -o%OUT% -L%LIB% -Wall -O2 -shared -shared-libgcc -mieee-fp -march=i686 -lvc100-liboctinterp-1 -lvc100-liboctave-1 -lvc100-libcruft-1 -Wl,--allow-multiple-definition -Wl,--export-all-symbols -Wl,--enable-auto-import -Wl,--enable-runtime-pseudo-reloc

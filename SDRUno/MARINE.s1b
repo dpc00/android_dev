@@ -1,0 +1,101 @@
+﻿,,,MARINE-Mike SDRplay-2021,,,,
+,,,,,,,
+,,,NAVTEX,,,,
+,,,,,,,
+518000,Y,CW,Navtex,,,500,AntC
+,,,,,,,
+,,,AIS,,,,
+,,,,,,,
+161975000,Y,FM,AIS 1 Automatic Identification System (AIS),,NFM,10K,AntC
+162025000,Y,FM,AIS 2 Automatic Identification System (AIS),,NFM,10K,AntC
+,,,,,,,
+,,,DIGITAL SELECTIVE CALLING,,,,
+,,,,,,,
+2187500,Y,CW,DSC,,,500,AntC
+4207500,Y,CW,DSC,,,500,AntC
+6312000,Y,CW,DSC,,,500,AntC
+8414500,Y,CW,DSC,,,500,AntC
+12577000,Y,CW,DSC,,,500,AntC
+16804500,Y,CW,DSC,,,500,AntC
+,,,,,,,
+,,,NEWFOUNDLAND & LABRADOR,,,,
+2598000,Y,USB,St. John's-Placentia-Labrador-Hopedale- Port aux Basques-Natashquan,,,2800,AntC
+,,,,,,,
+,,,ATLANTIC COAST & GULF OF ST LAWRENCE,,,,
+2749000,Y,USB,Sydney-Fundy-Halifax-Riviere au Renard,,,2800,AntC
+,,,,,,,
+,,,PACIFIC COAST,,,,
+2054000,Y,USB,Tofino-Prince Rupert-Hunter Point,,,2800,AntC
+,,,,,,,
+,,,EASTERN ARTIC,,,,
+,,,,,,,
+2514000,Y,USB,Iqaluit-Killinek-Resolute-Coral Harbour,,,2800,AntC
+2582000,Y,USB,Iqaluit-Killinek-Resolute-Coral Harbour,,,2800,AntC
+4363000,Y,USB,Iqaluit-Killinek-Resolute-Coral Harbour,,,2800,AntC
+6507000,Y,USB,Iqaluit-Killinek-Resolute-Coral Harbour,,,2800,AntC
+,,,,,,,
+,,,WESTERN ARTIC,,,,
+,,,,,,,
+4363000,Y,USB,Inuvik-Hay River-Inuvik-Cambridge Bay,,,2800,AntC
+5803000,Y,USB,Inuvik-Hay River-Inuvik-Cambridge Bay,,,2800,AntC
+6218600,Y,USB,Inuvik-Hay River-Inuvik-Cambridge Bay,,,2800,AntC
+,,,,,,,
+,,,UNITED STATES COAST GUARD HF,,,,
+,,,,,,,
+4125000,Y,USB,USCG Distress,,,2800,AntC
+6215000,Y,USB,USCG Distress,,,2800,AntC
+8291000,Y,USB,USCG Distress,,,2800,AntC
+12290000,Y,USB,USCG Distress,,,2800,AntC
+16420000,Y,USB,USCG Distress,,,2800,AntC
+,,,,,,,
+,,,UNITED STATES COAST GUARD VHF,,,,
+,,,,,,,
+156000000,Y,FM,CG CH00,,NFM,10K,AntC
+156050000,Y,FM,CG CH01 Port Operations and Commercial,,NFM,10K,AntC
+156300000,Y,FM,CG CH06 Intership Safety,,NFM,10K,AntC
+156350000,Y,FM,CG CH07A Commercial VDSMS,,NFM,10K,AntC
+156400000,Y,FM,CG CH08 Commercial (Intership only). VDSMS,,NFM,10K,AntC
+156450000,Y,FM,CG CH09 Boater Calling Commercial and Non-Commercial VDSMS,,NFM,10K,AntC
+156500000,Y,FM,CG CH10 Commercial VDSMS,,NFM,10K,AntC
+156550000,Y,FM,CG CH11 Commercial VTS in selected areas. VDSMS,,NFM,10K,AntC
+156600000,Y,FM,CG CH12 Port Operations VTS in selected areas.,,NFM,10K,AntC
+156650000,Y,FM,CG CH13 Intership Navigation Safety,,NFM,10K,AntC
+156700000,Y,FM,CG CH14 Port Operations VTS in selected areas.,,NFM,10K,AntC
+156750000,Y,FM,CG CH15 Environmental,,NFM,10K,AntC
+156800000,Y,FM,CG CH16 International Distress,,NFM,10K,AntC
+156850000,Y,FM,CG CH17 State & local govt maritime control,,NFM,10K,AntC
+156900000,Y,FM,CG CH18A Commercial VDSMS,,NFM,10K,AntC
+156950000,Y,FM,CG CH19A Commercial VDSMS,,NFM,10K,AntC
+157000000,Y,FM,CG CH20 Port Operations (duplex),,NFM,10K,AntC
+157000000,Y,FM,CG CH20A Port Operations,,NFM,10K,AntC
+157050000,Y,FM,CG CH21A U.S. Coast Guard only,,NFM,10K,AntC
+157100000,Y,FM,CG CH22A Coast Guard Liaison and Maritime Safety,,NFM,10K,AntC
+157150000,Y,FM,CG CH23A U.S. Coast Guard only,,NFM,10K,AntC
+157200000,Y,FM,CG CH24 Public Correspondence VDSMS,,NFM,10K,AntC
+157250000,Y,FM,CG CH25 Public Correspondence VDSMS,,NFM,10K,AntC
+157300000,Y,FM,CG CH26 Public Correspondence VDSMS,,NFM,10K,AntC
+157350000,Y,FM,CG CH27 Public Correspondence VDSMS,,NFM,10K,AntC
+157400000,Y,FM,CG CH28 Public Correspondence VDSMS,,NFM,10K,AntC
+156175000,Y,FM,CG CH63A Port Operations and Commercial,,NFM,10K,AntC
+156275000,Y,FM,CG CH65A Port Operations,,NFM,10K,AntC
+156325000,Y,FM,CG CH66A Port Operations,,NFM,10K,AntC
+156375000,Y,FM,CG CH67 Commercial,,NFM,10K,AntC
+156425000,Y,FM,CG CH68 Non-Commercial VDSMS,,NFM,10K,AntC
+156475000,Y,FM,CG CH69 Non-Commercial VDSMS,,NFM,10K,AntC
+156525000,Y,FM,CG CH70 Digital Selective Calling,,NFM,10K,AntC
+156575000,Y,FM,CG CH71 Non-Commercial VDSMS,,NFM,10K,AntC
+156625000,Y,FM,CG CH72 Non-Commercial (Intership only). VDSMS,,NFM,10K,AntC
+156675000,Y,FM,CG CH73 Port Operations,,NFM,10K,AntC
+156725000,Y,FM,CG CH74 Port Operations,,NFM,10K,AntC
+156875000,Y,FM,CG CH77 Port Operations (Intership only),,NFM,10K,AntC
+156925000,Y,FM,CG CH78A Non-Commercial VDSMS,,NFM,10K,AntC
+156975000,Y,FM,CG CH79A Commercial Non-Commercial in Great Lakes only. VDSMS,,NFM,10K,AntC
+157025000,Y,FM,CG CH80A Commercial Non-Commercial in Great Lakes only. VDSMS,,NFM,10K,AntC
+157075000,Y,FM,CG CH81A U.S. Government only-Environmental protection operations,,NFM,10K,AntC
+157125000,Y,FM,CG CH82A U.S. Government only ,,NFM,10K,AntC
+157175000,Y,FM,CG CH83A U.S. Coast Guard only ,,NFM,10K,AntC
+157175000,Y,FM,CG CH84 Public Correspondence (Marine Operator). VDSMS,,NFM,10K,AntC
+157275000,Y,FM,CG CH85 Public Correspondence (Marine Operator). VDSMS,,NFM,10K,AntC
+157325000,Y,FM,CG CH86 Public Correspondence (Marine Operator). VDSMS,,NFM,10K,AntC
+156375000,Y,FM,CG CH87 Public Correspondence (Marine Operator). VDSMS,,NFM,10K,AntC
+157425000,Y,FM,CG CH88 Commercial Intership only VDSMS,,NFM,10K,AntC

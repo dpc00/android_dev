@@ -1,0 +1,46 @@
+{
+  "author": "Phil",
+  "description": "junk",
+  "dependencies": {
+    "ant": "^0.2.0",
+    "include-path": "^0.4.7",
+    "jake": "^10.8.2",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {},
+  "engine": "node >= 0.10",
+  "files": [
+    ".",
+    "src",
+    "lib",
+    "lib\\batconcat.js",
+    "lib\\copy_flash.js",
+    "lib\\cpl_bat.js",
+    "lib\\cpl_flash.js",
+    "lib\\cpl_hd.js",
+    "lib\\vol.js",
+    "lib\\Dos4.js",
+    "lib\\dirutils.js",
+    "lib\\diskutils.js",
+    "lib\\GitRepo.js",
+    "index.js",
+    "jakefile.js",
+    "lib\\json.js",
+    "lib\\utils.js"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "tools",
+  "repository": {
+    "type": "git",
+    "url": "https://dpchitester:dpcarc@bitbucket.org/dpchitester/tools"
+  },
+  "scripts": {
+    "build": "jake default",
+    "run": "node index.js"
+  },
+  "version": "0.1.0",
+  "jshintConfig": {
+     "esversion": 6
+  }
+}

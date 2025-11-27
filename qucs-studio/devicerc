@@ -1,0 +1,6 @@
+Settings file, QucsDevice 3.3.2
+Window=546,439,533,372
+GpibAddress=1
+GpibCommand=*idn?
+Repetition=0x1
+Batch=

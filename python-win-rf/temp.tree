@@ -1,0 +1,1078 @@
+start
+  netlist
+    element
+      ml_comment
+        * EQUIVALENT CIRCUIT FOR VECTOR FITTED S-MATRIX
+        
+
+        * Created using scikit-rf vectorFitting.py
+        
+
+        *
+    
+
+    element
+      subcircuit
+         
+        name	s_equivalent
+         
+        net	p1
+         
+        net	p2
+         
+        
+
+        element
+          ml_comment
+            *
+            
+
+            * port 1
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	1
+             
+            net	a1
+             
+            net	0
+             
+            value
+              mag	50.0
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	1
+             
+            net	p1
+             
+            net	a1
+             
+            value
+              mag	0
+        element
+          statement
+            desig
+              type_letter	H
+              cnum	1
+             
+            net	nt1
+             
+            net	nts1
+             
+            value
+              name	V1
+             
+            value
+              mag	50.0
+        element
+          statement
+            desig
+              type_letter	E
+              cnum	1
+             
+            net	nts1
+             
+            net	0
+             
+            value
+              name	p1
+             
+            value
+              mag	0
+             
+            value
+              mag	1
+        element
+          ml_comment	* transfer network for s11
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	11
+             
+            net	0
+             
+            net	a1
+             
+            value
+              name	V11
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	11_inv
+             
+            net	a1
+             
+            net	0
+             
+            value
+              name	V11_inv
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	11
+             
+            net	nt1
+             
+            net	nt11
+             
+            value
+              mag	0
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	11_inv
+             
+            net	nt1
+             
+            net	nt11_inv
+             
+            value
+              mag	0
+        element
+          ml_comment	* transfer admittances for S11
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	11
+             
+            net	nt11_inv
+             
+            net	0
+             
+            value
+              mag	4.769
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	1
+             
+            net	nt11
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag
+                778.616
+                m
+             
+            param
+              name	ind
+              mag
+                929.190
+                p
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	2
+             
+            net	nt11_inv
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	1.625
+             
+            param
+              name	cap
+              mag
+                434.120
+                p
+             
+            param
+              name	ind
+              mag
+                41.934
+                n
+             
+            param
+              name	gm
+              mag
+                73.073
+                m
+             
+            param
+              name	mult
+              mag	1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	3
+             
+            net	nt11_inv
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	21.599
+             
+            param
+              name	cap
+              mag
+                32.797
+                p
+             
+            param
+              name	ind
+              mag
+                841.753
+                n
+             
+            param
+              name	gm
+              mag
+                11.064
+                m
+             
+            param
+              name	mult
+              mag	-1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	4
+             
+            net	nt11_inv
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag
+                985.043
+                m
+             
+            param
+              name	ind
+              mag
+                194.877
+                n
+        element
+          ml_comment	* transfer network for s12
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	12
+             
+            net	0
+             
+            net	a1
+             
+            value
+              name	V12
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	12_inv
+             
+            net	a1
+             
+            net	0
+             
+            value
+              name	V12_inv
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	12
+             
+            net	nt2
+             
+            net	nt12
+             
+            value
+              mag	0
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	12_inv
+             
+            net	nt2
+             
+            net	nt12_inv
+             
+            value
+              mag	0
+        element
+          ml_comment	* transfer admittances for S12
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	12
+             
+            net	nt12
+             
+            net	0
+             
+            value
+              mag	6.459
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	5
+             
+            net	nt12_inv
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag	14.519
+             
+            param
+              name	ind
+              mag
+                17.327
+                n
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	6
+             
+            net	nt12
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	1.644
+             
+            param
+              name	cap
+              mag
+                429.029
+                p
+             
+            param
+              name	ind
+              mag
+                42.432
+                n
+             
+            param
+              name	gm
+              mag
+                110.548
+                m
+             
+            param
+              name	mult
+              mag	-1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	7
+             
+            net	nt12_inv
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	33.088
+             
+            param
+              name	cap
+              mag
+                21.409
+                p
+             
+            param
+              name	ind
+              mag
+                1.289
+                u
+             
+            param
+              name	gm
+              mag
+                21.307
+                m
+             
+            param
+              name	mult
+              mag	-1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	8
+             
+            net	nt12
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag	1.003
+             
+            param
+              name	ind
+              mag
+                198.425
+                n
+        element
+          ml_comment
+            *
+            
+
+            * port 2
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	2
+             
+            net	a2
+             
+            net	0
+             
+            value
+              mag	50.0
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	2
+             
+            net	p2
+             
+            net	a2
+             
+            value
+              mag	0
+        element
+          statement
+            desig
+              type_letter	H
+              cnum	2
+             
+            net	nt2
+             
+            net	nts2
+             
+            value
+              name	V2
+             
+            value
+              mag	50.0
+        element
+          statement
+            desig
+              type_letter	E
+              cnum	2
+             
+            net	nts2
+             
+            net	0
+             
+            value
+              name	p2
+             
+            value
+              mag	0
+             
+            value
+              mag	1
+        element
+          ml_comment	* transfer network for s21
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	21
+             
+            net	0
+             
+            net	a2
+             
+            value
+              name	V21
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	21_inv
+             
+            net	a2
+             
+            net	0
+             
+            value
+              name	V21_inv
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	21
+             
+            net	nt1
+             
+            net	nt21
+             
+            value
+              mag	0
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	21_inv
+             
+            net	nt1
+             
+            net	nt21_inv
+             
+            value
+              mag	0
+        element
+          ml_comment	* transfer admittances for S21
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	21
+             
+            net	nt21
+             
+            net	0
+             
+            value
+              mag	6.459
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	9
+             
+            net	nt21_inv
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag	14.519
+             
+            param
+              name	ind
+              mag
+                17.327
+                n
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	10
+             
+            net	nt21
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	1.644
+             
+            param
+              name	cap
+              mag
+                429.029
+                p
+             
+            param
+              name	ind
+              mag
+                42.432
+                n
+             
+            param
+              name	gm
+              mag
+                110.548
+                m
+             
+            param
+              name	mult
+              mag	-1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	11
+             
+            net	nt21_inv
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	33.088
+             
+            param
+              name	cap
+              mag
+                21.409
+                p
+             
+            param
+              name	ind
+              mag
+                1.289
+                u
+             
+            param
+              name	gm
+              mag
+                21.307
+                m
+             
+            param
+              name	mult
+              mag	-1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	12
+             
+            net	nt21
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag	1.003
+             
+            param
+              name	ind
+              mag
+                198.425
+                n
+        element
+          ml_comment	* transfer network for s22
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	22
+             
+            net	0
+             
+            net	a2
+             
+            value
+              name	V22
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	F
+              cnum	22_inv
+             
+            net	a2
+             
+            net	0
+             
+            value
+              name	V22_inv
+             
+            value
+              mag	0.02
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	22
+             
+            net	nt2
+             
+            net	nt22
+             
+            value
+              mag	0
+        element
+          statement
+            desig
+              type_letter	V
+              cnum	22_inv
+             
+            net	nt2
+             
+            net	nt22_inv
+             
+            value
+              mag	0
+        element
+          ml_comment	* transfer admittances for S22
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	22
+             
+            net	nt22_inv
+             
+            net	0
+             
+            value
+              mag	4.769
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	13
+             
+            net	nt22
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag
+                778.616
+                m
+             
+            param
+              name	ind
+              mag
+                929.190
+                p
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	14
+             
+            net	nt22_inv
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	1.625
+             
+            param
+              name	cap
+              mag
+                434.120
+                p
+             
+            param
+              name	ind
+              mag
+                41.934
+                n
+             
+            param
+              name	gm
+              mag
+                73.073
+                m
+             
+            param
+              name	mult
+              mag	1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	15
+             
+            net	nt22_inv
+             
+            net	0
+             
+            value
+              name	rcl_vccs_admittance
+             
+            param
+              name	res
+              mag	21.599
+             
+            param
+              name	cap
+              mag
+                32.797
+                p
+             
+            param
+              name	ind
+              mag
+                841.753
+                n
+             
+            param
+              name	gm
+              mag
+                11.064
+                m
+             
+            param
+              name	mult
+              mag	-1
+        element
+          statement
+            desig
+              type_letter	X
+              cnum	16
+             
+            net	nt22_inv
+             
+            net	0
+             
+            value
+              name	rl_admittance
+             
+            param
+              name	res
+              mag
+                985.043
+                m
+             
+            param
+              name	ind
+              mag
+                194.877
+                n
+         
+        name	s_equivalent
+    
+
+    element
+      ml_comment	*
+    
+
+    element
+      subcircuit
+         
+        name	rcl_vccs_admittance
+         
+        net	n_pos
+         
+        net	n_neg
+         
+        param
+          name	res
+          mag
+            1
+            k
+         
+        param
+          name	cap
+          mag
+            1
+            n
+         
+        param
+          name	ind
+          mag
+            100
+            p
+         
+        param
+          name	gm
+          mag
+            1
+            m
+         
+        param
+          name	mult
+          mag	1
+        
+
+        element
+          statement
+            desig
+              type_letter	L
+              cnum	1
+             
+            net	n_pos
+             
+            net	1
+             
+            value
+              subst_param	ind
+        element
+          statement
+            desig
+              type_letter	C
+              cnum	1
+             
+            net	1
+             
+            net	2
+             
+            value
+              subst_param	cap
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	1
+             
+            net	2
+             
+            net	n_neg
+             
+            value
+              subst_param	res
+        element
+          statement
+            desig
+              type_letter	G
+              cnum	1
+             
+            net	n_pos
+             
+            net	n_neg
+             
+            value
+              mag	1
+             
+            value
+              mag	2
+             
+            value
+              subst_param	gm
+             
+            param
+              name	m
+              subst_param	mult
+         
+        name	rcl_vccs_admittance
+    
+
+    element
+      ml_comment	*
+    
+
+    element
+      subcircuit
+         
+        name	rl_admittance
+         
+        net	n_pos
+         
+        net	n_neg
+         
+        param
+          name	res
+          mag
+            1
+            k
+         
+        param
+          name	ind
+          mag
+            100
+            p
+        
+
+        element
+          statement
+            desig
+              type_letter	L
+              cnum	1
+             
+            net	n_pos
+             
+            net	1
+             
+            value
+              subst_param	ind
+        element
+          statement
+            desig
+              type_letter	R
+              cnum	1
+             
+            net	1
+             
+            net	n_neg
+             
+            value
+              subst_param	res
+         
+        name	rl_admittance

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "charset": "ascii",
+    "mapRoot": ".",
+    "module": "commonjs",
+    "target": "ES6"
+  },
+  "files": [
+    "lib\\batconcat.js",
+    "lib\\copy_flash.js",
+    "lib\\cpl_bat.js",
+    "lib\\cpl_flash.js",
+    "lib\\cpl_hd.js",
+    "lib\\vol.js",
+    "lib\\Dos4.js",
+    "lib\\dirutils.js",
+    "lib\\diskutils.js",
+    "lib\\GitRepo.js",
+    "index.js",
+    "jakefile.js",
+    "lib\\json.js",
+    "lib\\utils.js"
+  ]
+}

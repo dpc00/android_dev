@@ -1,0 +1,2 @@
+To use this GRC flow diagram, you first need to record some IQ data. Suggest 20 meter ham radio band centered at 14.2 MHz with ~200 kHz sampling. Save as 16 bit WAV file.
+Connect the WAV file to the Wav File Source.

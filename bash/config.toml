@@ -1,0 +1,4 @@
+[plaid]
+client_id = "63f128ec7ba715001385cd7c"
+secret = "e688a320e5481254abb96aca9db812"
+environment = "development"

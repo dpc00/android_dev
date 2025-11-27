@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+pushd ~/storage/shared/videos
+youtube-dl $1
+popd

@@ -1,0 +1,114 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <title>Title</title>
+  </head>
+  <body>
+      <link rel="stylesheet"  type="text/css" href="/static/styles.css">
+      <form method="post" width=50% id="form">
+        <div>
+            <label for="OAP">OAP</label>
+            <input type="text" id="OAP" name="OAP" value="252.05"/>
+        </div><br/>
+        <div>
+            <label for="SSI">SSI</label>
+            <input type="text" id="SSI" name="SSI" value="423.42"/>
+        </div><br/>
+        <div>
+            <label for="SNAP">SNAP</label>
+            <input type="text" id="SNAP" name="SNAP" value="3523.26"/>
+         </div><br/>
+         <div>
+            <input type="button" class="button" id="buttonSave" name="SaveButton" value="Save"/>
+         </div>
+    </form>
+    <ul>
+        
+        <li>
+            2023-03-08 Amante Uptown - 1.63 USD
+        </li>
+        
+        <li>
+            2023-03-08 Amante Uptown - 3.54 USD
+        </li>
+        
+        <li>
+            2023-03-08 Starbucks - 7.86 USD
+        </li>
+        
+        <li>
+            2023-03-08 Walgreens - 7.57 USD
+        </li>
+        
+        <li>
+            2023-03-08 Wendy&#39;s - 14.04 USD
+        </li>
+        
+        <li>
+            2023-03-07 AT&amp;T Prepaid - 12.89 USD
+        </li>
+        
+        <li>
+            2023-03-07 Masabi Rtd - 3.00 USD
+        </li>
+        
+        <li>
+            2023-03-07 AT&amp;T Prepaid - 34.72 USD
+        </li>
+        
+        <li>
+            2023-03-07 Amante Uptown - 3.04 USD
+        </li>
+        
+        <li>
+            2023-03-07 Amante Uptown - 3.81 USD
+        </li>
+        
+        <li>
+            2023-03-07 McDonald&#39;s - 16.79 USD
+        </li>
+        
+        <li>
+            2023-03-07 Starbucks - 3.22 USD
+        </li>
+        
+        <li>
+            2023-03-06 Masabi Rtd - 3.00 USD
+        </li>
+        
+        <li>
+            2023-03-06 Masabi Rtd - 3.00 USD
+        </li>
+        
+        <li>
+            2023-03-06 Amante Uptown - 1.63 USD
+        </li>
+        
+        <li>
+            2023-03-06 Starbucks - 3.22 USD
+        </li>
+        
+        <li>
+            2023-03-06 Walgreens - 7.57 USD
+        </li>
+        
+        <li>
+            2023-03-06 Wendy&#39;s - 12.86 USD
+        </li>
+        
+    </ul>
+    <div>
+        <p>20 days til OAP</p>
+        <p>26 days til SSI</p>
+        <p>Daily Allowance is $28.89</p>
+    </div>
+    <div id="junk"></div>
+    <script>
+        document.getElementById("buttonSave").onclick =
+            function() {
+                document.getElementById("junk").innerHTML+="<p>Saving...</p>"
+                document.getElementById("form").submit()
+            }
+    </script>
+  </body>
+</html>

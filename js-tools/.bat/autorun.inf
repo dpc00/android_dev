@@ -1,0 +1,5 @@
+[autorun]
+ACTION = Usb-Menu
+ICON=PStart.exe,0
+OPEN=PStart.bat
+SHELLEXECUTE=PStart.bat

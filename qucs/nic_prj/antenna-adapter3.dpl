@@ -1,0 +1,29 @@
+<Qucs Schematic 0.0.22>
+<Properties>
+  <View=-608,-110,1589,1224,0.946117,0,0>
+  <Grid=10,10,0>
+  <DataSet=antenna-adapter3.dat>
+  <DataDisplay=antenna-adapter3.sch>
+  <OpenDisplay=1>
+  <Script=antenna-adapter3.m>
+  <RunScript=0>
+  <showFrame=0>
+  <FrameText0=Title>
+  <FrameText1=Drawn By:>
+  <FrameText2=Date:>
+  <FrameText3=Revision:>
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+</Components>
+<Wires>
+</Wires>
+<Diagrams>
+  <Rect -490 553 2022 623 3 #c0c0c0 1 00 0 1e+06 1e+06 2.51189e+07 1 -1 0.2 1 1 -1 0.2 1 315 0 225 "" "" "">
+	<"ngspice/ac.v(ns11)" #0000ff 0 3 0 0 0>
+	<"ngspice/ac.v(ns12)" #ff0000 0 3 0 0 0>
+  </Rect>
+</Diagrams>
+<Paintings>
+</Paintings>

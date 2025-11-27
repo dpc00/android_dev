@@ -1,0 +1,294 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 362.0,
+		"last_filter": "set ",
+		"selected_items":
+		[
+			[
+				"set ",
+				"Set Syntax: TypeScript"
+			],
+			[
+				"b",
+				"Bookmarks: Toggle"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Enable Package"
+			],
+			[
+				"package",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 676.0,
+		"history":
+		[
+			"os.system('pip3.6 install zodb & pause')",
+			"os.system('dir & pause')",
+			"os.system('pip install zodb & pause')",
+			"os.chdir('scripts')",
+			"os.system('dir scripts & pause')",
+			"os.system('python pip.py install zodb & pause')",
+			"os.system('python pip install zodb & pause')",
+			"os.system('pip install zodb & pause')",
+			"os.system('pip install zodb')",
+			"os.system('cd & pause')",
+			"os.getcwd()",
+			"os.chdir('\\\\Programs\\\\Python36x64')",
+			"os.getcwd()",
+			"os.system('cd \\\\Programs\\\\Python36x64')",
+			")",
+			"os.system('cd \\\\Programs\\\\Python36x64'",
+			"os.getcwd()",
+			"os.system('cd')",
+			"import os",
+			"sp.communicate()",
+			"sp = subprocess.Popen('cmd.exe /c set PAL', shell=True)",
+			"sp.communicate()",
+			"sp = subprocess.Popen('cmd.exe /c set PAL', shell=True)",
+			"subprocess.Popen('cmd.exe /c set PAL', shell=True)",
+			"subprocess.Popen('cmd.exe',['set','PAL'], shell=True)",
+			"subprocess.Popen('cmd.exe',['set','PAL'])",
+			"subprocess.Popen('set PAL')",
+			"import subprocess",
+			"subprocess.Popen('set PAL')",
+			"os.Popen('set PAL')",
+			"os.system('set PAL')",
+			"os.system",
+			"import os",
+			"os.environ['FLASH0']",
+			"import os",
+			"os.environ['FLASH0']",
+			"os.getcwd()",
+			"import os",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/Projects/py-test/specialfolders.txt",
+		"/D/SyncSettings.ffs_batch",
+		"/E/Projects/py-test/Dir.py",
+		"/E/Projects/py-test/clog_flash_KINGSTON.json",
+		"/E/Projects/py-test/fcstats.py",
+		"/E/PreInstall/AppNamePortable/App/AppInfo/AppInfo.ini",
+		"/E/PreInstall/AppNamePortable/App/AppInfo/Launcher/AppNamePortable.ini",
+		"/D/PortableApps/UtilsPortable/App/AppInfo/Launcher/UtilsPortable.ini",
+		"/D/PortableApps/EclipsePortable/App/AppInfo/Launcher/EclipsePortable.ini",
+		"/E/PortableApps/SublimeText3Portable/App/AppInfo/AppInfo.ini",
+		"/E/PortableApps/SublimeText3Portable/App/AppInfo/Launcher/SublimeText3Portable.ini",
+		"/E/PortableApps/SublimeText3Portable/App/SublimeText3/Data/Packages/User/projects.sublime-project",
+		"/E/Projects/projects.sublime-project",
+		"/d/Projects/tools/cpl_flash.js",
+		"/d/Projects/tools/disk.js",
+		"/d/Projects/tools/plaunch_hd.json",
+		"/d/Programs/Node/node_modules/jake/test/exec.js",
+		"/D/Programs/SublimeText/Data/Packages/SublimeREPL/config/Shell/Main.sublime-menu",
+		"/D/Programs/SublimeText/Data/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/D/Programs/SublimeText/Data/Packages/SublimeREPL/config/Shell/Default.sublime-commands",
+		"/d/Projects/elm-test/typings/main/ambient/jake/index.d.ts",
+		"/D/Programs/SublimeText/projects.sublime-project",
+		"/E/Projects/tools/jakefile.js",
+		"/E/Projects/tools/index.js",
+		"/E/Projects/tools/GitRepo.js",
+		"/E/Projects/tools/futils.js",
+		"/E/Projects/tools/Dos4.js",
+		"/E/Projects/tools/copy_flash.js",
+		"/E/Projects/JakeRun/src/DosCommand.java",
+		"/E/Projects/JakeRun/src/JakeRun.java",
+		"/E/Projects/JakeRun/src/JakeCommands.java",
+		"/E/Projects/tools/disk.js",
+		"/E/Programs/Node/node_modules/jake/node_modules/filelist/node_modules/utilities/lib/file.js",
+		"/E/Programs/Node/node_modules/jake/node_modules/utilities/lib/file.js",
+		"/E/Projects/tools/dos4.js",
+		"/E/Programs/SublimeText/projects.sublime-project",
+		"/E/Projects/JakeRun/src/Cons.java",
+		"/E/Programs/SublimeText/JakeRun.sublime-project",
+		"/F/Projects/JakeRun/src/JakeRun.java",
+		"/F/Projects/JakeRun/jsrun.cpp",
+		"/F/Programs/SublimeText/JakeRun.sublime-project",
+		"/E/Programs/SublimeText/Data/Packages/SublimeREPL/config/Shell/Default.sublime-commands",
+		"/E/Programs/SublimeText/Data/Packages/SublimeREPL/config/Shell/Main.sublime-menu",
+		"/E/jsrun.bat",
+		"/E/Programs/SublimeText/elm-test.sublime-project",
+		"/E/Programs/SublimeText/tools.sublime-project",
+		"/E/Projects/tools/git.js",
+		"/E/Programs/SublimeText/Data/Packages/SublimeREPL/config/NodeJS/repl.js",
+		"/E/Programs/SublimeText/Data/Packages/SublimeREPL/config/NodeJS/Default.sublime-commands",
+		"/E/Programs/SublimeText/Data/Packages/SublimeREPL/config/NodeJS/Main.sublime-menu",
+		"/E/Programs/SublimeText/Data/Packages/User/Preferences.sublime-settings",
+		"/E/Programs/SublimeText/Data/Packages/Default/Preferences.sublime-settings",
+		"/E/Programs/SublimeText/Packages/Default.sublime-package"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"<open folders>",
+			"E:\\Programs\\Node\\node_modules\\jake",
+			"*.js,<open folders>",
+			"*.py"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Start",
+			"copying",
+			"drive",
+			"vol",
+			"Dos4",
+			"readAll",
+			"mkdirp",
+			"dos4",
+			"setWT",
+			"dos4",
+			"load",
+			"\"save",
+			"\"auto",
+			"popen"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 299.0
+	},
+	"pinned_build_system": "Packages/User/Python-RunScript.sublime-build",
+	"project": "disk_mon.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 362.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"test piping results into next command"
+			]
+		],
+		"width": 616.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 245.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

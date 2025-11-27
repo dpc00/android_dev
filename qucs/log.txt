@@ -1,0 +1,41 @@
+Output:
+-------
+
+Starting new simulation on Thu 22. Jul 2021 at 11:29:52:856
+
+creating netlist... done.
+Starting C:/qucs/bin/qucsator.exe
+
+project location: 
+modules to load: 0
+factorycreate.size() is 0
+factorycreate has registered:
+parsing netlist...
+checking netlist...
+checker notice, value of `Start' (variable `F1') could be out of range `[0,0.' in `SP:SP1'
+checker notice, value of `Stop' (variable `F2') could be out of range `[0,0.' in `SP:SP1'
+checker notice, variable `S' in equation `vs1' not yet defined
+netlist content
+      2 C instances
+      1 SPfile instances
+      1 DC instances
+      2 L instances
+      4 R instances
+      2 OpAmp instances
+      1 Pac instances
+      1 SP instances
+creating netlist...
+checker notice, variable `S' in equation `vs1' not yet defined
+checker notice, variable `S' in equation `vs1' not yet defined
+
+Simulation ended on Thu 22. Jul 2021 at 11:29:53:266
+Ready.
+
+
+
+Errors and Warnings:
+--------------------
+
+WARNING: DC1: inserted virtual resistance at node `_net1' connected to [C1,X1]
+WARNING: DC1: inserted virtual resistance at node `_net1' connected to [C1,X1]
+

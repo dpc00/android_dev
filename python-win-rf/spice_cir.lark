@@ -1,0 +1,36 @@
+%import common.ESCAPED_STRING   -> STRING
+%import common.NUMBER -> NUMBER
+%import common.SIGNED_NUMBER -> SIGNED_NUMBER
+
+WS: /[ \t]+/
+UNIT: /[mpnuknf]/
+LETTER: /[A-Za-z]/
+NL: /[\r\n]+/
+%ignore WS
+%ignore NL
+
+SYMBOL:   /[A-Za-z_]([A-Za-z_]|[0-9])*/
+desig:   type_letter cnum
+type_letter: /[A-Z]/
+cnum: /[0-9]+([A-Za-z_]+|[0-9]+)*/
+
+net:    SYMBOL
+    | NUMBER
+name:   SYMBOL
+mag:    SIGNED_NUMBER UNIT?
+subst_param:    "{" (SYMBOL | NUMBER) "}"
+value:  mag
+    | name
+    | desig
+    | subst_param
+param:  name "=" mag
+    | name "=" subst_param
+start:  netlist
+netlist:    element (NL element)*
+element:    ml_comment
+    | statement
+    | subcircuit
+COMMENT:    /\*.*/
+ml_comment: COMMENT (NL COMMENT)*
+statement:  desig (WS net)~2..5 (WS value)* (WS param)*
+subcircuit: ".SUBCKT" WS name (WS net)~2..5 (WS param)* WS? NL element* ".ENDS" WS name

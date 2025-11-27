@@ -1,0 +1,57 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <title>Title</title>
+  </head>
+  <body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <div id="app">{{ message }}</div>
+
+<script>
+  const { createApp } = Vue
+  createApp({
+    data() {
+      return {
+        message: 'Balance Log'
+      }
+    }
+  }).mount('#app')
+</script>
+
+      
+      <link rel="stylesheet"  type="text/css" href="/static/styles.css">
+      <form method="post" width=50% id="form">
+        <div class="form-row">
+            <label for="OAP">OAP</label>
+            <input type="text" id="OAP" name="OAP" value="0.0"/>
+        </div><br/>
+        <div class="form-row">
+            <label for="SSI">SSI</label>
+            <input type="text" id="SSI" name="SSI" value="0.0"/>
+        </div><br/>
+        <div class="form-row">
+            <label for="SNAP">SNAP</label>
+            <input type="text" id="SNAP" name="SNAP" value="0.0"/>
+         </div><br/>
+         <div>
+            <input type="button" class="button" id="buttonSave" name="SaveButton" value="Save"/>
+         </div>
+    </form>
+    <ul>
+        
+    </ul>
+    <div>
+        <p>11 days til OAP</p>
+        <p>17 days til SSI</p>
+        <p>Daily Allowance is $0.0</p>
+    </div>
+    <div id="junk"></div>
+    <script>
+        document.getElementById("buttonSave").onclick =
+            function() {
+                document.getElementById("junk").innerHTML+="<p>Saving...</p>"
+                document.getElementById("form").submit()
+            }
+    </script>
+  </body>
+</html>

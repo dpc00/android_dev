@@ -1,0 +1,268 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"to",
+				"toString"
+			],
+			[
+				"read",
+				"ReadDirectoryChangesW"
+			],
+			[
+				"Work",
+				"WorkerStateEvent"
+			]
+		]
+	},
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 173.0,
+		"last_filter": "build",
+		"selected_items":
+		[
+			[
+				"build",
+				"Build With: gradle - Backups"
+			],
+			[
+				"git: ",
+				"Git: Push"
+			],
+			[
+				"git:",
+				"Git: Status"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/Projects/DirSyncApp/src/main/scala/DirSync.scala",
+		"/E/Projects/DirSyncApp/src/main/scala/DSubs.scala",
+		"/E/Projects/DirSyncApp/src/main/scala/DirSyncApp.scala",
+		"/E/Projects/DirSyncApp/src/main/scala/ActivityRecord.scala",
+		"/E/Projects/DirSyncApp/src/main/java/OpLists.java",
+		"/F/Projects/DirSyncApp/src/main/java/OpLists.java",
+		"/F/Projects/DirSyncApp/src/main/java/JavaDEStream.java",
+		"/F/Projects/DirSyncApp/src/main/java/DE.java",
+		"/F/Projects/DirSyncApp/src/main/scala/ActivityRecord.scala",
+		"/F/.bat/plaunch.bat",
+		"/F/Projects/DirSyncApp/src/main/java/ChangeNotifier.java",
+		"/F/Projects/DirSyncApp/src/main/java/WC.java",
+		"/F/Projects/DirSyncApp/src/main/scala/DirSyncApp.scala",
+		"/F/Projects/DirSyncApp/src/main/java/Kernel32.java",
+		"/F/Projects/DirSyncApp/src/main/java/IScanDir.java",
+		"/F/Projects/DirSyncApp/src/main/scala/DirSync.scala",
+		"/F/Projects/DirSyncApp/src/main/java/DEStream.java",
+		"/F/Projects/DirSyncApp/src/main/java/WindowsScanDir.java",
+		"/F/Projects/DirSyncApp/dirsync.bat",
+		"/f/Projects/DirSyncApp/src/main/java/DE.java",
+		"/F/Projects/DirSyncApp/src/main/scala/ScalaDEStream.scala",
+		"/F/Projects/DirSyncApp/src/main/java/JDEStream.java",
+		"/F/Projects/DirSyncApp/src/main/java/JavaScanDir.java",
+		"/E/Projects/DirSyncApp/src/main/java/Kernel32.java",
+		"/E/Projects/DirSyncApp/src/main/java/WC.java",
+		"/E/Projects/DirSyncApp/src/main/java/ChangeNotifier.java",
+		"/E/Projects/DirSyncApp/DirSyncApp.sublime-workspace",
+		"/F/Projects/DirSyncApp/build.gradle",
+		"/F/Projects/DirSyncApp/src/main/java/Contents1.java",
+		"/F/Projects/DirSyncApp/src/main/java/Contents2.java",
+		"/E/Projects/DirSyncApp/src/main/java/Contents1.java",
+		"/E/Projects/DirSyncApp/gradle-app.setting",
+		"/E/Projects/DirSyncApp/src/main/java/Contents2.java",
+		"/E/Projects/DirSyncApp/src/main/java/DE.java",
+		"/E/Projects/DirSyncApp/src/main/java/DEStream.java",
+		"/F/Projects/DirSyncApp/hs_err_pid3796.log",
+		"/F/Projects/DirSyncApp/src/main/scala/Cleanly.scala",
+		"/F/Projects/DirSyncApp/src/main/java/Contents.java",
+		"/F/Projects/DirSyncApp/src/main/scala/DContents.scala",
+		"/F/Projects/DirSyncApp/DirSyncApp.sublime-project",
+		"/E/Projects/DirSyncApp/src/main/java/Contents.java",
+		"/E/Projects/DirSyncApp/src/main/scala/Cleanly.scala",
+		"/E/Programs/Sublime Text Build 3126 x64/Data/Packages/User/gradle.sublime-build",
+		"/E/Projects/JakeRun/src/FileCopy.java",
+		"/E/Projects/DirSyncApp/DirSyncApp.sublime-project",
+		"/E/Projects/DirSyncApp/build.gradle"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"E:\\Projects\\DirSyncApp\\src",
+			"f:\\Projects\\DirSyncApp\\src",
+			"E:\\Projects\\DirSyncApp\\src",
+			"E:\\Projects\\DirSyncApp\\src\\main\\scala"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"relativize",
+			"syncDir",
+			"rt",
+			"ScanDir",
+			"Kernel32.ScanDir",
+			"de",
+			"deso.release()",
+			"deso",
+			";\n",
+			"<DE, DE>",
+			"Consumer[String]",
+			"HashMap<String, DE>",
+			"close",
+			"ch",
+			"close",
+			"ocf",
+			"scf",
+			"scala.collections.mutable.",
+			":HashMap<String, DE>",
+			"Worker.State.Running",
+			"Worker.State.Scheduled",
+			".state",
+			"isCancelled()"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"srt",
+			"WindowsScanDir",
+			"ScanDir",
+			"cde",
+			"<String, DE>",
+			"Consumer[DE]",
+			"Set<String>",
+			"",
+			"RUNNING",
+			"SCHEDULED",
+			".state.value",
+			"cancelled"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": true,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "Packages/User/gradle.sublime-build",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 248.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

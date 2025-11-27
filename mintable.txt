@@ -1,0 +1,6 @@
+git clone https://github.com/kevinschaich/mintable
+cd mintable
+
+npm install
+npm run build
+npm link

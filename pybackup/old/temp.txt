@@ -1,0 +1,13 @@
+#!/data/data/com.termux/files/usr/bin/env python
+from sys import exit
+
+from funcs import srun
+from gb_env import pdir
+
+print("-- rfmt.py --")
+
+
+cmd = 'yapf -i -r -vv ' + pdir['pyth'] + '/*.py'
+print(cmd)
+res = srun(cmd)
+exit(res)

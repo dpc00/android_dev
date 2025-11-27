@@ -1,0 +1,5 @@
+$shell = New-Object -COM WScript.Shell
+$shortcut = $shell.CreateShortcut("PStartTest.lnk")  ## Open the lnk
+$shortcut.TargetPath = "PStart.exe"  ## Make changes
+$shortcut.Description = "PStart"  ## This is the "Comment" field
+$shortcut.Save()  ## Save

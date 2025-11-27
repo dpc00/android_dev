@@ -1,0 +1,2 @@
+~/bin/plaid-cli transactions ns --from $(date +%Y-%m-%d) --to $(date +%Y-%m-%d) --output-format csv
+~/bin/plaid-cli accounts ns

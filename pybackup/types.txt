@@ -1,0 +1,14 @@
+local-dir
+local-code-dir
+local-script-dir
+local-file
+local-db-file
+local-zip-file
+local-script-file
+local-source-code-file
+local-config-file
+local-git-repo
+local-git-worktree
+remote-git-repo
+remote-dir
+remote-file

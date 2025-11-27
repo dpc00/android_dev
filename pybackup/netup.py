@@ -1,0 +1,2 @@
+def netup():
+    return True

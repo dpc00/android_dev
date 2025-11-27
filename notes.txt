@@ -1,0 +1,8 @@
+mkdir build
+cd build
+cmake -lpthread -DINSTALL_UDEV_RULES=ON -DCMAKE_INSTALL_PREFIX="${PREFIX}" ..
+make
+sudo make install 
+sudo cp ../rtl-sdr.rules $PREFIX/etc/udev/rules.d/
+sudo ldconfig
+

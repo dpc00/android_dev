@@ -1,0 +1,2 @@
+var et = new EventTarget();
+

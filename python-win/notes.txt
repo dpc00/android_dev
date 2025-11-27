@@ -1,0 +1,6 @@
+inotify-simple mods should be finalized;
+i.e. errors part, and be sent off to termux update people
+
+find out how to get error code!
+
+inot rt2 rest/sleep is probably wrong

@@ -1,0 +1,2 @@
+# am start -d "$(realpath $1)" -t "text/python" -a android.intent.action.VIEW
+am start -n com.rhmsoft.edit.pro/com.rhmsoft.edit.activity.MainActivity -a android.intent.action.EDIT -d "file://$(realpath $1)" -t "text/plain" --activity-clear-task

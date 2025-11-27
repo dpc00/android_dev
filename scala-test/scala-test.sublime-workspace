@@ -1,0 +1,244 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"read",
+				"ReadDirectoryChangesW"
+			],
+			[
+				"Work",
+				"WorkerStateEvent"
+			]
+		]
+	},
+	"build_system": "Packages/User/gradle.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/User/gradle.sublime-build",
+					""
+				],
+				[
+					"Packages/User/gradle.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/User/gradle.sublime-build",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 242.0,
+		"last_filter": "build",
+		"selected_items":
+		[
+			[
+				"build",
+				"Build With: gradle - Copy-Flash"
+			],
+			[
+				"git: ",
+				"Git: Push"
+			],
+			[
+				"git:",
+				"Git: Status"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/F/Projects/scala-test/src/main/scala/DirSyncApp.scala",
+		"/F/Projects/scala-test/src/main/scala/DirSync.scala",
+		"/F/Projects/scala-test/src/main/java/OpLists.java"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"f:\\Projects\\scala-test\\src",
+			"E:\\Projects\\scala-test\\src",
+			"E:\\Projects\\scala-test\\src\\main\\scala"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"ScanDir",
+			"Kernel32.ScanDir",
+			"de",
+			"deso.release()",
+			"deso",
+			";\n",
+			"<DE, DE>",
+			"Consumer[String]",
+			"HashMap<String, DE>",
+			"close",
+			"ch",
+			"close",
+			"ocf",
+			"scf",
+			"scala.collections.mutable.",
+			":HashMap<String, DE>",
+			"Worker.State.Running",
+			"Worker.State.Scheduled",
+			".state",
+			"isCancelled()"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"WindowsScanDir",
+			"ScanDir",
+			"cde",
+			"<String, DE>",
+			"Consumer[DE]",
+			"Set<String>",
+			"",
+			"RUNNING",
+			"SCHEDULED",
+			".state.value",
+			"cancelled"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 263.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git-commit":
+	{
+		"height": 100.0
+	},
+	"output.git-push":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/gradle.sublime-build",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 375.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

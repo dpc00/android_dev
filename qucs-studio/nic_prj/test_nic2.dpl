@@ -1,0 +1,35 @@
+<QucsStudio Schematic 3.3.2>
+<Properties>
+View=-75,-20,1243,548,1.17958,0,0
+Grid=10,10,0
+DataSet=*.dat
+DataDisplay=*.sch
+OpenDisplay=1
+showFrame=0
+FrameText0=Title
+FrameText1=Drawn By:
+FrameText2=Date:
+FrameText3=Revision:
+</Properties>
+<Symbol>
+</Symbol>
+<Components>
+C C1 1 490 130 -26 10 0 0 "427.4pF" 1 "0" 0 "" 0 "neutral" 0 "SMD0603" 0
+L L2 1 570 190 17 -26 0 1 "11.77µH" 1 "0" 0 "" 0 "SELF-WE-PD3S" 0
+GND * 1 570 220 0 0 0 0
+</Components>
+<Wires>
+570 130 570 160 "" 0 0 0 ""
+570 130 590 130 "" 0 0 0 ""
+520 130 570 130 "" 0 0 0 ""
+</Wires>
+<Diagrams>
+<Rect 100 300 240 160 31 #c0c0c0 1 00 1 0 0.5 1 1 -0.1 0.5 1.1 1 -0.1 0.5 1.1 315 0 225 "" "" "">
+	<Legend 10 -100 0>
+	<"VSWR" "" #0000ff 0 3 0 0 0 0 "">
+</Rect>
+</Diagrams>
+<Paintings>
+Text 420 106 12 #000000 0 "port 1"
+Text 560 106 12 #000000 0 "port 2"
+</Paintings>
