@@ -123,7 +123,7 @@ class GitRepo(SD, Local_Git_Mixin):
             Dh1 = 0
         rv = 0
         for rmt in self.rmts:
-            cmd = "git rev-list --count " + rmt + "/master..master"
+            cmd = "git rev-list --count origin/master..master"
             rv += int(gitcmd(cmd, self))
         Dh2 = rv
         if Dh2 == 0:
@@ -151,7 +151,7 @@ class GitRemote(SD, Remote_Git_Mixin):
         # print(Di, 'status here')
         cmd = ""
         try:
-            cmd = "git branch main -u " + self.rmt + "/master"
+            cmd = "git branch master -u origin/master"
             gitcmd(cmd, self)
             cmd = "git remote update " + self.rmt
             gitcmd(cmd, self)
