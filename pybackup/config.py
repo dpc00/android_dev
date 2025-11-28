@@ -16,8 +16,6 @@ from localcopy import LocalCopy
 from opbase import OpBase
 from sd import CS, SD, Ext3, Fat32
 
-
-
 quit_ev = Event()
 rclk = RLock()
 
@@ -275,9 +273,9 @@ def initConfig():
                 ".bashrc",
                 ".bashrc0",
                 ".profile",
-                ".plaid-cli/**/*",
-                ".plaidrc",
-                ".git-credentials",
+                #".plaid-cli/**/*",
+                #".plaidrc",
+                #".git-credentials",
                 #".gitconfig",
             ]
         },
@@ -295,9 +293,9 @@ def initConfig():
                 ".bashrc0",
                 ".profile",
                 ".config/rclone/*",
-                ".plaid-cli/**/*",
-                ".plaidrc",
-                ".git-credentials",
+                #".plaid-cli/**/*",
+                #".plaidrc",
+                #".git-credentials",
                 # ".gitconfig",
             ]
         },
