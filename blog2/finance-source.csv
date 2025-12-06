@@ -1,0 +1,9 @@
+source_id,name,type,day,amount,asset_id
+1,SSA,Early Retirement,3,356.0,1
+2,SSA,SSI,1,631.0,1
+3,CODHS,OAP,26,38.0,2
+4,CODHS,FS,8,109.0,3
+5,Human,Cash,,,4
+6,Other,Unknown,,,
+7,Various,Cash Back,,,4
+8,Various,Refund,,,4

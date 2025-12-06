@@ -1,0 +1,23 @@
+id,name
+1ca69ebc52f6a7f5,ATM Balance Inquiry Fee
+552ed73b55fb138b,ATM Cash Withdrawal
+c0ba8948f08b12a0,ATM Withdrawal Fee
+e5844a36cb3021dc,Card Purch W/ Cash Back
+9b29d416fc6d2261,Card Purchase
+c98dfd75edc4980b,Cash Load
+e584ec9253551480,Deposit
+f0bb6a2cfd2cdb5d,Direct Deposit
+1a7c70d2ce6447ec,Fee for declined ACH debit
+03bcf57596d1e6c9,Inactivity Fee
+87406eba334b5db6,Monthly Paper Statement Fee
+3583ae14245cbbb3,PIN Purchase
+4b609859b14523f4,PIN Purchase Transaction Fee
+cc8465f044ae312c,Plan Fee
+59c46881213d7160,Preauthorized Payment to PAYPAL for INST XFER
+4e9c9a5ec2f79ea7,Preauthorized Payment to PAYPAL for RETRY PYMT
+9256c1ae82f89ae7,Preauthorized Payment to PAYPAL for VERIFYBANK
+a292f34739ea9e1a,Refund or Correction
+316fc8322e9690a2,Return
+85031ff05f2c5df3,Signature Purchase
+0c42bf72659aaba2,Signature Purchase Transaction Fee
+09f59e6f50405dbe,Visa Money Transfer

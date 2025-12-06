@@ -1,0 +1,71 @@
+----------Table: source----------
+----------Create Statement----------
+CREATE TABLE "source"
+(
+    source_id INT not null
+        primary key
+        constraint unq_source_source_id
+            unique,
+    name      TEXT,
+    type      TEXT,
+    day       INTEGER,
+    amount    REAL
+, asset_id INTEGER)
+----------Description----------
+['source_id', 'name', 'type', 'day', 'amount', 'asset_id']
+----------Table: asset----------
+----------Create Statement----------
+CREATE TABLE asset (
+	asset_id INT NOT NULL,
+	name TEXT NOT NULL,
+	"type" TEXT NOT NULL,
+	initial_balance NUMERIC,
+	updated DATETIME,
+	card_number TEXT,
+	CVV INTEGER,
+	expiration_date TEXT,
+	routing_number TEXT,
+	account_number TEXT,
+	current_balance NUMERIC, flashpay_id TEXT(9),
+	CONSTRAINT ASSET_PK PRIMARY KEY (asset_id)
+)
+----------Description----------
+['asset_id',
+ 'name',
+ 'type',
+ 'initial_balance',
+ 'updated',
+ 'card_number',
+ 'CVV',
+ 'expiration_date',
+ 'routing_number',
+ 'account_number',
+ 'current_balance',
+ 'flashpay_id']
+----------Table: transactions----------
+----------Create Statement----------
+CREATE TABLE [transactions](
+  [day] DATE,
+  [asset] INT, 
+  [description] TEXT, 
+  [amount] CURRENCY NOT NULL)
+----------Description----------
+['sum(amount)', 'fc(description)', 'count(amount)']
+----------Table: transaction_types----------
+----------Create Statement----------
+CREATE TABLE transaction_types
+    (
+    [id]     TEXT PRIMARY KEY,
+    [name] TEXT
+    )
+----------Description----------
+['id', 'name']
+----------Table: companies----------
+----------Create Statement----------
+CREATE TABLE companies
+    (
+    [id]     TEXT PRIMARY KEY,
+    [name] TEXT
+    )
+----------Description----------
+['id', 'name']

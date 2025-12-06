@@ -1,0 +1,5 @@
+asset_id,name,type,initial_balance,updated,card_number,CVV,expiration_date,routing_number,account_number,current_balance,flashpay_id
+1,Direct Express,Prepaid Debit Card,18.07,10/21/2025,5332480614301754,724,01/31/2028,,,,
+2,Netspend,Prepaid Debit Card,2271.15,10/21/2025,4769706020723768,349,08/01/2027,073972181,70007580531010,,8089366149
+3,Colorado Quest,EBT card,29.42,10/21/2025,5076815010172434,,,,,,
+4,Cash,Wallet,479.35,1021/2025,,,,,,,
