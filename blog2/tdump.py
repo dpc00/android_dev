@@ -591,6 +591,7 @@ try:
     dump_table("transactions")
     dump_table("transaction_types")
     dump_table("companies")
+    dump_table("blog")
 finally:
     ft.close()
 

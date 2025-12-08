@@ -46,9 +46,10 @@ CREATE TABLE asset (
 ----------Create Statement----------
 CREATE TABLE [transactions](
   [day] DATE,
-  [asset] INT, 
+  [asset] INT,
+  [entity] INT,
   [description] TEXT, 
-  [amount] CURRENCY NOT NULL)
+  [amount] CURRENCY)
 ----------Description----------
 ['sum(amount)', 'fc(description)', 'count(amount)']
 ----------Table: transaction_types----------
@@ -69,3 +70,13 @@ CREATE TABLE companies
     )
 ----------Description----------
 ['id', 'name']
+----------Table: blog----------
+----------Create Statement----------
+CREATE TABLE "blog"
+        (
+            time TIMESTAMP,
+            asset_id INTEGER,
+            balance REAL
+         )
+----------Description----------
+['time', 'asset_id', 'balance']

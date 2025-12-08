@@ -3,7 +3,7 @@ import locale
 import math
 import re
 import sqlite3
-import sql3date
+
 from functools import reduce
 
 from textual import on
@@ -22,31 +22,22 @@ dbstarted = False
 
 def dbstart():
     global conn, cursor, dbstarted
-    if dbstarted:
-        return
-    conn = sqlite3.connect("finance.db")
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute("""
-        create table if not exists blog
-        (
-        time TIMESTAMP primary key default CURRENT_TIMESTAMP,
-        asset_id INTEGER,
-        balance NUMERIC
-     );
-    """)
-    cursor.execute("""
-        create table if not exists blog
-        (
-        time TIMESTAMP primary key default CURRENT_TIMESTAMP,
-        asset_id INTEGER,
-        balance NUMERIC
-        )
-        """)
-    dbstarted = True
+    if not dbstarted:
+        conn = sqlite3.connect("finance.db")
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        dbstarted = True
 
 
 dbstart()
+
+
+class AssetObj:
+    def __init__(self, name, balance, id, labelinput):
+        self.name = name
+        self.balance = balance
+        self.id = id
+        self.labelinput = labelinput
 
 
 def load_asset_balances():
@@ -56,34 +47,52 @@ def load_asset_balances():
         select * from asset order by name;
     """).fetchall()
     for ass in rows:
-        nm = ass["name"]
-        vl = ass["current_balance"]
-        # print(f"{vl=} {type(vl)}")
+        name = ass["name"]
         aid = ass["asset_id"]
-        drows[nm.replace(" ", "")] = (nm, vl, aid)
+        anm = name.replace(" ", "")
+        balance = ass["current_balance"]
+        if balance:
+            fvl = f"{balance:>4.2f}"
+        else:
+            fvl = ""
+        lblin = LabeledInput(
+            Label(name),
+            Input(
+                value=fvl,
+                id=anm,
+                validators=[Function(validNumSet, "Not a valid amount set!")],
+            ),
+        )
+        drows[anm] = AssetObj(name, balance, aid, lblin)
 
 
 def find_yesterdays_ending_balances():
+    global conn, cursor
+    dbstart()
+    c1 = cursor.execute("""
+        select asset_id from asset;
+    """)
+    rows = c1.fetchall()
     ydd = datetime.date.today() - datetime.timedelta(days=1)
-    # yydd = datetime.date.today() - datetime.timedelta(days=2)
-    sr = cursor.execute(
-        """
-        select * from blog
-        where date(time)<=?
-        order by time desc
-    """,
-        [ydd],
-    )
-    rws = sr.fetchall()
     db = {}
-    for r in rws:
-        aid = r["asset_id"]
-        if aid not in db:
-            db[aid] = r["balance"]
+    for ass in rows:
+        aid = ass["asset_id"]
+        sr = cursor.execute(
+            """
+            select * from blog
+            where date(time)<=? and asset_id=?
+            order by time desc
+            """,
+            [ydd, aid],
+        )
+        r = sr.fetchone()
+        db[aid] = r["balance"]
     return db
 
 
 def get_todays_transactions():
+    global conn, cursor
+    dbstart()
     db = find_yesterdays_ending_balances()
     aacc = db.copy()
     tdd = datetime.date.today()
@@ -99,33 +108,38 @@ def get_todays_transactions():
     trs = []
     for r in rws:
         aid = r["asset_id"]
-        amt = round(aacc[aid] - r["balance"], 2)
+        amt = aacc[aid] - r["balance"]
         aacc[aid] = r["balance"]
         tt = r["time"][:16]
+        amt = round(amt, 2)
         trs.append((aid, tt, amt))
     return trs
 
 
 def update_asset_balances():
+    global conn, cursor
+    dbstart()
     for anm in drows.keys():
-        nm, vl, aid = drows[anm]
+        ao = drows[anm]
         row = cursor.execute(
             """
             select * from asset where asset_id = ?;
         """,
-            [aid],
+            [ao.id],
         ).fetchone()
         if row:
             rcb = row["current_balance"]
-            print(f"current_balance {rcb} {type(rcb)} vl {vl} {type(vl)}")
-            if rcb != vl:
-                print(f"row {aid}:{nm} needs update {rcb}->{vl}")
+            print(
+                f"current_balance {rcb} {type(rcb)} ao.balance {ao.balance} {type(ao.balance)}"
+            )
+            if rcb != ao.balance:
+                print(f"row {ao.id}:{ao.name} needs update {rcb}->{ao.balance}")
                 cursor.execute(
                     """
                    update asset set current_balance = ?
                    where asset_id = ?
                 """,
-                    [vl, aid],
+                    [ao.balance, ao.id],
                 )
                 conn.commit()
 
@@ -200,39 +214,7 @@ def txtpa(txt):
 
 
 class TransactionListView(ListView):
-    def key_backspace(self):
-        # find last entry
-        c1 = cursor.execute("""
-            select rowid, time, asset_id, balance from blog
-            order by time desc;
-        """)
-        mr = c1.fetchone()
-        rid = mr["rowid"]
-        aid = mr["asset_id"]
-        # delete last entry
-        c2 = cursor.execute(
-            """
-            delete from blog
-            where rowid = ? and asset_id = ?;
-        """,
-            [rid, aid],
-        )
-        conn.commit()
-        # rollback balance of asset
-        td = datetime.date.today()
-        c3 = cursor.execute(
-            """
-            select * from blog
-            where date(time)=? and asset_id=?
-            order by time desc;
-        """,
-            [td, aid],
-        )
-        rw = c2.fetchone()
-        for dr in drows:
-            if dr[2] == aid:
-                dr[1] = rw["balance"]
-        update_asset_balances()
+    pass
 
 
 lv = TransactionListView()
@@ -267,17 +249,7 @@ class CompoundApp(App):
         load_asset_balances()
 
         for anm in drows.keys():
-            nm, vl, aid = drows[anm]
-            if vl:
-                vl = f"{vl:>4.2f}"
-            yield LabeledInput(
-                Label(nm),
-                Input(
-                    value=vl,
-                    id=anm,
-                    validators=[Function(validNumSet, "Not a valid amount set!")],
-                ),
-            )
+            yield drows[anm].labelinput
         yield Pretty([])
         yield Button("Save", id="data_save")
         yield lv
@@ -294,11 +266,11 @@ class CompoundApp(App):
         if eiv == "":
             eiv = None
         eiv2 = txtp(eiv)
-        nm, vl, aid = drows[eid]
-        if eiv2 != vl:
-            print(f"{nm} changed {vl}->{eiv2}")
-            drows[eid] = (nm, eiv2, aid)
-            self.notify(str(eiv2), timeout=2)
+        ao = drows[eid]
+        if eiv2 != ao.balance:
+            print(f"{ao.name} changed {ao.balance}->{eiv2}")
+            ao.balance = eiv2
+            self.notify(str(ao.balance), timeout=2)
         # Updating the UI to show the reasons why validation failed
         if not ev.validation_result.is_valid:
             self.query_one(Pretty).update(ev.validation_result.failure_descriptions)
@@ -310,37 +282,46 @@ class CompoundApp(App):
             update_asset_balances()
             self.log_balance_changes()
             for anm in drows.keys():
-                nm, vl, aid = drows[anm]
-                if vl:
-                    vl = f"{vl:>4.2f}"
-                self.query_one("#" + anm, Input).value = vl
+                ao = drows[anm]
+                if ao.balance:
+                    fvl = f"{ao.balance:>4.2f}"
+                else:
+                    fvl = ""
+                ao.labelinput.input.value = fvl
             lv_update()
 
     def log_balance_changes(self):
         global conn, cursor
+        dbstart()
         for anm in drows.keys():
-            cin = self.query_one("#" + anm, Input)
+            ao = drows[anm]
+            cin = ao.labelinput.input
             ai = txtpa(cin.value)
             ai = list(ai)
             if ai is None or len(ai) == 0:
                 return
             acc = ai[0]
-            aid = drows[anm][2]
             # see if initial/prev bal in, enter if not
             row = cursor.execute(
                 """
                 select * from blog where asset_id = ? order by time desc;
             """,
-                [aid],
+                [ao.id],
             ).fetchone()
-            if row is None or row["balance"] != acc:
-                t = datetime.datetime.now()
-                cursor.execute(
-                    """
-                    insert into blog (time, asset_id, balance) values (?,?,?);
-                """,
-                    [t, aid, acc],
+            if row is not None:
+                print(
+                    f"{row['balance']=}, {acc=} row['balance']==acc {row['balance'] == acc}"
                 )
+            if row is None or row["balance"] != acc:
+                if row is None or round(row["balance"], 2) != acc:
+                    t = datetime.datetime.now()
+                    cursor.execute(
+                        """
+                        insert into blog (time, asset_id, balance) values (?,?,?);
+                    """,
+                        [t, ao.id, round(acc, 2)],
+                    )
+                    conn.commit()
             for i in range(1, len(ai)):
                 acc += ai[i]
                 t = datetime.datetime.now()
@@ -348,7 +329,7 @@ class CompoundApp(App):
                     """
                     insert into blog (time, asset_id, balance) values (?,?,?);
                 """,
-                    [t, aid, acc],
+                    [t, ao.id, round(acc, 2)],
                 )
             conn.commit()
 
