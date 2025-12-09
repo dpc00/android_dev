@@ -101,7 +101,7 @@ def copy2(di, si, sd, td, sfc):
     if rv == 0:
         sfc.sc += 1
     else:
-        sfc.fc -= 1
+        sfc.fc += 1
         print(txt)
     return rv
 
