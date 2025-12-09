@@ -303,16 +303,16 @@ def initConfig():
     )
     addArc(op2)
 
-    npl1 = ("bin", "bash")
-    op3 = LocalCopy(
-        npl1,
-        npl1,
-        {
-            "files": ["termux-*", "pbu", "ppc", "rbu", "rcu", "qe", "ftp*", "nt"],
-            "exec": True,
-        },
-    )
-    addArc(op3)
+    #npl1 = ("bin", "bash")
+    #op3 = LocalCopy(
+        #npl1,
+        #npl1,
+        #{
+            #"files": ["termux-*", "pbu", "ppc", "rbu", "rcu", "qe", "ftp*", "nt"],
+            #"exec": True,
+        #},
+    #)
+    #addArc(op3)
 
     npl1 = ("bash", "bin")
     op4 = LocalCopy(
