@@ -329,13 +329,13 @@ def initConfig():
     )
     addArc(op4)
 
-    npl1 = ("sh", "bash")
-    op5 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
-    addArc(op5)
+    #npl1 = ("sh", "bash")
+    #op5 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
+    #addArc(op5)
 
-    npl1 = ("bash", "sh")
-    op6 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
-    addArc(op6)
+    #npl1 = ("bash", "sh")
+    #op6 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
+    #addArc(op6)
 
     #npl1 = ("blogds", "blog")
     #op7 = LocalCopy(npl1, npl1, {"files": ["blog.js"]})
