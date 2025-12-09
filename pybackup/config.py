@@ -412,7 +412,7 @@ def initConfig():
 
     # for cs in ("gd", "db", "od"):
     for cs in ("gd",):
-        for si in ("proj", "vids", "zips"):
+        for si in ("proj", "vids", "zips", "directexpress", "netspend",):
             if src(si).is_relative_to(ppre("sd")):
                 p1 = src(si).relative_to(ppre("sd"))
             elif src(si).is_relative_to(src("home").parent):
