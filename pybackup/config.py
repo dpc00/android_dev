@@ -262,6 +262,7 @@ def initConfig():
     addTgtDir("bash", src("proj") / "bash")
     addTgtDir("plaid-node", src("proj") / "plaid-node")
     addTgtDir("docs", sdcard / "Documents")
+    addTgtDir("blog2", src("proj") / "blog2")
     
     npl1 = ("bash", "home")
     op1 = LocalCopy(
@@ -351,6 +352,12 @@ def initConfig():
     #npl1 = ("backups", "blogds")
     #op10 = LocalCopy(npl1, npl1, {"files": ["*.db"]})
     #addArc(op10)
+
+    npl1 = ("docs", "blog2")
+    op11 = LocalCopy(npl1, npl1, {
+        "files": ["*.py", "*.csv", "finance.db", "*.txt"]
+    })
+    addArc(op11)
 
     if "NOGIT" not in os.environ:
         npl1 = ("git_index", "git_worktree")
