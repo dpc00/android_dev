@@ -201,8 +201,10 @@ def initConfig():
     addSrcDir("sh", home / "bin/sh")
     addSrcDir("proj", sdcard / "projects", False)
     addSrcDir("bash", src("proj") / "bash")
-    addSrcDir("blog", src("proj") / "blog")
+    # addSrcDir("blog", src("proj") / "blog")
     addSrcDir("docs", sdcard / "Documents", False)
+    addSrcDir("netspend", sdcard / "Documents" / "netspend", False)
+    addSrcDir("directexpress", sdcard / "Documents" / "directexpress", False)
     # addSrcDir("blogds", dsblog, False)
     addSrcDir("backups", sdcard / "backups", False)
     addSrcDir("vids", sdcard / "vids", False)
@@ -258,11 +260,13 @@ def initConfig():
     addTgtDir("termux-backup", tgt("backups") / "termux-backup")
     addTgtDir("zips", sdcard / "zips")
     # addTgtDir("blogds", dsblog)
-    addTgtDir("blog", src("proj") / "blog")
+    # addTgtDir("blog", src("proj") / "blog")
     addTgtDir("bash", src("proj") / "bash")
     addTgtDir("plaid-node", src("proj") / "plaid-node")
     addTgtDir("docs", sdcard / "Documents")
     addTgtDir("blog2", src("proj") / "blog2")
+    addTgtDir("blog2netspend", tgt("blog2") / "netspend")
+    addTgtDir("blog2directexpress", tgt("blog2") / "directexpress")
     
     npl1 = ("bash", "home")
     op1 = LocalCopy(
@@ -353,11 +357,23 @@ def initConfig():
     #op10 = LocalCopy(npl1, npl1, {"files": ["*.db"]})
     #addArc(op10)
 
-    npl1 = ("docs", "blog2")
+    npl1 = ("blog2", "docs")
     op11 = LocalCopy(npl1, npl1, {
         "files": ["*.py", "*.csv", "finance.db", "*.txt"]
     })
     addArc(op11)
+    
+    npl1 = ("blog2netspend", "netspend")
+    op12 = LocalCopy(npl1, npl1, {
+        "files": ["*.py", "*.csv", "test.db", "*.txt"]
+    })
+    addArc(op12)
+    
+    npl1 = ("blog2directexpress", "directexpress")
+    op13 = LocalCopy(npl1, npl1, {
+        "files": ["*.py", "*.csv", "test.db", "*.txt"]
+    })
+    addArc(op13)
 
     if "NOGIT" not in os.environ:
         npl1 = ("git_index", "git_worktree")

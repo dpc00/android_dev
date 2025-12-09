@@ -11,7 +11,7 @@ from textual.app import App, ComposeResult
 from textual.containers import CenterMiddle, Horizontal, VerticalScroll
 from textual.validation import Function, Number, ValidationResult, Validator
 from textual.widget import Widget
-from textual.widgets import Button, Input, Label, ListItem, ListView, Pretty
+from textual.widgets import Button, DataTable, Input, Label, ListItem, ListView, Pretty
 
 drows = {}
 
@@ -42,7 +42,6 @@ class AssetObj:
 
 def load_asset_balances():
     global conn, cursor
-    dbstart()
     rows = cursor.execute("""
         select * from asset order by name;
     """).fetchall()
@@ -68,19 +67,18 @@ def load_asset_balances():
 
 def find_yesterdays_ending_balances():
     global conn, cursor
-    dbstart()
     c1 = cursor.execute("""
         select asset_id from asset;
     """)
     rows = c1.fetchall()
-    ydd = datetime.date.today() - datetime.timedelta(days=1)
+    ydd = datetime.date.today() - datetime.timedelta(days=4)
     db = {}
     for ass in rows:
         aid = ass["asset_id"]
         sr = cursor.execute(
             """
             select * from blog
-            where date(time)<=? and asset_id=?
+            where date(time)<? and asset_id=?
             order by time desc
             """,
             [ydd, aid],
@@ -92,33 +90,37 @@ def find_yesterdays_ending_balances():
 
 def get_todays_transactions():
     global conn, cursor
-    dbstart()
     db = find_yesterdays_ending_balances()
     aacc = db.copy()
-    tdd = datetime.date.today()
+    sdd = datetime.date.today() - datetime.timedelta(days=4)
     sr = cursor.execute(
         """
         select time, asset_id, balance from blog
-        where date(time)=?
+        where date(time)>=?
         order by time asc;
     """,
-        [tdd],
+        [sdd],
     )
     rws = sr.fetchall()
     trs = []
+    ctoti = 0
+    ctote = 0
     for r in rws:
         aid = r["asset_id"]
         amt = aacc[aid] - r["balance"]
         aacc[aid] = r["balance"]
-        tt = r["time"][:16]
+        tt = datetime.datetime.fromisoformat(r["time"])
         amt = round(amt, 2)
-        trs.append((aid, tt, amt))
+        if amt > 0:
+            ctote += amt
+        else:
+            ctoti -= amt
+        trs.append((aid, tt, amt, ctoti, ctote))
     return trs
 
 
 def update_asset_balances():
     global conn, cursor
-    dbstart()
     for anm in drows.keys():
         ao = drows[anm]
         row = cursor.execute(
@@ -213,19 +215,29 @@ def txtpa(txt):
     return res1
 
 
-class TransactionListView(ListView):
+class TransactionDataTable(DataTable):
     pass
 
 
-lv = TransactionListView()
+lv = TransactionDataTable()
 
 
 def lv_update():
     lv.clear()
+    lv.add_column("asset")
+    lv.add_column("time")
+    lv.add_column("amount")
+    lv.add_column("income")
+    lv.add_column("expense")
     lis = get_todays_transactions()
     for li in lis:
-        li1 = Label(str(li[0]) + " " + li[1] + " " + str(li[2]))
-        lv.append(ListItem(li1))
+        lv.add_row(
+            f"{li[0]:>3}",
+            f"{li[1]:%c}",
+            f"{li[2]:>6.2f}",
+            f"{li[3]:>6.2f}",
+            f"{li[4]:>6.2f}",
+            )
     lv.refresh()
 
 
@@ -292,7 +304,6 @@ class CompoundApp(App):
 
     def log_balance_changes(self):
         global conn, cursor
-        dbstart()
         for anm in drows.keys():
             ao = drows[anm]
             cin = ao.labelinput.input

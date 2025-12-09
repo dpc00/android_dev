@@ -64,12 +64,9 @@ def save():
 def next():
     global fns
     ch = False
-
-    while len(fns) > 0:
-        fn = f"{fns[0]}{sext}"
-        if os.path.exists(fn):
-            ch = True
-            fns.pop(0)
+    while len(fns) > 0 and os.path.exists(f"{fns[0]}{sext}"):
+        ch = True
+        fns.pop(0)
     # pyperclip.copy(fns[0])
     if ch:
         save()
