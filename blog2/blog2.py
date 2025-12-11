@@ -1,17 +1,14 @@
 import datetime
-import locale
 import math
 import re
 import sqlite3
-
 from functools import reduce
 
-from textual import on
 from textual.app import App, ComposeResult
-from textual.containers import CenterMiddle, Horizontal, VerticalScroll
-from textual.validation import Function, Number, ValidationResult, Validator
+from textual.containers import Horizontal
+from textual.reactive import Reactive
 from textual.widget import Widget
-from textual.widgets import Button, DataTable, Input, Label, ListItem, ListView, Pretty
+from textual.widgets import (Button, DataTable, Input, Label, Pretty)
 
 drows = {}
 
@@ -59,7 +56,7 @@ def load_asset_balances():
             Input(
                 value=fvl,
                 id=anm,
-                validators=[Function(validNumSet, "Not a valid amount set!")],
+                # validators=[Function(validNumSet, "Not a valid amount set!")],
             ),
         )
         drows[anm] = AssetObj(name, balance, aid, lblin)
@@ -71,7 +68,7 @@ def find_yesterdays_ending_balances():
         select asset_id from asset;
     """)
     rows = c1.fetchall()
-    ydd = datetime.date.today() - datetime.timedelta(days=4)
+    ydd = datetime.date.today() - datetime.timedelta(days=5)
     db = {}
     for ass in rows:
         aid = ass["asset_id"]
@@ -92,7 +89,7 @@ def get_todays_transactions():
     global conn, cursor
     db = find_yesterdays_ending_balances()
     aacc = db.copy()
-    sdd = datetime.date.today() - datetime.timedelta(days=4)
+    sdd = datetime.date.today() - datetime.timedelta(days=5)
     sr = cursor.execute(
         """
         select time, asset_id, balance from blog
@@ -103,19 +100,13 @@ def get_todays_transactions():
     )
     rws = sr.fetchall()
     trs = []
-    ctoti = 0
-    ctote = 0
     for r in rws:
         aid = r["asset_id"]
         amt = aacc[aid] - r["balance"]
         aacc[aid] = r["balance"]
         tt = datetime.datetime.fromisoformat(r["time"])
         amt = round(amt, 2)
-        if amt > 0:
-            ctote += amt
-        else:
-            ctoti -= amt
-        trs.append((aid, tt, amt, ctoti, ctote))
+        trs.append((aid, tt, amt, r["balance"]))
     return trs
 
 
@@ -146,6 +137,17 @@ def update_asset_balances():
                 conn.commit()
 
 
+class Num(Label):
+    num = Reactive(0, layout=True)
+
+    def __init__(self, val, **kwargs):
+        super().__init__(f"{val}", **kwargs)
+        self.num = val
+
+    def render(self):
+        return f"{self.num:>8.2f}"
+
+
 class LabeledInput(Widget):
     """An input with a label."""
 
@@ -169,14 +171,17 @@ class LabeledInput(Widget):
         self.label = label
         self.input = input
         self.init_value = input.value
+        self.num = Num(round(float(input.value), 2))
         super().__init__()
 
     def compose(self) -> ComposeResult:
         yield self.label
         yield self.input
+        yield self.num
 
     def key_escape(self):
         self.input.value = self.init_value
+        self.num.num = float(self.init_value)
 
 
 rex = r"([+\-]?\s*(?:[0-9,]*)(?:[\.][0-9]*)?)"
@@ -224,20 +229,14 @@ lv = TransactionDataTable()
 
 def lv_update():
     lv.clear()
-    lv.add_column("asset")
-    lv.add_column("time")
-    lv.add_column("amount")
-    lv.add_column("income")
-    lv.add_column("expense")
     lis = get_todays_transactions()
     for li in lis:
         lv.add_row(
             f"{li[0]:>3}",
             f"{li[1]:%c}",
-            f"{li[2]:>6.2f}",
-            f"{li[3]:>6.2f}",
-            f"{li[4]:>6.2f}",
-            )
+            f"{li[2]:>8.2f}",
+            f"{li[3]:>8.2f}",
+        )
     lv.refresh()
 
 
@@ -268,6 +267,10 @@ class CompoundApp(App):
         self.composing = False
 
     def on_mount(self):
+        lv.add_column("asset")
+        lv.add_column("time")
+        lv.add_column("amount")
+        lv.add_column("balance")
         lv_update()
 
     def on_input_changed(self, ev):
@@ -282,12 +285,8 @@ class CompoundApp(App):
         if eiv2 != ao.balance:
             print(f"{ao.name} changed {ao.balance}->{eiv2}")
             ao.balance = eiv2
-            self.notify(str(ao.balance), timeout=2)
-        # Updating the UI to show the reasons why validation failed
-        if not ev.validation_result.is_valid:
-            self.query_one(Pretty).update(ev.validation_result.failure_descriptions)
-        else:
-            self.query_one(Pretty).update([])
+            ao.labelinput.num.num = eiv2
+            # self.notify(str(ao.balance), timeout=2)
 
     def on_button_pressed(self, msg):
         if msg.button.id == "data_save":
@@ -296,7 +295,7 @@ class CompoundApp(App):
             for anm in drows.keys():
                 ao = drows[anm]
                 if ao.balance:
-                    fvl = f"{ao.balance:>4.2f}"
+                    fvl = f"{ao.balance:>6.2f}"
                 else:
                     fvl = ""
                 ao.labelinput.input.value = fvl
