@@ -8,7 +8,8 @@ from textual.app import App, ComposeResult
 from textual.containers import Horizontal
 from textual.reactive import Reactive
 from textual.widget import Widget
-from textual.widgets import (Button, DataTable, Input, Label, Pretty)
+from textual.widgets import Button, DataTable, Input, Label, Pretty
+
 
 drows = {}
 
@@ -87,12 +88,10 @@ def find_yesterdays_ending_balances():
 
 def get_todays_transactions():
     global conn, cursor
-    db = find_yesterdays_ending_balances()
-    aacc = db.copy()
     sdd = datetime.date.today() - datetime.timedelta(days=5)
     sr = cursor.execute(
         """
-        select time, asset_id, balance from blog
+        select * from blog
         where date(time)>=?
         order by time asc;
     """,
@@ -102,11 +101,11 @@ def get_todays_transactions():
     trs = []
     for r in rws:
         aid = r["asset_id"]
-        amt = aacc[aid] - r["balance"]
-        aacc[aid] = r["balance"]
+        amt = r["amount"]
+        bal = r["balance"]
         tt = datetime.datetime.fromisoformat(r["time"])
         amt = round(amt, 2)
-        trs.append((aid, tt, amt, r["balance"]))
+        trs.append((aid, tt, amt, bal))
     return trs
 
 
@@ -261,7 +260,7 @@ class CompoundApp(App):
 
         for anm in drows.keys():
             yield drows[anm].labelinput
-        yield Pretty([])
+        # yield Pretty([])
         yield Button("Save", id="data_save")
         yield lv
         self.composing = False
@@ -299,6 +298,7 @@ class CompoundApp(App):
                 else:
                     fvl = ""
                 ao.labelinput.input.value = fvl
+                ao.labelinput.num.num = ao.balance
             lv_update()
 
     def log_balance_changes(self):
@@ -327,9 +327,9 @@ class CompoundApp(App):
                     t = datetime.datetime.now()
                     cursor.execute(
                         """
-                        insert into blog (time, asset_id, balance) values (?,?,?);
+                        insert into blog (time, asset_id, amount, balance) values (?,?,?,?);
                     """,
-                        [t, ao.id, round(acc, 2)],
+                        [t, ao.id, acc - row["balance"], round(acc, 2)],
                     )
                     conn.commit()
             for i in range(1, len(ai)):
@@ -337,11 +337,11 @@ class CompoundApp(App):
                 t = datetime.datetime.now()
                 cursor.execute(
                     """
-                    insert into blog (time, asset_id, balance) values (?,?,?);
+                    insert into blog (time, asset_id, amount, balance) values (?,?,?,?);
                 """,
-                    [t, ao.id, round(acc, 2)],
+                    [t, ao.id, ai[i], round(acc, 2)],
                 )
-            conn.commit()
+                conn.commit()
 
 
 if __name__ == "__main__":

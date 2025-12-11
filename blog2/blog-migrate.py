@@ -26,24 +26,34 @@ def f1():
         (
             time TIMESTAMP,
             asset_id INTEGER,
+            amount REAL,
             balance REAL
          );
     """)
     # conn.commit()
-    cursor.execute("""
-            insert into blog2
-            select * from blog
-            order by time;
+    c1 = cursor.execute("""
+        select * from blog order by time;
     """)
+    acc = {}
+    rws = c1.fetchall()
+    for r in rws:
+        aid = r["asset_id"]
+        bal = r["balance"]
+        tm = r["time"]
+        if aid not in acc:
+            acc[aid] = bal
+        amt = bal - acc[aid]
+        cursor.execute(
+            """
+            insert into blog2 (time, asset_id, amount, balance)
+            values (?,?,?,?);
+        """,
+            [tm, aid, amt, bal],
+        )
+        acc[aid] = bal
     # conn.commit()
     cursor.execute("""
         drop table if exists blog_bak;
-    """)
-    cursor.execute("""
-        alter table blog rename to blog_bak
-    """)
-    cursor.execute("""
-        alter table blog2 rename to blog;
     """)
     conn.commit()
 
