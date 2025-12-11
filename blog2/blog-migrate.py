@@ -1,6 +1,3 @@
-import datetime
-import locale
-import math
 import sqlite3
 
 dbstarted = False

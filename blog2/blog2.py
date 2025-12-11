@@ -5,10 +5,9 @@ import sqlite3
 from functools import reduce
 
 from textual.app import App, ComposeResult
-from textual.containers import Horizontal
 from textual.reactive import Reactive
 from textual.widget import Widget
-from textual.widgets import Button, DataTable, Input, Label, Pretty
+from textual.widgets import Button, DataTable, Input, Label
 
 
 drows = {}
