@@ -13,9 +13,8 @@ class FilesystemTable(list):
             options_ptr = _libmount.mnt_fs_get_fs_options(self._fs)
             set.__ior__(
                 self,
-                set(
-                    ctypes.string_at(options_ptr).
-                    split(',') if options_ptr else []))
+                set(ctypes.string_at(options_ptr).split(",") if options_ptr else []),
+            )
 
         def __getattribute__(self, name):
             """Wraps every set method to also update the underlying fs struct."""
@@ -25,7 +24,7 @@ class FilesystemTable(list):
                 @functools.wraps(attr)
                 def f(*args, **kwargs):
                     retvalue = attr(*args, **kwargs)
-                    new_value = ctypes.c_char_p(','.join(self)) if self else 0
+                    new_value = ctypes.c_char_p(",".join(self)) if self else 0
                     _libmount.mnt_fs_set_fs_options(self._fs, new_value)
                     return retvalue
 
@@ -58,13 +57,13 @@ class FilesystemTable(list):
 
             return property(_get, _set)
 
-        source = _fs_attrib('mnt_fs_get_source', 'mnt_fs_set_source')
-        target = _fs_attrib('mnt_fs_get_target', 'mnt_fs_set_target')
-        fstype = _fs_attrib('mnt_fs_get_fstype', 'mnt_fs_set_fstype')
+        source = _fs_attrib("mnt_fs_get_source", "mnt_fs_set_source")
+        target = _fs_attrib("mnt_fs_get_target", "mnt_fs_set_target")
+        fstype = _fs_attrib("mnt_fs_get_fstype", "mnt_fs_set_fstype")
         del _fs_attrib
 
         def _get_options(self):
-            if not hasattr(self, '_options'):
+            if not hasattr(self, "_options"):
                 self._options = FilesystemTable.Options(self._fs)
             return self._options
 
@@ -77,19 +76,23 @@ class FilesystemTable(list):
 
         def __unicode__(self):
             return "%s on %s type %s (%s)" % (
-                self.source, self.target, self.fstype, ','.join(self.options))
+                self.source,
+                self.target,
+                self.fstype,
+                ",".join(self.options),
+            )
 
         __repr__ = __unicode__
 
         def as_dict(self):
             return {
-                'source': self.source,
-                'target': self.target,
-                'fstype': self.fstype,
-                'options': self.options
+                "source": self.source,
+                "target": self.target,
+                "fstype": self.fstype,
+                "options": self.options,
             }
 
-    DEFAULT_FILENAME = '/etc/fstab'
+    DEFAULT_FILENAME = "/etc/fstab"
 
     def __init__(self, filename=None):
         self._table, self._lock = None, None
@@ -111,8 +114,10 @@ class FilesystemTable(list):
     def _get_fss(self):
         fs, mnt_iter = ctypes.c_void_p(), _libmount.mnt_new_iter()
         try:
-            while _libmount.mnt_table_next_fs(self._table, mnt_iter,
-                                              ctypes.byref(fs)) == 0:
+            while (
+                _libmount.mnt_table_next_fs(self._table, mnt_iter, ctypes.byref(fs))
+                == 0
+            ):
                 self.append(self.Filesystem._from_existing(fs.value))
         finally:
             _libmount.mnt_free_iter(mnt_iter)

@@ -18,18 +18,18 @@ fitting = False
 from PySpice.Plot.BodeDiagram import bode_diagram
 
 # Press the green button in the gutter to run the script.
-if __name__ == '__main__':
+if __name__ == "__main__":
     logger = Logging.setup_logging()
-    sf = r'c:\projects\sNp\4mloop.s1p'
-    cf = 'temp.cir'
+    sf = r"c:\projects\sNp\4mloop.s1p"
+    cf = "temp.cir"
     try:
         n = fetch_2_RI()
-        n.frequency.unit = 'Hz'
+        n.frequency.unit = "Hz"
         # n.write_touchstone(sf, form='ma')
     except OSError as e:
         print(e)
         n = Network(sf)
-        n.frequency.unit = 'Hz'
+        n.frequency.unit = "Hz"
     b3 = False
     try:
         b1 = os.path.exists(sf)
@@ -48,13 +48,13 @@ if __name__ == '__main__':
         vf = VectorFitting(n)
         vf.max_iterations = 30
         vf.max_tol = 1e-6
-        vf.vector_fit(2, 2, 'log')
+        vf.vector_fit(2, 2, "log")
         print("poles")
         print(vf.poles)
         print("zeroes")
         print(vf.zeros)
-        vf.plot_pz(0,0)
-        plt.savefig('pz.svg')
+        vf.plot_pz(0, 0)
+        plt.savefig("pz.svg")
         plt.clf()
         vf.write_spice_subcircuit_s(cf)
         # vf.plot_convergence()
@@ -66,7 +66,7 @@ if __name__ == '__main__':
         #         plt.savefig('temp_s' + str(i + 1) + str(j + 1) + '.svg')
         #         plt.clf()
         # import test_lark
-    mcf = 'main.cir'
+    mcf = "main.cir"
     parser = SpiceParser(mcf)
     circuit = parser.build_circuit()
     print(circuit)

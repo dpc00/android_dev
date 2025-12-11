@@ -11,7 +11,7 @@ from netup import netup
 
 
 async def fsync(sd, td, tcfc):
-    if (await netup()):
+    if await netup():
         # print('fsync', sd, td)
         cmd = 'rclone sync "' + str(sd) + '" "' + str(td) + '" --progress'
         # cmd += ' --exclude ".git/**" --exclude "__pycache__/**"'
@@ -26,10 +26,15 @@ async def fsync(sd, td, tcfc):
 
 
 async def fcopy(sd, td, tcfc):
-    if (await netup()):
+    if await netup():
         # print('fcopy', sd, td)
-        cmd = 'rclone copy "' + str(sd) + '" "' + str(
-            td) + '" --ignore-times --no-traverse --progress'
+        cmd = (
+            'rclone copy "'
+            + str(sd)
+            + '" "'
+            + str(td)
+            + '" --ignore-times --no-traverse --progress'
+        )
         # if not sd.is_file():
         #    cmd += ' --exclude ".git/**" --exclude "__pycache__/**"'
         print(cmd)
@@ -43,7 +48,7 @@ async def fcopy(sd, td, tcfc):
 
 
 async def fdel(td, tcfc):
-    if (await netup()):
+    if await netup():
         cmd = 'rclone delete "' + str(td) + '" --progress'
         print(cmd)
         rc = await ar.run2(cmd)
@@ -55,9 +60,10 @@ async def fdel(td, tcfc):
     return False
 
 
-class BVars():
+class BVars:
     def __init__(self, di, si, tcfc):
         from config import pdir, tdir
+
         self.si = si
         self.di = di
         self.sd = pdir(si)
@@ -72,6 +78,7 @@ class BVars():
 
     async def init2(self):
         from dirlist import ldlld, rdlld, dllcmp
+
         self.dls = await ldlld(self.si)
         if self.dls is None:
             return
@@ -85,6 +92,7 @@ class BVars():
         from config import trunc2ms
         from os import utime
         from dirlist import DE
+
         for rf in self.f2d.copy():
             for lf in self.f2c.copy():
                 # TODO: use Path
@@ -93,22 +101,22 @@ class BVars():
                         # TODO: correct for conflicting times
                         self.f2d.remove(rf)
                         self.f2c.remove(lf)
-                        print('time conflict', rf.nm)
-                        print(rf.mt, '--', lf.mt)
-                        b1 = abs(rf.mt - lf.mt) <= .00101
+                        print("time conflict", rf.nm)
+                        print(rf.mt, "--", lf.mt)
+                        b1 = abs(rf.mt - lf.mt) <= 0.00101
                         b2 = rf.mt < lf.mt
                         if b1:
-                            print('time diff is only', rf[2] - lf[2])
+                            print("time diff is only", rf[2] - lf[2])
                         if b1 or b2:
-                            print('retrograding local timestamp', lf.nm)
+                            print("retrograding local timestamp", lf.nm)
                             nt = int(rf.mt * 1000) * 1000000
-                            print('to', nt)
+                            print("to", nt)
                             utime(self.sd / lf.nm, ns=(nt, nt))
                             self.ac1 += 1
                     else:
                         b1 = rf.mt > lf.mt
                         if b1:
-                            print('newer file on cloud', rf.nm)
+                            print("newer file on cloud", rf.nm)
                             self.f2d.remove(rf)
                             self.f2c.remove(lf)
 
@@ -137,9 +145,10 @@ class CSCopy(OpBase):
         from edge import findEdge
         from statushash import rdhset, ldhset
         from dirlist import ldlls, rdlls, ldlls_dirty, rdlls_dirty
+
         global ldlls_dirty, rdlls_dirty
         tcfc = [0, 0]
-        print('CSCopy')
+        print("CSCopy")
         if not await netup():
             return (0, 1)
         di, si = self.npl1
@@ -152,19 +161,19 @@ class CSCopy(OpBase):
                 return (0, 1)
             bv.ac1 = 0
             bv.ac2 = 0
-            print(len(bv.f2d), 'todelete', len(bv.f2c), 'tocopy')
+            print(len(bv.f2d), "todelete", len(bv.f2c), "tocopy")
             bv.skip_matching()
             await bv.do_copying()
-            if 'delete' in self.opts and self.opts['delete']:
+            if "delete" in self.opts and self.opts["delete"]:
                 await bv.do_deletions()
             if bv.ac2:
                 del rdlls[di]
                 rdlls_dirty = True
-                pass # await rnoc(di)
+                pass  # await rnoc(di)
             if bv.ac1:
                 del ldlls[si]
                 ldlls_dirty = True
-                pass # await noc(si)
+                pass  # await noc(si)
             tcfc[0] += bv.tcfc[0]
             tcfc[1] += bv.tcfc[1]
             if bv.tcfc[1] != 0:

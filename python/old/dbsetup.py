@@ -31,18 +31,18 @@ srcs = Functor("srcs", arity=1)
 worktree = Functor("worktree", 1)
 dep = Functor("dep", 2)
 
-fh = open('bkenv.py', 'w')
-fh.write('from opclasses import *\n')
-fh.write('from scopy import Scopy')
-fh.write('from gitbackup import Gitbackup')
-fh.write('from csbackup import Csbackup')
+fh = open("bkenv.py", "w")
+fh.write("from opclasses import *\n")
+fh.write("from scopy import Scopy")
+fh.write("from gitbackup import Gitbackup")
+fh.write("from csbackup import Csbackup")
 
 fh.write("\n\nsvcs = ")
 qr = Query(svcs(X))
 while qr.nextSolution():
     x = X.value
     x = [str(y.value) for y in x]
-    fh.write(str(x) + '\n')
+    fh.write(str(x) + "\n")
 qr.closeQuery()
 
 fh.write("\nsnm = {}\n")
@@ -52,17 +52,17 @@ while qr.nextSolution():
     y = Y.value
     x = str(x)
     y = str(y.decode())
-    fh.write('snm[' + repr(x) + '] = ' + repr(y) + '\n')
+    fh.write("snm[" + repr(x) + "] = " + repr(y) + "\n")
 qr.closeQuery()
 
 
 def cksubst(s1, dl, td):
-    #return repr(s1)
-    for (sd, sdn) in dl:
+    # return repr(s1)
+    for sd, sdn in dl:
         for rs in sd:
             if sd[rs] in s1 and not (sd == td and len(sd[rs]) == len(s1)):
-                s2 = s1.replace(sd[rs], '')
-                s3 = sdn + '[' + repr(rs) + '] + ' + repr(s2)
+                s2 = s1.replace(sd[rs], "")
+                s3 = sdn + "[" + repr(rs) + "] + " + repr(s2)
                 print(s1, s2, s3)
                 return s3
     return repr(s1)
@@ -75,9 +75,9 @@ while qr.nextSolution():
     y = Y.value
     x = str(x)
     y = str(y.decode())
-    y = cksubst(y, [(e.pre, 'pre')], e.pre)
-    #y = repr(y)
-    fh.write('pre[' + repr(x) + '] = ' + y + '\n')
+    y = cksubst(y, [(e.pre, "pre")], e.pre)
+    # y = repr(y)
+    fh.write("pre[" + repr(x) + "] = " + y + "\n")
 qr.closeQuery()
 
 fh.write("\npdir = {}\n")
@@ -87,9 +87,9 @@ while qr.nextSolution():
     y = Y.value
     x = str(x)
     y = str(y.decode())
-    y = cksubst(y, [(e.pdir, 'pdir'), (e.pre, 'pre')], e.pdir)
-    #y = repr(y)
-    fh.write('pdir[' + repr(x) + '] = ' + y + '\n')
+    y = cksubst(y, [(e.pdir, "pdir"), (e.pre, "pre")], e.pdir)
+    # y = repr(y)
+    fh.write("pdir[" + repr(x) + "] = " + y + "\n")
 qr.closeQuery()
 
 fh.write("\ntdir = {}\n")
@@ -103,10 +103,9 @@ while qr.nextSolution():
     except:
         y = str(y)
         pass
-    y = cksubst(y, [(e.tdir, 'tdir'), (e.pdir, 'pdir'), (e.pre, 'pre')],
-                e.tdir)
-    #y = repr(y)
-    fh.write('tdir[' + repr(x) + '] = ' + y + '\n')
+    y = cksubst(y, [(e.tdir, "tdir"), (e.pdir, "pdir"), (e.pre, "pre")], e.tdir)
+    # y = repr(y)
+    fh.write("tdir[" + repr(x) + "] = " + y + "\n")
 qr.closeQuery()
 
 fh.write("\ncodes = ")
@@ -114,7 +113,7 @@ qr = Query(codes(X))
 while qr.nextSolution():
     x = X.value
     x = [str(y.value) for y in x]
-    fh.write(str(x) + '\n')
+    fh.write(str(x) + "\n")
 qr.closeQuery()
 
 fh.write("\nsrcs = ")
@@ -122,7 +121,7 @@ qr = Query(srcs(X))
 while qr.nextSolution():
     x = X.value
     x = [str(y.value) for y in x]
-    fh.write(str(x) + '\n')
+    fh.write(str(x) + "\n")
 qr.closeQuery()
 
 fh.write("\nworktree = ")
@@ -130,7 +129,7 @@ qr = Query(worktree(X))
 while qr.nextSolution():
     x = X.value
     x = x.decode()
-    fh.write(repr(x) + '\n')
+    fh.write(repr(x) + "\n")
 qr.closeQuery()
 
 fh.write("\nopdep = {}\n")
@@ -138,20 +137,20 @@ fh.write("\nopdep = {}\n")
 
 def dictwrite1(fh, var, dct):
     fh.write(var)
-    fh.write('[')
-    fh.write(repr(dct['di']))
-    fh.write(',')
-    fh.write(repr(dct['si']))
-    fh.write('] = ')
-    fh.write(dct['op'])
-    fh.write('(')
+    fh.write("[")
+    fh.write(repr(dct["di"]))
+    fh.write(",")
+    fh.write(repr(dct["si"]))
+    fh.write("] = ")
+    fh.write(dct["op"])
+    fh.write("(")
 
     nf = False
     for k, v in dct.items():
-        if k == 'op':
+        if k == "op":
             continue
         if nf:
-            fh.write(',')
+            fh.write(",")
         else:
             nf = True
         if isinstance(v, str):
@@ -160,8 +159,8 @@ def dictwrite1(fh, var, dct):
             fh.write('"')
         else:
             fh.write(repr(v))
-    fh.write(')')
-    fh.write('\n')
+    fh.write(")")
+    fh.write("\n")
 
 
 qr = Query(opdep(Opp, Di, Si, Dd, Sd, OptL))
@@ -214,7 +213,9 @@ while qr.nextSolution():
         st = parser.expr(str(f))
         c = st.compile()
         o = eval(
-            c, globals(), {
+            c,
+            globals(),
+            {
                 "files": f1,
                 "exec": f2,
                 "wt": f3,
@@ -227,17 +228,18 @@ while qr.nextSolution():
                 "zipfile": f8,
                 "sname": f9,
                 "true": "True",
-                "false": "False"
-            })
+                "false": "False",
+            },
+        )
         od.update(o)
-    row['opts'] = od
+    row["opts"] = od
     for k, v in od.items():
         if k == "files":
             for gls in v:
                 pass
         else:
             pass
-    dictwrite1(fh, 'opdep', row)
+    dictwrite1(fh, "opdep", row)
 qr.closeQuery()
 
 fh.write("\ndep = set()\n")
@@ -245,7 +247,7 @@ qr = Query(dep(X, Y))
 while qr.nextSolution():
     x = X.value
     y = Y.value
-    fh.write('dep.add((' + repr(str(x)) + ',' + repr(str(y)) + '))\n')
+    fh.write("dep.add((" + repr(str(x)) + "," + repr(str(y)) + "))\n")
 qr.closeQuery()
 
 fh.write("\nsrcts = {}\n")
@@ -254,7 +256,7 @@ while qr.nextSolution():
     x = X.value
     y = Y.value
     x = str(x)
-    fh.write('srcts[' + repr(x) + '] = ' + str(y) + '\n')
+    fh.write("srcts[" + repr(x) + "] = " + str(y) + "\n")
 qr.closeQuery()
 
 fh.write("\ndstts = {}\n")
@@ -265,7 +267,7 @@ while qr.nextSolution():
     z = Z.value
     x = str(x)
     y = str(y)
-    fh.write('dstts[' + repr(x) + ',' + repr(y) + '] = ' + str(z) + '\n')
+    fh.write("dstts[" + repr(x) + "," + repr(y) + "] = " + str(z) + "\n")
 qr.closeQuery()
 
 fh.close()

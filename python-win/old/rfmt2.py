@@ -13,7 +13,4 @@ for fn in glob("/sdcard/projects/prolog/*.pl"):
     with open(fn, "r") as fv:
         code = fv.read()
         with open(fn + ".html", "w") as fv2:
-            highlight(code,
-                      PrologLexer(),
-                      HtmlFormatter(full=True),
-                      outfile=fv2)
+            highlight(code, PrologLexer(), HtmlFormatter(full=True), outfile=fv2)

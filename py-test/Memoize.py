@@ -1,8 +1,9 @@
-'''
+"""
 Created on Oct 1, 2016
 
 @author: libraryuser
-'''
+"""
+
 
 def memoize(f):
     class memodict(dict):

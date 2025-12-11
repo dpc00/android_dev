@@ -8,10 +8,10 @@ import struct
 from fcntl import ioctl
 from termios import FIONREAD
 
-__all__ = ['flags', 'masks', 'parse_events', 'INotify', 'Event']
+__all__ = ["flags", "masks", "parse_events", "INotify", "Event"]
 
-_libc = ctypes.cdll.LoadLibrary('libinotifytools.so')
-#_libc.__errno_location.restype = ctypes.POINTER(ctypes.c_int)
+_libc = ctypes.cdll.LoadLibrary("libinotifytools.so")
+# _libc.__errno_location.restype = ctypes.POINTER(ctypes.c_int)
 
 
 def _libc_call(function, *args):
@@ -19,7 +19,7 @@ def _libc_call(function, *args):
     while True:
         rc = function(*args)
         if rc == -1:
-            #errno = _libc.__errno_location().contents.value
+            # errno = _libc.__errno_location().contents.value
             # if errno  == EINTR:
             # retry
             # continue
@@ -53,8 +53,7 @@ class INotify(object):
 
         Returns:
             int: watch descriptor"""
-        return _libc_call(_libc.inotify_add_watch, self.fd,
-                          path.encode('utf8'), mask)
+        return _libc_call(_libc.inotify_add_watch, self.fd, path.encode("utf8"), mask)
 
     def rm_watch(self, wd):
         """Wrapper around ``inotify_rm_watch()``. Raises OSError on failure.
@@ -98,18 +97,18 @@ class INotify(object):
         return events
 
     def read_iter(self, read_delay=None):
-        '''Read the inotify file descriptor and yield each event individually.
+        """Read the inotify file descriptor and yield each event individually.
 
         Args:
             read_delay (int): The time in milliseconds to wait after the first
                 event arrives before reading the buffer. This allows further
                 events to accumulate before reading, which allows the kernel
-                to consolidate like events and can enhance performance when 
-                there are many similar events. 
+                to consolidate like events and can enhance performance when
+                there are many similar events.
 
         Yields:
             event: an :attr:`~inotify_simple.Event` namedtuple
-        '''
+        """
         # Loop forever
         while True:
             # Wait forever for new events
@@ -118,6 +117,7 @@ class INotify(object):
             # can be grouped by the kernel
             if pending and read_delay is not None:
                 from datetime import time
+
                 time.sleep(read_delay / 1000.0)
             bytes_avail = ctypes.c_int()
             ioctl(self.fd, FIONREAD, bytes_avail)
@@ -146,9 +146,9 @@ class INotify(object):
 #: being human readable when printed, which is useful for debugging and
 #: logging. For best performance, note that element access by index is about
 #: four times faster than by name.
-Event = collections.namedtuple('Event', ['wd', 'mask', 'cookie', 'name'])
+Event = collections.namedtuple("Event", ["wd", "mask", "cookie", "name"])
 
-_EVENT_STRUCT_FORMAT = 'iIII'
+_EVENT_STRUCT_FORMAT = "iIII"
 _EVENT_STRUCT_SIZE = struct.calcsize(_EVENT_STRUCT_FORMAT)
 
 
@@ -168,10 +168,12 @@ def parse_events(data):
     buffer_size = len(data)
     while offset < buffer_size:
         wd, mask, cookie, namesize = struct.unpack(
-            _EVENT_STRUCT_FORMAT, data[offset:offset + _EVENT_STRUCT_SIZE])
+            _EVENT_STRUCT_FORMAT, data[offset : offset + _EVENT_STRUCT_SIZE]
+        )
         offset += _EVENT_STRUCT_SIZE
-        name = ctypes.create_string_buffer(data[offset:offset + namesize],
-                                           namesize).value.decode('utf8')
+        name = ctypes.create_string_buffer(
+            data[offset : offset + namesize], namesize
+        ).value.decode("utf8")
         offset += namesize
         events.append(Event(wd, mask, cookie, name))
     return events
@@ -181,6 +183,7 @@ class flags(enum.IntEnum):
     """Inotify flags as defined in ``inotify.h`` but with ``IN_`` prefix
     omitted. Includes a convenience method for extracting flags from a mask.
     """
+
     ACCESS = 0x00000001  #: File was accessed
     MODIFY = 0x00000002  #: File was modified
     ATTRIB = 0x00000004  #: Metadata changed
@@ -224,14 +227,25 @@ class flags(enum.IntEnum):
 class masks(enum.IntEnum):
     """Convenience masks as defined in ``inotify.h`` but with ``IN_`` prefix
     omitted."""
+
     #: helper event mask equal to ``flags.CLOSE_WRITE | flags.CLOSE_NOWRITE``
-    CLOSE = (flags.CLOSE_WRITE | flags.CLOSE_NOWRITE)
+    CLOSE = flags.CLOSE_WRITE | flags.CLOSE_NOWRITE
     #: helper event mask equal to ``flags.MOVED_FROM | flags.MOVED_TO``
-    MOVE = (flags.MOVED_FROM | flags.MOVED_TO)
+    MOVE = flags.MOVED_FROM | flags.MOVED_TO
 
     #: bitwise-OR of all the events that can be passed to
     #: :func:`~inotify_simple.INotify.add_watch`
-    ALL_EVENTS = (flags.ACCESS | flags.MODIFY | flags.ATTRIB
-                  | flags.CLOSE_WRITE | flags.CLOSE_NOWRITE | flags.OPEN
-                  | flags.MOVED_FROM | flags.MOVED_TO | flags.DELETE
-                  | flags.CREATE | flags.DELETE_SELF | flags.MOVE_SELF)
+    ALL_EVENTS = (
+        flags.ACCESS
+        | flags.MODIFY
+        | flags.ATTRIB
+        | flags.CLOSE_WRITE
+        | flags.CLOSE_NOWRITE
+        | flags.OPEN
+        | flags.MOVED_FROM
+        | flags.MOVED_TO
+        | flags.DELETE
+        | flags.CREATE
+        | flags.DELETE_SELF
+        | flags.MOVE_SELF
+    )

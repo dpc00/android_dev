@@ -70,7 +70,7 @@ class GitWT(SD, Local_Git_Mixin):
         super().__init__(*args, **kwargs)
 
     def sdhck(self):
-        print(type(self), 'sdhck')
+        print(type(self), "sdhck")
         Dh1 = self.sdh_f()
         cmd = "git status --porcelain --untracked-files=all"
         rv = gitcmd(cmd, self)
@@ -92,7 +92,7 @@ class GitIndex(SD, Local_Git_Mixin):
         super().__init__(*args, **kwargs)
 
     def sdhck(self):
-        print(type(self), 'sdhck')
+        print(type(self), "sdhck")
         Dh1 = self.sdh_f()
         cmd = "git status --porcelain --untracked-files=all"
         rv = gitcmd(cmd, self)
@@ -114,7 +114,7 @@ class GitRepo(SD, Local_Git_Mixin):
         super().__init__(*args, **kwargs)
 
     def sdhck(self):
-        print(type(self), 'sdhck')
+        print(type(self), "sdhck")
         return self.gitck2()
 
     def gitck2(self):
@@ -138,11 +138,11 @@ class GitRemote(SD, Remote_Git_Mixin):
         super().__init__(*args, **kwargs)
 
     def sdhck(self):
-        print(type(self), 'sdhck')
+        print(type(self), "sdhck")
         return self.gitremoteck()
 
     def tdhck(self):
-        print(type(self), 'tdhck')
+        print(type(self), "tdhck")
         return self.gitremoteck()
 
     def gitremoteck(self):

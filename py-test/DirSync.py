@@ -12,11 +12,13 @@ from fcstats import clr, fcstats, oprint
 
 sdrl = 0
 
+
 def nind(l1, n):
     rv = [i for i in range(len(l1)) if l1[i].name == n]
     if len(rv):
         return rv[0]
     return None
+
 
 interval_quit = False
 
@@ -26,33 +28,37 @@ def setInterval(f, t):
         if not interval_quit:
             f()
             setTimeout(f2, t)
+
     setTimeout(f2, t)
 
+
 def dualPrint(l1, l2):
-    for i in range(0, max(len(l1),len(l2))):
-        s = ''
+    for i in range(0, max(len(l1), len(l2))):
+        s = ""
         if i < len(l1):
-            s += '{:10}'.format(l1[i].name)
+            s += "{:10}".format(l1[i].name)
         else:
-            s += '{:10}'.format('')
+            s += "{:10}".format("")
         if i < len(l2):
-            s += ' {:10}'.format(l2[i].name)
+            s += " {:10}".format(l2[i].name)
         else:
-            s += ' {:10}'.format('')
+            s += " {:10}".format("")
         utils.log(s)
 
+
 def dualPrint2(l1, l2):
-    for i in range(0, max(len(l1),len(l2))):
-        s = ''
+    for i in range(0, max(len(l1), len(l2))):
+        s = ""
         if i < len(l1):
-            s += '{:10}'.format(l1[i].rtd.name)
+            s += "{:10}".format(l1[i].rtd.name)
         else:
-            s += '{:10}'.format('')
+            s += "{:10}".format("")
         if i < len(l2):
-            s += ' {:10}'.format(l2[i].rtd.name)
+            s += " {:10}".format(l2[i].rtd.name)
         else:
-            s += ' {:10}'.format('')
+            s += " {:10}".format("")
         utils.log(s)
+
 
 def setTimeout(f, t):
     t = threading.Timer(t / 1000.0, f)
@@ -61,11 +67,12 @@ def setTimeout(f, t):
 
 
 @functools.total_ordering
-class DirSync():
-    __slots__ = ['name', 'srt', 'drt', 'clearstats']
+class DirSync:
+    __slots__ = ["name", "srt", "drt", "clearstats"]
+
     def __init__(self, name, srt, drt, clearstats=True):
         if srt is None or drt is None:
-            raise ValueError('src or dst is None')
+            raise ValueError("src or dst is None")
         self.srt = srt
         self.drt = drt
         self.clearstats = clearstats
@@ -75,6 +82,7 @@ class DirSync():
         def run(cd):
             cd._flags |= NEEDS_SCAN
             cd._digest = None
+
         d.dfWalk(run)
 
     def __hash__(self):
@@ -93,19 +101,19 @@ class DirSync():
         return rv
 
     def __str__(self):
-        ps = 'DirSync'
-        ps += ' ' + self.name
-        ps += ' ' + str(self.srt)
-        ps += ' ' + str(self.drt)
+        ps = "DirSync"
+        ps += " " + self.name
+        ps += " " + str(self.srt)
+        ps += " " + str(self.drt)
         return ps
 
     def srcDir(self, p):
-        r1 = p.replace(self.drt.path, '')
+        r1 = p.replace(self.drt.path, "")
         r2 = os.path.join(self.srt.path, r1)
         return fromPath(r2)
 
     def dstDir(self, p):
-        r1 = p.replace(self.srt.path, '')
+        r1 = p.replace(self.srt.path, "")
         r2 = os.path.join(self.drt.path, r1)
         return fromPath(r2)
 
@@ -116,22 +124,22 @@ class DirSync():
             setInterval(oprint, 3000)
             if self.clearstats:
                 clr()
-        self.syncDir('', includesubdirs)
+        self.syncDir("", includesubdirs)
         oprint()
         if controlstats:
             interval_quit = True
 
     # def run2(self, includesubdirs=True, controlstats=True):
-        # global interval_quit, sdrl
-        # if controlstats:
-            # interval_quit = False
-            # setInterval(oprint, 3000)
-            # if self.clearstats:
-                # clr()
-        # self.syncFromDigests('', True)
-        # oprint()
-        # if controlstats:
-            # interval_quit = True
+    # global interval_quit, sdrl
+    # if controlstats:
+    # interval_quit = False
+    # setInterval(oprint, 3000)
+    # if self.clearstats:
+    # clr()
+    # self.syncFromDigests('', True)
+    # oprint()
+    # if controlstats:
+    # interval_quit = True
 
     def syncDir(self, rd, includesubdirs=False):
         cd1 = fromRelPath(self.srt, rd)
@@ -141,11 +149,11 @@ class DirSync():
             if not cd2.exists():
                 cd2.create()
             self.handleFiles(cd1, cd2)
-            fcstats['sdhf'] += 1
+            fcstats["sdhf"] += 1
             if includesubdirs:
                 self.handleDirs1(cd1, cd2, rd, includesubdirs)
-                fcstats['sdhd'] += 1
-            fcstats['syncdir'] += 1
+                fcstats["sdhd"] += 1
+            fcstats["syncdir"] += 1
             # dirEE.emit('dcopy', cd1.path, cd2.path)
 
     def handleFiles(self, cd1, cd2):
@@ -214,7 +222,7 @@ class DirSync():
             ca.append(si)
         for di in ocd:
             if di not in scd:
-                da.append(di) # deleting missing directories
+                da.append(di)  # deleting missing directories
         if len(ca):
             for si in ca:
                 d1d = si
@@ -235,15 +243,15 @@ class DirSync():
         src = f1.path
         dst = f2.path
         try:
-            utils.log(utils.chop('copying ' + src))
-            utils.log('')
+            utils.log(utils.chop("copying " + src))
+            utils.log("")
         except Exception as e:
             utils.errlog(e)
-        tt = '0'
+        tt = "0"
         try:
-            tt += '1'
+            tt += "1"
             try:
-                tt += '2'
+                tt += "2"
                 #                 with open(src, 'rb') as fsrc:
                 #                     tt += '3'
                 #                     with open(dst, 'wb') as fdst:
@@ -252,23 +260,31 @@ class DirSync():
                 #                 tt += '5'
                 #                 shutil.copystat(src, dst, follow_symlinks=False)
                 rc = copy_file(src, dst)
-                tt += '6'
+                tt += "6"
             except OSError as e:
                 dstd = f2.pd.path
-                if dstd.find(' ') != -1:
-                    dstd = '\"' + dstd + '\"'
+                if dstd.find(" ") != -1:
+                    dstd = '"' + dstd + '"'
                 srcd = f1.pd.path
-                if srcd.find(' ') != -1:
-                    srcd = '\"' + srcd + '\"'
-                rv = os.system('robocopy ' + srcd + ' ' + dstd + ' ' + f1.name + ' /r:1 /w:3 /dcopy:t')
-                tt += '7'
+                if srcd.find(" ") != -1:
+                    srcd = '"' + srcd + '"'
+                rv = os.system(
+                    "robocopy "
+                    + srcd
+                    + " "
+                    + dstd
+                    + " "
+                    + f1.name
+                    + " /r:1 /w:3 /dcopy:t"
+                )
+                tt += "7"
                 if rv != 0:
-                    tt += '8'
+                    tt += "8"
                     utils.log(tt)
-                    raise OSError('robocopy rc: ' + str(rv))
+                    raise OSError("robocopy rc: " + str(rv))
                 else:
                     utils.log(tt)
-            tt += '9'
+            tt += "9"
             ccnt = 0
             if f2.exists():
                 de = list(scan_dir(f2.path, True))[0]
@@ -286,43 +302,41 @@ class DirSync():
                     it2.size = de[2]
                     it2.attrib = de[3]
                     it2.res0 = de[4]
-                    fcstats['fcpy'] += 1
-                    fcstats['bcpy'] += it2.size
+                    fcstats["fcpy"] += 1
+                    fcstats["bcpy"] += it2.size
                     # dirEE.emit('fcopy', self.path, other.path)
                     if ccnt:
                         it2.clearDigest()
         except OSError as e:
-            tt += 'D'
+            tt += "D"
             utils.log(tt)
             utils.errlog(e)
-
 
     def fileDelete(self, f1):
         # from Dir import dirEE
         if f1.exists():
             try:
                 try:
-                    utils.log(utils.chop('deleting ' + f1.path))
+                    utils.log(utils.chop("deleting " + f1.path))
                 except Exception as e:
                     utils.errlog(e)
                 try:
                     os.unlink(f1.path)
                 except OSError as e:
-                    rv = os.system('del ' + self.path)
+                    rv = os.system("del " + self.path)
                     if rv != 0:
-                        raise OSError('del rc: ' + str(rv))
+                        raise OSError("del rc: " + str(rv))
                 if not f1.exists():
                     it2 = findFile(f1.pd, f1.name)
                     if it2 is not None:
                         f1.pd.contents.files.remove(it2)
                         it2.clearDigest()
-                    fcstats['fdel'] += 1
-                    fcstats['bdel'] += f1.size
+                    fcstats["fdel"] += 1
+                    fcstats["bdel"] += f1.size
                     # dirEE.emit('fdel', self.path)
             except OSError as e:
                 utils.errlog(e)
                 raise
-
 
     def dirDelete(self, d1):
         if d1.exists():
@@ -338,9 +352,6 @@ class DirSync():
                     if it1 is not None:
                         it1.pd.contents.dirs.remove(it1)
                         it1.clearDigest2()
-                    fcstats['ddel'] += 1
+                    fcstats["ddel"] += 1
             except OSError as e:
                 utils.errlog(e)
-
-
-

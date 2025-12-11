@@ -5,6 +5,7 @@ class OpBaseEncoder(json.JSONEncoder):
     def default(self, obj):
         from pathlib import WindowsPath
         from edge import Edge
+
         if isinstance(obj, WindowsPath):
             # print(1, obj.__class__)
             return str(obj)
@@ -12,9 +13,9 @@ class OpBaseEncoder(json.JSONEncoder):
             # print(2, obj.__class__)
             return {
                 str(obj.__class__): {
-                    'npl1': obj.npl1,
-                    'npl2': obj.npl2,
-                    'opts': obj.opts
+                    "npl1": obj.npl1,
+                    "npl2": obj.npl2,
+                    "opts": obj.opts,
                 }
             }
         elif isinstance(obj, Edge):
@@ -28,11 +29,11 @@ class OpBaseEncoder(json.JSONEncoder):
             return obj.hex()
         else:
             # print(5, obj.__class__)
-            raise Exception('bad type:', obj.__class__)
+            raise Exception("bad type:", obj.__class__)
 
 
 class OpBase:
     def __init__(self, *args):
-        kt = ('npl1', 'npl2', 'opts')
+        kt = ("npl1", "npl2", "opts")
         for k, v in zip(kt, args):
             setattr(self, k, v)

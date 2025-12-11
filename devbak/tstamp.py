@@ -4,7 +4,7 @@ import pickle
 from bkenv import *
 
 tsd = None
-tspf = pre['FLAGS'] / 'tsd.pp'
+tspf = pre["FLAGS"] / "tsd.pp"
 
 
 def tstime(pre, n, ft=None):
@@ -19,7 +19,7 @@ def tstime(pre, n, ft=None):
 
 
 def n2ts(n2, n1):
-    for (t, s) in dstts:
+    for t, s in dstts:
         if n2 == dstts[t, s]:
             if n1 == srcts[s]:
                 return (t, s)
@@ -27,12 +27,12 @@ def n2ts(n2, n1):
 
 def clr(n2, n1):
     global tsd
-    t1 = tstime('rtbk', n1)
-    t2 = tstime('ct', n2)
+    t1 = tstime("rtbk", n1)
+    t2 = tstime("ct", n2)
     if t1 != t2:
         t, s = n2ts(n2, n1)
-        print('-clr', n2, n1, t, s)
-        tstime('ct', n2, t1)
+        print("-clr", n2, n1, t, s)
+        tstime("ct", n2, t1)
         savets()
     return True
 
@@ -43,7 +43,7 @@ def loadts():
         tsd = {}
         with open(tspf, "rb") as fh:
             tsd1 = pickle.load(fh)
-            for (pre, n) in tsd1:
+            for pre, n in tsd1:
                 tstime(pre, n, tsd1[pre, n])
     except:
         tsd = {}
@@ -55,8 +55,8 @@ def savets():
 
 
 def bctck(N2, N1):
-    Ft1 = tstime('rtbk', N1)
-    Ft2 = tstime('ct', N2)
+    Ft1 = tstime("rtbk", N1)
+    Ft2 = tstime("ct", N2)
     return Ft1 > Ft2
 
 
@@ -69,19 +69,19 @@ def ts2(T, S):
 
 def rtset(N=None, Mt=None):
     if N is None:
-        for (k, N1) in srcts.items():
+        for k, N1 in srcts.items():
             rtset(N1)
         return
     else:
         if Mt is None:
-            tstime('rtbk', N, time.time())
+            tstime("rtbk", N, time.time())
             savets()
         else:
-            tstime('rtbk', N, Mt)
+            tstime("rtbk", N, Mt)
             savets()
 
 
 loadts()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(repr(tsd))

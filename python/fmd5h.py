@@ -3,7 +3,7 @@ from hashlib import md5
 from pathlib import Path
 from config import *
 
-fmd5hf = pre('FLAGS') / 'fmd5h.pp'
+fmd5hf = pre("FLAGS") / "fmd5h.pp"
 fmd5hd = {}
 
 hf_dirty = False
@@ -11,9 +11,9 @@ hf_dirty = False
 
 def md5sumf(Fn):
     if Fn.exists():
-        #print('-md5sumf', Fn)
+        # print('-md5sumf', Fn)
         ho = md5()
-        with open(Fn, 'rb') as fh:
+        with open(Fn, "rb") as fh:
             b = fh.read(1 << 12)
             while len(b) > 0:
                 ho.update(b)
@@ -31,11 +31,11 @@ hf_sth = 0
 
 
 def pstats():
-    print('fp miss', hf_dm)
-    print('fp hit', hf_dh)
-    print('szmt miss', hf_stm)
-    print('szmt hit', hf_sth)
-    print('sfb', sfb)
+    print("fp miss", hf_dm)
+    print("fp hit", hf_dh)
+    print("szmt miss", hf_stm)
+    print("szmt hit", hf_sth)
+    print("sfb", sfb)
 
 
 def finddict(d1, fp):
@@ -55,7 +55,7 @@ def fmd5f(fp, sz, mt):
         hf_dh += 1
     except KeyError:
         hf_dm += 1
-        (osz, omt, oh) = (-1, -1, b'')
+        (osz, omt, oh) = (-1, -1, b"")
     if osz == sz and omt == mt:
         hf_sth += 1
         return oh
@@ -90,8 +90,9 @@ def savefmd5h():
         hf_dirty = False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from dirlist import ldlld, savedll
+
     for si in srcs:
         dll = asyncio.run(ldlld(si))
 else:

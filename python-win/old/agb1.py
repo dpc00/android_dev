@@ -10,7 +10,7 @@ def statuses():
     def f1(si):
         rc = dhck(si)
         if rc == 0:
-            with open(pre['bklog'], "a") as fh:
+            with open(pre["bklog"], "a") as fh:
                 fh.write(si + " changed\n")
             return True
         return False
@@ -19,7 +19,7 @@ def statuses():
 
 
 def stsupdate(sr):
-    print(sr, end=' ')
+    print(sr, end=" ")
     n1 = srcts[sr]
     dhset(sr)
     rtset(n1)
@@ -32,9 +32,9 @@ def mdp(l2):
 
 def updatets(n):
     sl = statuses()
-    print("Status", str(n), sl, end=' ')
+    print("Status", str(n), sl, end=" ")
     if len(sl):
-        print("changed:", end=' ')
+        print("changed:", end=" ")
         mdp(sl)
     print()
 
@@ -50,7 +50,7 @@ def dirty1():
 
 
 def dirty2():
-    for (t, s, op) in dirty1():
+    for t, s, op in dirty1():
         yield op
 
 
@@ -68,7 +68,7 @@ jj = 0
 def doops(opl):
     global jj
     for op in opl:
-        print('call', op)
+        print("call", op)
         getattr(modules[__name__], op)()
 
 
@@ -81,7 +81,7 @@ def main():
         doops(l1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     res = main()
     print("agb1.py rc: " + str(res))
     exit(res)

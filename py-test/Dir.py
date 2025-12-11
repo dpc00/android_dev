@@ -1,8 +1,8 @@
-'''
+"""
 Created on Jul 24, 2016
 
 @author: Phil Chitester
-'''
+"""
 
 import datetime
 import functools
@@ -51,25 +51,25 @@ def eE2(run, *args):
 
 def findDir(pd, name):
     if pd is None:
-        raise ValueError('no pd in findDir')
+        raise ValueError("no pd in findDir")
     if isinstance(pd, Dir):
         dirs = pd.contents.dirs
         for dk in dirs:
             if dk.name.upper() == name.upper():
                 return dk
     elif isinstance(pd, Drive):
-        if name == '':
+        if name == "":
             return pd.rt
 
 
 def findPath(p):
-    l = re.split(r'[\\]+', p)
+    l = re.split(r"[\\]+", p)
     pl = []
-    if len(l[0]) == 2 and l[0][1] == ':':
+    if len(l[0]) == 2 and l[0][1] == ":":
         rv1 = driveFromDL(l[0][0])
         if rv1:
             pl.append(rv1)
-            rv2 = findDir(rv1, '')
+            rv2 = findDir(rv1, "")
             if not rv2:
                 return None
             if rv2:
@@ -82,6 +82,7 @@ def findPath(p):
                 if not rv3:
                     if i == len(l) - 1:
                         from File import findFile
+
                         rv3 = findFile(pl[len(pl) - 1], l[i])
                 if rv3:
                     pl.append(rv3)
@@ -89,16 +90,17 @@ def findPath(p):
                     return None
     return pl[len(pl) - 1]
 
+
 def fromPath(p):
-    l = re.split(r'[\\]+', p)
+    l = re.split(r"[\\]+", p)
     pl = []
-    if len(l[0]) == 2 and l[0][1] == ':':
+    if len(l[0]) == 2 and l[0][1] == ":":
         rv1 = driveFromDL(l[0][0])
         if rv1:
             pl.append(rv1)
-            rv2 = findDir(rv1, '')
+            rv2 = findDir(rv1, "")
             if not rv2:
-                rv2 = Dir(rv1, '')
+                rv2 = Dir(rv1, "")
             if rv2:
                 pl.append(rv2)
         l = l[1:]
@@ -120,7 +122,7 @@ def fromPath(p):
 
 
 def fromRelPath(pd, p):
-    l = re.split(r'[\\]+', p)
+    l = re.split(r"[\\]+", p)
     pl = []
     pl.append(pd)
     for i in range(len(l)):
@@ -167,6 +169,7 @@ def fromRelPath(pd, p):
 
 dlist = []
 
+
 def getLists(cd):
     # utils.log('appending ' + cd.path)
     # try:
@@ -185,6 +188,7 @@ def getLists(cd):
     #     cd._dirs = None
     #     cd._flags |= NEEDS_SCAN
 
+
 def scan(cd):
     if cd._dirs is None or cd._files is None:
         isupdate = False
@@ -192,17 +196,17 @@ def scan(cd):
         isupdate = True
     getLists(cd)
     if VERBOSE:
-        tf = 'scanning ' + cd.name
-        utils.writedata('\r' + utils.chop(tf))
+        tf = "scanning " + cd.name
+        utils.writedata("\r" + utils.chop(tf))
     try:
         sdi = scan_dir(cd.path, False)
         if isupdate:
             sl = set()
-        for de in sdi: # WindowsScanDir
-            if de[6]: # isFile
+        for de in sdi:  # WindowsScanDir
+            if de[6]:  # isFile
                 it1 = None
                 if isupdate and de[0] in [it.name for it in cd._files]:
-                    it1 = [it for it in cd._files if it.name==de[0]][0]
+                    it1 = [it for it in cd._files if it.name == de[0]][0]
                     if it1.mtime != de[1] or it1.size != de[2]:  # modified
                         it1.mtime = de[1]
                         it1.size = de[2]
@@ -213,12 +217,12 @@ def scan(cd):
                     it1 = File(cd, de[0], de[1], de[2], de[3], de[4])
                     cd._files.append(it1)  # new
                     cd.clearDigest1()
-                fcstats['w_file_scan'] += 1
+                fcstats["w_file_scan"] += 1
             elif de[5]:
                 it1 = None
-                if de[0] not in ('.', '..', '.sync'):
+                if de[0] not in (".", "..", ".sync"):
                     if isupdate and de[0] in [it.name for it in cd._dirs]:
-                        it1 = [it for it in cd._dirs if it.name==de[0]][0]
+                        it1 = [it for it in cd._dirs if it.name == de[0]][0]
                         if it1.mtime != de[1] or it1.size != de[2]:  # modified
                             it1.mtime = de[1]
                             it1.size = de[2]
@@ -229,7 +233,7 @@ def scan(cd):
                         it1 = Dir(cd, de[0], de[1], de[2], de[3], de[4])
                         cd._dirs.append(it1)
                         cd.clearDigest2()
-                fcstats['w_dir_scan'] += 1
+                fcstats["w_dir_scan"] += 1
             if isupdate:
                 sl.add(it1)
         if isupdate:
@@ -245,21 +249,22 @@ def scan(cd):
                     cd.clearDigest2()
     except OSError:
         pass
-    fcstats['scan_dir'] += 1
+    fcstats["scan_dir"] += 1
     if isupdate:
-        fcstats['update_dir'] += 1
+        fcstats["update_dir"] += 1
+
 
 def dirPrint(d):
-    fs1 = ' {:22.21} '
-    fs2 = ' {:10d} '
-    fs3 = ' {:%Y-%m-%d %H:%M} '
+    fs1 = " {:22.21} "
+    fs2 = " {:10d} "
+    fs3 = " {:%Y-%m-%d %H:%M} "
 
     def dline(d):
         ps = fs1.format(d.name)
         ps += fs3.format(datetime.datetime.fromtimestamp(d.de.mtime))
         utils.log(ps)
 
-    utils.log('-----------------')
+    utils.log("-----------------")
 
     def fline(file):
         ps = fs1.format(file.name)
@@ -273,21 +278,35 @@ def dirPrint(d):
         fline(fe)
 
 
-class DC():
+class DC:
     def __init__(self, files, dirs):
         self.files = files
         self.dirs = dirs
 
     def __str__(self):
-        s = '('
-        s += 'files: {}'.format(repr(self.files))
-        s += 'dirs: {}'.format(repr(self.dirs))
-        s += ')'
+        s = "("
+        s += "files: {}".format(repr(self.files))
+        s += "dirs: {}".format(repr(self.dirs))
+        s += ")"
         return s
 
+
 @functools.total_ordering
-class Dir():
-    __slots__ = ['_dbhash', '_digest', '_dirs', '_files', '_flags', '_path', 'attrib', 'mtime', 'name', 'pd', 'res0', 'size']
+class Dir:
+    __slots__ = [
+        "_dbhash",
+        "_digest",
+        "_dirs",
+        "_files",
+        "_flags",
+        "_path",
+        "attrib",
+        "mtime",
+        "name",
+        "pd",
+        "res0",
+        "size",
+    ]
 
     def __init__(self, pd, name, mtime=None, size=None, attrib=None, res0=None):
         self._dbhash = None
@@ -313,13 +332,13 @@ class Dir():
         return hash(self.name)
 
     def __str__(self):
-        ps = ''
+        ps = ""
         try:
-            if self.name == '':
-                ps += ' ' + '\\'
+            if self.name == "":
+                ps += " " + "\\"
             else:
-                ps += ' ' + self.name
-            ps += ', in ' + self.pd.path
+                ps += " " + self.name
+            ps += ", in " + self.pd.path
         except AttributeError as e:
             utils.errlog(e)
         return ps
@@ -335,7 +354,7 @@ class Dir():
         cd = self
         while not isinstance(cd, Drive):
             cd = cd.pd
-        fcstats['getdrv'] += 1
+        fcstats["getdrv"] += 1
         return cd
 
     def getRoot(self):
@@ -344,44 +363,44 @@ class Dir():
         while not isinstance(cd, Drive):
             ocd = cd
             cd = ocd.pd
-        fcstats['getrt'] += 1
+        fcstats["getrt"] += 1
         return ocd
 
     @property
     def path(self):  # Dir
         if self._path is None:
             if not self.pd:
-                if self.name == '':
+                if self.name == "":
                     self._path = os.path.sep
                 else:
                     self._path = self.name
             else:
                 if isinstance(self.pd, Drive):
-                    if self.name == '':
+                    if self.name == "":
                         self._path = self.pd.path + os.path.sep
                     else:
                         self._path = self.pd.path + self.name
                 else:
                     if isinstance(self.pd, Dir):
-                        if self.pd.name == '':
+                        if self.pd.name == "":
                             self._path = self.pd.path + self.name
                         else:
                             self._path = self.pd.path + os.path.sep + self.name
                     else:
-                        e = TypeError('path')
+                        e = TypeError("path")
                         raise e
-            fcstats['path'] += 1
+            fcstats["path"] += 1
         return self._path
 
     def make(self):
         dp = self.path
-        mode = int('0777')
+        mode = int("0777")
         os.makedirs(dp, mode, True)
         self.clearDigest1()
-        fcstats['dirmake'] += 1
+        fcstats["dirmake"] += 1
 
     def relPath(self, rpd):
-        fcstats['relpth'] += 1
+        fcstats["relpth"] += 1
         return os.path.relpath(self.path, rpd.path)
 
     def dfWalk(self, f, *args):
@@ -393,6 +412,7 @@ class Dir():
     def dbHash(self):
         if self._dbhash is None:
             from Digest import dbHash
+
             self._dbhash = dbHash(self)
         return self._dbhash
 
@@ -417,6 +437,7 @@ class Dir():
     def digest(self):
         if self._digest is None:
             from Digest import Digest
+
             self._digest = Digest(self)
         return self._digest
 
@@ -432,7 +453,8 @@ class Dir():
                 else:
                     break
             cd = cd.pd
-        fcstats['clrd1'] += 1
+        fcstats["clrd1"] += 1
+
     def clearDigest2(self):
         if self._digest is not None:
             if self._digest._dh is not None:
@@ -445,7 +467,7 @@ class Dir():
                 else:
                     break
             cd = cd.pd
-        fcstats['clrd2'] += 1
+        fcstats["clrd2"] += 1
 
     def update(self):
         ccnt = 0

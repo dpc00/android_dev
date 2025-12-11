@@ -10,16 +10,25 @@ from funcs import *
 # csname projsubdir
 def csb(spn, pjd):
     print(pjd + " -> " + spn)
-    res = srun('rclone copy ' + pre['proj'] + '/' + pjd + ' ' + spn +
-               ':/projects/' + pjd + ' ' +
-               '--exclude ".git/**" --delete-excluded --progress')
+    res = srun(
+        "rclone copy "
+        + pre["proj"]
+        + "/"
+        + pjd
+        + " "
+        + spn
+        + ":/projects/"
+        + pjd
+        + " "
+        + '--exclude ".git/**" --delete-excluded --progress'
+    )
     return res
 
 
 def oneps(dst, src, spn, pjd):
     if not bctck(dst, src) == 0:
         return 0
-    print('oneps ' + str(dst) + " " + str(src) + " " + spn + " " + pjd)
+    print("oneps " + str(dst) + " " + str(src) + " " + spn + " " + pjd)
     res = csb(spn, pjd)
     if res == 0:
         clr(dst, src)
@@ -27,12 +36,12 @@ def oneps(dst, src, spn, pjd):
 
 
 def getpdir(si):
-    return pdir[si].replace(pre['proj'] + '/', '')
+    return pdir[si].replace(pre["proj"] + "/", "")
 
 
 def r_csbackups():
     rc = 0
-    res = srun('netup.py')
+    res = srun("netup.py")
     if res == 0:
         for t in svc():
             sn = snms[t]
@@ -42,7 +51,7 @@ def r_csbackups():
                 res = oneps(n2, n1, sn, dstr)
                 if res != 0:
                     rc += 1
-            s = 'git'
+            s = "git"
             dstr = getpdir(s)
             (n2, n1) = ts2(t, s)
             res = oneps(n2, n1, sn, dstr)
@@ -57,11 +66,11 @@ def dcsb():
             (n2, n1) = ts2(t, s)
             if bctck(n2, n1) == 0:
                 return 0
-        (n2, n1) = ts2(t, 'git')
+        (n2, n1) = ts2(t, "git")
         if bctck(n2, n1) == 0:
             return 0
     return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(r_csbackups())

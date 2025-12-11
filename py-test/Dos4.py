@@ -1,21 +1,25 @@
-'''
+"""
 Created on Jul 1, 2016
 
 @author: Phil
-'''
+"""
+
 import subprocess
 import utils
 import re
+
 
 class Dos4:
     def exec2(self):
         self.rejected = False
         if self.echo:
-            cmdstr = self.cmd + ' ' + ' '.join(self.args)
-            utils.log(cmdstr + '\n')
+            cmdstr = self.cmd + " " + " ".join(self.args)
+            utils.log(cmdstr + "\n")
         tcmd = [self.cmd] + self.args
         try:
-            proc = subprocess.run(tcmd, shell=self.shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            proc = subprocess.run(
+                tcmd, shell=self.shell, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            )
             self.proc = proc
             if self.collect or self.oprint:
                 if self.collect:
@@ -35,10 +39,10 @@ class Dos4:
 
     def __init__(self, po):
         self.args = []
-        self.cmd = ''
+        self.cmd = ""
         self.collect = False
         self.echo = False
-        self.outs = ''
+        self.outs = ""
         self.oprint = True
         self.proc = None
         self.shell = False

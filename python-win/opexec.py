@@ -16,7 +16,7 @@ def incp():
 async def clean():
     res = len(changed_ops()) == 0
     if res:
-        print('clean')
+        print("clean")
     return res
 
 
@@ -37,7 +37,7 @@ def istgt(T, dep=dep):
 
 
 def nts():
-    print('-nts')
+    print("-nts")
     p1 = topological_sort(dep)
     ts = [t for elem in p1 for t in elem]
     ts = [d for d in ts if istgt(d)]
@@ -49,7 +49,7 @@ async def proc_nodes(L):
     # print('-gproc')
     n = 1
     for node in L:
-        print('node', node)
+        print("node", node)
         srcs = changed_ops(node)
         for op in srcs:
             tc, fc = await op()
@@ -61,7 +61,7 @@ async def proc_nodes(L):
 
 
 async def opexec():
-    print('-opexec')
+    print("-opexec")
     ic = 0
     G1 = nts()
 
@@ -75,9 +75,9 @@ async def opexec():
         return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     async def f1():
         print(await opexec())
-
 
     asyncio.run(f1())

@@ -21,7 +21,7 @@ def findDE(dl, rp: Path):
 
 def getOneJSde(rd: Path, fn):
     cmd = 'rclone lsjson "' + str(rd / fn) + '"'
-    #cmd += " --stat"
+    # cmd += " --stat"
     print(cmd)
     rc, txt = ar.run1(cmd)
 
@@ -42,6 +42,7 @@ def getRemoteJSde(rd: Path, fn: str):
 
 def getRemoteDEs(rd: Path, fl: list[str]):
     import concurrent.futures as cf
+
     tpe = cf.ThreadPoolExecutor(max_workers=4)
     jsl = []
 
@@ -51,7 +52,7 @@ def getRemoteDEs(rd: Path, fl: list[str]):
     for fn in fl:
         tpe.submit(f1, fn)
     tpe.shutdown()
-    
+
     pt = Path
     delst = []
     for it in jsl:
@@ -63,7 +64,7 @@ def getRemoteDEs(rd: Path, fl: list[str]):
         fse = FSe(it2, it3)
         nde = DE(it1, fse)
         delst.append(nde)
-    print(len(delst), 'des')
+    print(len(delst), "des")
     return delst
 
 
@@ -73,7 +74,7 @@ def findSis(fp1: Path):
         if isinstance(p, FS_Mixin):
             with contextlib.suppress(ValueError):
                 l1[si] = fp1.relative_to(p)
-    print('l1:', l1)
+    print("l1:", l1)
     return l1
 
 
@@ -83,7 +84,7 @@ def findDis(fp1: Path):
         if isinstance(p, FS_Mixin):
             with contextlib.suppress(ValueError):
                 l1[di] = fp1.relative_to(p)
-    print('l1:', l1)
+    print("l1:", l1)
     return l1
 
 
@@ -121,11 +122,11 @@ def updateDEs(rd: Path, flst: list[str]):
         else:
             sde = None
         p = config.src(si)
-        print('sde', sde, 'tde', tde)
+        print("sde", sde, "tde", tde)
         if sde:
             if tde:
                 if tde.i.sz != sde.i.sz:
-                    print(tde.nm, 'mod', 'sz')
+                    print(tde.nm, "mod", "sz")
                     tde.i.sz = sde.i.sz
                     if p.isremote:
                         ls.sev.put("rdlls")
@@ -135,7 +136,7 @@ def updateDEs(rd: Path, flst: list[str]):
                         config.Dllc[si].set()
                     config.upd_cs += 1
                 if tde.i.mt != sde.i.mt:
-                    print(tde.nm, 'mod', 'mt')
+                    print(tde.nm, "mod", "mt")
                     tde.i.mt = sde.i.mt
                     if p.isremote:
                         ls.sev.put("rdlls")
@@ -147,7 +148,7 @@ def updateDEs(rd: Path, flst: list[str]):
             else:
                 fse = FSe(sde.i.sz, sde.i.mt)
                 tde = DE(rp, fse)
-                print(tde.nm, 'ins')
+                print(tde.nm, "ins")
                 dl.insert(i, tde)
                 if p.isremote:
                     ls.sev.put("rdlls")
@@ -168,11 +169,11 @@ def updateDEs(rd: Path, flst: list[str]):
         else:
             sde = None
         p = config.tgt(di)
-        print('sde', sde, 'tde', tde)
+        print("sde", sde, "tde", tde)
         if sde:
             if tde:
                 if tde.i.sz != sde.i.sz:
-                    print(tde.nm, 'mod', 'sz')
+                    print(tde.nm, "mod", "sz")
                     tde.i.sz = sde.i.sz
                     if p.isremote:
                         ls.sev.put("rdlls")
@@ -182,7 +183,7 @@ def updateDEs(rd: Path, flst: list[str]):
                         config.Dllc[di].set()
                     config.upd_cs += 1
                 if tde.i.mt != sde.i.mt:
-                    print(tde.nm, 'mod', 'mt')
+                    print(tde.nm, "mod", "mt")
                     tde.i.mt = sde.i.mt
                     if p.isremote:
                         ls.sev.put("rdlls")
@@ -194,7 +195,7 @@ def updateDEs(rd: Path, flst: list[str]):
             else:
                 fse = FSe(sde.i.sz, sde.i.mt)
                 tde = DE(rp, fse)
-                print(tde.nm, 'ins')
+                print(tde.nm, "ins")
                 dl.insert(i, tde)
                 if p.isremote:
                     ls.sev.put("rdlls")
@@ -212,11 +213,11 @@ def updateDEs(rd: Path, flst: list[str]):
     with ls.dl:
         for fi in flst:
             fp = rd / fi
-            print('fp', fp)
+            print("fp", fp)
             sdes = findSDEs(fp)
-            #print('sdes', sdes)
+            # print('sdes', sdes)
             tdes = findTDEs(fp)
-            #print('tdes', tdes)
+            # print('tdes', tdes)
 
             for it in sdes:
                 doSOne(*it)

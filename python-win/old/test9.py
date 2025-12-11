@@ -3,7 +3,7 @@ from os import walk
 
 from config import path, srcs, tagid
 
-si = tagid('js-tools')
+si = tagid("js-tools")
 
 p = path(srcs, si)
 
@@ -24,7 +24,7 @@ def getfl(p):
         return None
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for si in srcs:
         p = path(srcs, si)
         fl = getfl(p)

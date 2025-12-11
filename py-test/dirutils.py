@@ -1,8 +1,8 @@
-'''
+"""
 Created on Jul 8, 2016
 
 @author: Phil
-'''
+"""
 
 import filecmp
 import os
@@ -15,10 +15,11 @@ import utils
 from Dos4 import Dos4
 
 
-dmEE1 = EventEmitter('dmEE1')
+dmEE1 = EventEmitter("dmEE1")
 
 edcnt = 0
 odcnt = 0
+
 
 def dirMatchCase(p):
     pd = os.path.dirname(p)
@@ -27,9 +28,11 @@ def dirMatchCase(p):
         (err, dl) = diskutils.readDir(pd)
         if err:
             return p
+
         def run(f2):
             b1 = f2.lower() == v1
             return b1
+
         fdd = [f3 for f3 in dl if run(f3)]
         return os.path.join(pd, fdd[0])
     else:
@@ -39,16 +42,19 @@ def dirMatchCase(p):
 def dirTreeWalk(pth1, fn, norecurse, exc_dirs):
     pth2 = dirMatchCase(pth1)
     if pth1 != pth2:
-        utils.log('case conflict:' + pth1 + ' changed to ' + pth2)
+        utils.log("case conflict:" + pth1 + " changed to " + pth2)
     dexc = False
     if exc_dirs is not None:
         if len(exc_dirs) > 0:
+
             def excl(pth3):
                 def run(ex):
                     b1 = len(pth3) >= len(ex)
-                    b2 = pth3[0:len(ex)].lower() == ex.lower()
+                    b2 = pth3[0 : len(ex)].lower() == ex.lower()
                     return b1 and b2
+
                 return len([ex for ex in exc_dirs if run(ex)]) > 0
+
             if excl(pth2):
                 dexc = True
     if not dexc:
@@ -62,18 +68,21 @@ def dirTreeWalk(pth1, fn, norecurse, exc_dirs):
 
 def showprogress():
     global edcnt, odcnt
-    utils.writedata(str(odcnt) + ' contents scanned, ' + str(edcnt) + ' contents containing executables')
-    utils.writedata('\r')
+    utils.writedata(
+        str(odcnt)
+        + " contents scanned, "
+        + str(edcnt)
+        + " contents containing executables"
+    )
+    utils.writedata("\r")
 
 
 def dirsContainingType(sp, exs, norecurse, exc_dirs):
     bfp = []
+
     def adde(dp1, fl1):
-        bfp.append({
-            'path': dp1,
-            'include': False,
-            'files': fl1
-        })
+        bfp.append({"path": dp1, "include": False, "files": fl1})
+
     def dwf(dp2):
         global odcnt, edcnt
         odcnt += 1
@@ -83,17 +92,20 @@ def dirsContainingType(sp, exs, norecurse, exc_dirs):
                 adde(dp2, fl)
                 edcnt += 1
                 showprogress()
+
     dirTreeWalk(sp, dwf, norecurse, exc_dirs)
     return bfp
 
-'''
+
+"""
 dct = dirsContainingType(
     '\\Projects',
     {'.bat', '.com', '.sublime-workspace'},
     True,
     [])
 print(dct)
-'''
+"""
+
 
 def delDir(d2):
     (err1, d2dl) = diskutils.dirsList(d2)
@@ -119,20 +131,22 @@ def delDir(d2):
                     # print(str(err4))
                     return (err4, None)
                 else:
-                    dmEE1.emit('fdel', fp)
+                    dmEE1.emit("fdel", fp)
             (err5, _) = diskutils.rmDir(d2)
             if err5:
                 # print(str(err5))
                 return (err5, None)
             else:
-                dmEE1.emit('ddel', d2)
+                dmEE1.emit("ddel", d2)
                 return (None, d2)
+
 
 def llookup(l, f):
     if f in l:
         return f
     else:
         return None
+
 
 def llookup2(l, d):
     if d in l:
@@ -161,6 +175,7 @@ def delDirs(d1, d2):
                     return (err3, None)
             return (None, len(toDelete))
 
+
 def delFiles(d1, d2, exs):
     (err1, d1fl) = diskutils.filesList(d1, exs)
     if err1:
@@ -180,7 +195,7 @@ def delFiles(d1, d2, exs):
                     # print(str(err3))
                     return (err3, None)
                 else:
-                    dmEE1.emit('fdel', fp)
+                    dmEE1.emit("fdel", fp)
             return (None, len(toDelete))
 
 
@@ -196,32 +211,39 @@ def fCompare(s, t):
         utils.errlog(e)
         return False
 
+
 def cc1(sd, td, s, t, sfl, tfl):
     if t is None:
         return False
     return True
 
+
 def cc2(sd, td, s, t, sfl, tfl):
-    if tfl[t]['mtime'] < sfl[s]['mtime']:
+    if tfl[t]["mtime"] < sfl[s]["mtime"]:
         return False
     return True
+
 
 def cc4(sd, td, s, t, sfl, tfl):
-    if tfl[t]['mtime'] != sfl[s]['mtime']:
+    if tfl[t]["mtime"] != sfl[s]["mtime"]:
         return False
     return True
 
+
 def cc8(sd, td, s, t, sfl, tfl):
-    if tfl[t]['size'] != sfl[s]['size']:
+    if tfl[t]["size"] != sfl[s]["size"]:
         return False
     return True
+
 
 def cc16(sd, td, s, t, sfl, tfl):
     return fCompare(os.path.join(sd, s), os.path.join(td, t))
 
+
 copycrit = [cc1, cc2, cc4, cc8, cc16]
 
 ccrit = 1 | 2
+
 
 def copyFiles(d1, d2, exs, ccrit):
     (err1, d1fl) = diskutils.filesList(d1, exs)
@@ -251,17 +273,18 @@ def copyFiles(d1, d2, exs, ccrit):
                 (err3, fs) = fcopy.copyFile(sfp, dfp)
                 if err3:
                     # print(str(err3))
-                    utils.flog('fcopy', err3)
+                    utils.flog("fcopy", err3)
                     err4 = err3
                 else:
-                    fcstats.fcstats['fcpy'] += 1
-                    fcstats.fcstats['bcpy'] += fs
-                    dmEE1.emit('fcopy', sfp, dfp)
+                    fcstats.fcstats["fcpy"] += 1
+                    fcstats.fcstats["bcpy"] += fs
+                    dmEE1.emit("fcopy", sfp, dfp)
                     fc += 1
             if err4:
                 return (err4, fc)
             else:
                 return (None, fc)
+
 
 def mirrorDirs(d1, d2, exc_dirs):
     if not exc_dirs is None and d1 in exc_dirs:
@@ -288,6 +311,7 @@ def mirrorDirs(d1, d2, exc_dirs):
         else:
             return (None, dc)
 
+
 def dirCopy(d1, d2, exs):
     # fcstats.clr()
     (err1, de) = diskutils.dirExists(d2)
@@ -305,8 +329,9 @@ def dirCopy(d1, d2, exs):
             # print(str(err3))
             return (err3, None)
         else:
-            fcstats.fcstats['dsyn'] += 1
-            dmEE1.emit('dcopy', d1, d2)
+            fcstats.fcstats["dsyn"] += 1
+            dmEE1.emit("dcopy", d1, d2)
+
 
 def dirSync(d1, d2, exs, exc_dirs):
     if exc_dirs is not None:
@@ -334,9 +359,10 @@ def dirSync(d1, d2, exs, exc_dirs):
         if err5:
             return (err5, None)
         else:
-            fcstats.fcstats['dcpy'] += 1
-            dmEE1.emit('dcopy', d1, d2)
+            fcstats.fcstats["dcpy"] += 1
+            dmEE1.emit("dcopy", d1, d2)
             return (None, d1)
+
 
 def dirMirror(d1, d2, exc_dirs):
     if exc_dirs is not None:
@@ -370,28 +396,27 @@ def dirMirror(d1, d2, exc_dirs):
         else:
             return (None, d1)
 
+
 def touchBats():
-    exe = ''
+    exe = ""
+
     def setExe():
         nonlocal exe
-        ps = utils.expES('%FLASH0%\\Programs\\Git\\usr\\bin')
-        exe = ps + '\\touch.exe'
+        ps = utils.expES("%FLASH0%\\Programs\\Git\\usr\\bin")
+        exe = ps + "\\touch.exe"
         return True
+
     if setExe():
-        d = utils.expES('%FLASH0%\\')
-        (err1, fl) = diskutils.filesList(d, {'.bat'})
+        d = utils.expES("%FLASH0%\\")
+        (err1, fl) = diskutils.filesList(d, {".bat"})
         if err1:
             return (err1, None)
         else:
             fl = [os.path.join(d, f) for f in fl.keys() if f]
-            rv = Dos4({
-                'cmd': exe,
-                'args': fl,
-                'collect': False,
-                'echo': True,
-                'print': True
-            })
+            rv = Dos4(
+                {"cmd": exe, "args": fl, "collect": False, "echo": True, "print": True}
+            )
             if rv.rejected:
-                return (OSError(rv.returncode(), 'touch bats failed'), None)
+                return (OSError(rv.returncode(), "touch bats failed"), None)
             else:
                 return (None, len(fl))

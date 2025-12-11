@@ -1,4 +1,3 @@
-
 import pstats
 from cProfile import Profile
 from functools import wraps
@@ -6,8 +5,13 @@ from functools import wraps
 profiler = Profile()
 
 
-def profile(cumulative=True, print_stats=10, sort_stats='cumulative', dump_stats=False,
-            profile_filename='profilestats.out'):
+def profile(
+    cumulative=True,
+    print_stats=10,
+    sort_stats="cumulative",
+    dump_stats=False,
+    profile_filename="profilestats.out",
+):
     def closure(func):
         @wraps(func)
         def decorator(*args, **kwargs):

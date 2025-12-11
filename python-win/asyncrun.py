@@ -2,17 +2,16 @@ import sys
 from asyncio import create_subprocess_shell, wait, ensure_future
 from asyncio.subprocess import PIPE, STDOUT
 
-txt = ''
+txt = ""
 idel = 1
 
 
 async def run(shell_command, cwd=None):
     global txt
-    txt = ''
-    p = await create_subprocess_shell(shell_command,
-                                      cwd=cwd,
-                                      stdout=PIPE,
-                                      stderr=STDOUT)
+    txt = ""
+    p = await create_subprocess_shell(
+        shell_command, cwd=cwd, stdout=PIPE, stderr=STDOUT
+    )
     (so, se) = await p.communicate()
     if so:
         txt = so.decode()
@@ -23,11 +22,10 @@ async def run(shell_command, cwd=None):
 
 async def run1(shell_command, cwd=None):
     global txt
-    txt = ''
-    p = await create_subprocess_shell(shell_command,
-                                      cwd=cwd,
-                                      stdout=PIPE,
-                                      stderr=STDOUT)
+    txt = ""
+    p = await create_subprocess_shell(
+        shell_command, cwd=cwd, stdout=PIPE, stderr=STDOUT
+    )
     (so, se) = await p.communicate()
     if so:
         txt = so.decode()
@@ -41,10 +39,9 @@ async def run2(shell_command, cwd=None):
 
 
 async def run3(shell_command, cwd=None):
-    p = await create_subprocess_shell(shell_command,
-                                      cwd=cwd,
-                                      stdout=PIPE,
-                                      stderr=STDOUT)
+    p = await create_subprocess_shell(
+        shell_command, cwd=cwd, stdout=PIPE, stderr=STDOUT
+    )
     future = ensure_future(p.wait())
     ic = 5 / idel
 

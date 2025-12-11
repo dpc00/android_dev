@@ -47,7 +47,9 @@ def sum_blog():
         print(
             f"{aid:>2} {bb[aid]:>8.2f} {eb[aid]:>8.2f} {inc[aid]:>8.2f} {exp[aid]:>8.2f}"
         )
-    print(f"{'total':>20} {round(sum(inc.values()), 2):>8.2f} {round(sum(exp.values()), 2):>8.2f}")
+    print(
+        f"{'total':>20} {round(sum(inc.values()), 2):>8.2f} {round(sum(exp.values()), 2):>8.2f}"
+    )
 
 
 if __name__ == "__main__":

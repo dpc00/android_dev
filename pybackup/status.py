@@ -1,6 +1,7 @@
 import config
 import ldsv as ls
 
+
 def stsupdate(Si, Dh):
     # print(Si, end=' ')
     print(Si, end=" ")
@@ -31,10 +32,13 @@ def src_statuses():
                 SDl.append((Si, Dh))
     return SDl
 
+
 def src_statuses2():
     import concurrent.futures as cf
+
     tpe = cf.ThreadPoolExecutor(max_workers=4)
     SDl = []
+
     def f1(Si):
         # print('calling lckers', Si)
         tr = config.src(Si).sdhck()
@@ -42,6 +46,7 @@ def src_statuses2():
             (Dh, changed) = tr
             if changed:
                 SDl.append((Si, Dh))
+
     for Si in config.srcs:
         tpe.submit(f1, Si)
     tpe.shutdown()
@@ -57,5 +62,3 @@ def updatets(N):
             (Si, Dh) = rv
             stsupdate(Si, Dh)
         print()
-
-

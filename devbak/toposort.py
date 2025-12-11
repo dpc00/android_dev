@@ -5,7 +5,7 @@ nodes = {}
 
 
 def topological_sort(dependency_pairs):
-    'Sort values subject to dependency constraints'
+    "Sort values subject to dependency constraints"
     for src, tgt in dependency_pairs:
         if tgt not in nodes:
             nodes[tgt] = []

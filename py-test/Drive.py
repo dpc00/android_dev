@@ -12,62 +12,83 @@ usedb = False
 
 drives = None
 
+
 @functools.total_ordering
-class Drive():
-    __slots__ = ['_db', 'capacity', 'driveletter', 'filesystem', 'freespace', 'label', 'serialnumber', 'rt']
+class Drive:
+    __slots__ = [
+        "_db",
+        "capacity",
+        "driveletter",
+        "filesystem",
+        "freespace",
+        "label",
+        "serialnumber",
+        "rt",
+    ]
+
     def __init__(self):
         from Dir import Dir
-#         self._db = None
+
+        #         self._db = None
         self.capacity = None
         self.driveletter = None
         self.filesystem = None
         self.freespace = None
         self.label = None
         self.serialnumber = None
-        self.rt = Dir(self, '')
+        self.rt = Dir(self, "")
+
     def __lt__(self, other):
         return self.label < other.label
+
     def __eq__(self, other):
         return self.label == other.label
+
     def __hash__(self):
         try:
             return self.serialnumber
         except AttributeError as e:
             utils.errlog(e)
+
     def __str__(self):
-        ps = 'Disk'
+        ps = "Disk"
         try:
-            ps += ' ' + self.label
-            ps += ' (' + self.driveletter + ':)'
-            ps += ' ' + '{:0>8X}'.format(self.serialnumber & 0xFFFFFFFF)
+            ps += " " + self.label
+            ps += " (" + self.driveletter + ":)"
+            ps += " " + "{:0>8X}".format(self.serialnumber & 0xFFFFFFFF)
         except AttributeError as e:
             utils.errlog(e)
         return ps
+
     @property
     def contents(self):
-        utils.errlog(Exception('sought contents from Drive object'))
+        utils.errlog(Exception("sought contents from Drive object"))
         return None
+
     @property
     def path(self):  # Drive
         rv = self.driveletter
         if len(rv) == 1:
-            rv += ':'
+            rv += ":"
         return rv
+
     def dbFN(self):
         from Dir import fromPath
+
         # dsn1 = int('667AB765', 16) # CODE0
         # dbdrive = driveFromSN(dsn1)
-        dbd = self.path + os.path.sep + '.sync'
-        fn = dbd + os.path.sep + '{:0>8X}.sqlite'.format(self.serialnumber)
+        dbd = self.path + os.path.sep + ".sync"
+        fn = dbd + os.path.sep + "{:0>8X}.sqlite".format(self.serialnumber)
         # TODO: !!!!
         # fromPath(dbd).create()
         return fn
+
     def createTable(self):
         c1 = self.db
         c2 = c1.cursor()
         # cmd = 'DROP TABLE IF EXISTS ENTRY'
         # c2.execute(cmd)
-        cmd = '''
+        cmd = """
             CREATE TABLE IF NOT EXISTS `Entry` (
                 `PD`        TEXT,
                 `Name`      TEXT,
@@ -76,10 +97,12 @@ class Drive():
                 `Digest`    TEXT,
                 `ID`        TEXT,
                 PRIMARY KEY(`PD`, `Name`)
-            );'''
+            );"""
         c2.execute(cmd)
         c1.commit()
         c2.close()
+
+
 #     @property
 #     def db(self):
 #         if self._db is None:
@@ -97,16 +120,18 @@ class Drive():
 #                         self._db.close()
 #                 atexit.register(f1)
 #         return self._db
-    
+
+
 def driveletterFromVL(vl):
     global drives
     for d1 in drives.values():
         try:
             if d1.label.lower() == vl.lower():
-                return d1.driveletter + ':'
+                return d1.driveletter + ":"
         except AttributeError as e:
             utils.errlog(e)
     return None
+
 
 def driveFromSN(sn):  # by driveletter
     global drives
@@ -117,6 +142,8 @@ def driveFromSN(sn):  # by driveletter
         except AttributeError as e:
             utils.errlog(e)
     return None
+
+
 def driveFromVL(vl):  # by label
     global drives
     for d1 in drives.values():
@@ -126,6 +153,7 @@ def driveFromVL(vl):  # by label
         except AttributeError as e:
             utils.errlog(e)
     return None
+
 
 def driveFromDL(dl):  # by label
     global drives
@@ -137,28 +165,36 @@ def driveFromDL(dl):  # by label
             utils.errlog(e)
     return None
 
+
 def getWMIDrives():
     global drives
-    fl = ['capacity', 'driveletter', 'filesystem', 'freespace', 'label', 'serialnumber']
+    fl = ["capacity", "driveletter", "filesystem", "freespace", "label", "serialnumber"]
     fin = [True, False, False, True, False, True]
     fo = []
+
     #              330952704    System Reserved  -2008134104   '
     # F:           4109750272   CODE             -1906067864   '
     def fieldno(fn):
         for i in range(len(fl)):
             if fn == fl[i]:
                 return i
+
     def field(l, fn):
         i = fieldno(fn)
         n1 = fo[i]
         n2 = fo[i + 1]
         ft = l[n1:n2]
-        return ft.rstrip().decode('utf-8')
+        return ft.rstrip().decode("utf-8")
 
-    with Popen('wmic VOLUME get ' + ','.join(fl), shell=True, stdout=PIPE, universal_newlines=False) as proc:
+    with Popen(
+        "wmic VOLUME get " + ",".join(fl),
+        shell=True,
+        stdout=PIPE,
+        universal_newlines=False,
+    ) as proc:
         so = proc.stdout.read()
-        lns = re.split(b'[\r\n]+', so);
-        
+        lns = re.split(b"[\r\n]+", so)
+
         def findFOs():
             hl = lns[0].decode()
             i = 0
@@ -166,19 +202,20 @@ def getWMIDrives():
             sw = True
             while i < len(hl):
                 if sw:
-                    if hl[i] != ' ' and (i == 0 or hl[i - 1] == ' '):
+                    if hl[i] != " " and (i == 0 or hl[i - 1] == " "):
                         fo.append(i)
                         j += 1
                         sw = not sw
                     i += 1
                 else:
-                    if hl[i] == ' ' and hl[i - 1] != ' ':
+                    if hl[i] == " " and hl[i - 1] != " ":
                         sw = not sw
                     else:
                         i += 1
             fo.append(len(hl))
+
         findFOs()
-        
+
         for i in range(1, len(lns)):
             l = lns[i]
             # utils.log(l)
@@ -217,13 +254,16 @@ def getWMIDrives():
                             drives[d1.serialnumber] = d1
                         if drives[d1.serialnumber].rt is not None:
                             if drives[d1.serialnumber].rt.pd != d1:
-                                raise ValueError('drive root points to wrong Disk')
+                                raise ValueError("drive root points to wrong Disk")
                 except AttributeError:
                     # utils.errlog(e)
                     pass
 
+
 def initDurus():
     pass
+
+
 #         global new, restarting, tablesdeleted
 #         if DB.conn is None:
 #     global conn
@@ -231,11 +271,12 @@ def initDurus():
 #     dbfn = 'CODE0-CODEn.durus'
 #     d1 = fromPath(dbdir)
 #     d1.create()
-#     f1 = findFile(d1, dbfn) 
+#     f1 = findFile(d1, dbfn)
 #     if not f1.exists():
 #         new = True
 #         tablesdeleted = True
 #     conn = Connection(FileStorage(f1.path))
+
 
 def getDrives(udb=False):
     global loaded, drives, usedb
@@ -243,35 +284,38 @@ def getDrives(udb=False):
     if usedb:
         if not loaded:
             drives = {}
+
             def chkDrives():
                 for d1 in drives.values():
                     rt = d1.rt
                     if rt:
                         if rt.pd is not d1:
-                            utils.errlog(ValueError('drive root points to wrong Disk'))
+                            utils.errlog(ValueError("drive root points to wrong Disk"))
                             rt.pd = d1
+
             def printDrives():
                 for d1 in drives.values():
-                    ds = ''
-                    if hasattr(d1, 'serialnumber'):
+                    ds = ""
+                    if hasattr(d1, "serialnumber"):
                         if d1.serialnumber is not None:
-                            ds += '{:08X}  '.format(d1.serialnumber & 0xFFFFFFFF)
+                            ds += "{:08X}  ".format(d1.serialnumber & 0xFFFFFFFF)
                     else:
                         if d1.serialnumber is not None:
-                            ds += '{:8}  '.format('')
-                    if hasattr(d1, 'driveletter'):
+                            ds += "{:8}  ".format("")
+                    if hasattr(d1, "driveletter"):
                         if d1.driveletter is not None:
-                            ds += '({:1}:)  '.format(d1.driveletter)
+                            ds += "({:1}:)  ".format(d1.driveletter)
                     else:
                         if d1.driveletter is not None:
-                            ds += '({})  '.format('no drive letter')
-                    if hasattr(d1, 'label'):
+                            ds += "({})  ".format("no drive letter")
+                    if hasattr(d1, "label"):
                         if d1.label is not None:
-                            ds += '{:12}'.format(d1.label)
+                            ds += "{:12}".format(d1.label)
                     else:
                         if d1.label is not None:
-                            ds += '{:12} '.format('')
+                            ds += "{:12} ".format("")
                     utils.log(ds)
+
             chkDrives()
             getWMIDrives()
             printDrives()
@@ -282,6 +326,7 @@ def getDrives(udb=False):
         getWMIDrives()
         loaded = True
     return drives
+
 
 # def saveDrives():
 #     global loaded, drives, contents, usedb

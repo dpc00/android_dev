@@ -1,12 +1,13 @@
 from bhash import bhash
+
 # from dirlist import *
 from config_funcs import pre
 
 ldhd = None
-ldhpf = pre('USER') / 'ldhd.pp'
+ldhpf = pre("USER") / "ldhd.pp"
 
 rdhd = None
-rdhpf = pre('USER') / 'rdhd.pp'
+rdhpf = pre("USER") / "rdhd.pp"
 
 
 def ldh_f(si, dh=None):
@@ -31,12 +32,14 @@ def rdh_f(di, dh=None):
 
 async def ldh_d(si):
     from dirlist import ldlld
+
     st1 = await ldlld(si)
     return bhash(st1)
 
 
 async def rdh_d(di):
     from dirlist import rdlld
+
     st1 = await rdlld(di)
     if st1 is not None:
         return bhash(st1)
@@ -45,6 +48,7 @@ async def rdh_d(di):
 
 def loadldh():
     import pickle
+
     global ldhd
     try:
         ldhd = {}
@@ -56,6 +60,7 @@ def loadldh():
 
 def loadrdh():
     import pickle
+
     global rdhd
     try:
         rdhd = {}
@@ -67,12 +72,14 @@ def loadrdh():
 
 def saveldh():
     import pickle
+
     with open(ldhpf, "wb") as fh:
         pickle.dump(ldhd, fh)
 
 
 def saverdh():
     import pickle
+
     with open(rdhpf, "wb") as fh:
         pickle.dump(rdhd, fh)
 
@@ -110,7 +117,7 @@ async def rdhck(Di):
 loadldh()
 loadrdh()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from config import srcs, tdirs
     import asyncio
 
@@ -119,6 +126,6 @@ if __name__ == '__main__':
         asyncio.run(ldhset(si))
     saveldh()
     for di in tdirs:
-        if di.startswith('gd_'):
+        if di.startswith("gd_"):
             asyncio.run(rdhset(di))
     saverdh()

@@ -24,35 +24,36 @@ async def copy2(f1, f2):
     # print('copying ', f1, 'to', f2)
     if f1.is_file():
         f2 = f2.parent
-    cmd = 'cp -u -p ' + str(f1) + ' ' + str(f2)
+    cmd = "cp -u -p " + str(f1) + " " + str(f2)
     print(cmd)
     return await run1(cmd)
 
 
-#import shutil
-#shutil.copy2(f1, f2)
+# import shutil
+# shutil.copy2(f1, f2)
 
 
 def chkdiff(f1, f2):
     if f1.exists():
         if not f2.exists():
-            print('dst file missing:')
+            print("dst file missing:")
             return True
         f1s = f1.stat()
         f2s = f2.stat()
         if f2s.st_size < f1s.st_size:
-            print('size less:', f2s.st_size - f1s.st_size)
+            print("size less:", f2s.st_size - f1s.st_size)
             return True
         if f2s.st_size > f1s.st_size:
-            print('size more:', f2s.st_size - f1s.st_size)
+            print("size more:", f2s.st_size - f1s.st_size)
             return True
         if f2s.st_mtime_ns > f1s.st_mtime_ns:
-            print('time later:', (f2s.st_mtime_ns - f1s.st_mtime_ns) / 1E9)
+            print("time later:", (f2s.st_mtime_ns - f1s.st_mtime_ns) / 1e9)
             return False
         if sha256sumf(f1) != sha256sumf(f2):
-            print('hash diff:', f1, f2)
+            print("hash diff:", f1, f2)
             return True
     return False
+
 
 class LocalCopy(OpBase):
     async def __call__(self):
@@ -60,16 +61,17 @@ class LocalCopy(OpBase):
         from status import onestatus
         from edge import Edge, findEdge
         from dirlist import ldlls, ldlls_dirty
+
         global ldlls_dirty
         tc = 0
         fc = 0
         di, si = self.npl1
         e = findEdge(di, si)
         if e.bctck():
-            print('LocalCopy')
+            print("LocalCopy")
             sp = pdir(self.npl2[1])
             dp = tdir(self.npl2[0])
-            gl = self.opts.get('files', ['**/*'])
+            gl = self.opts.get("files", ["**/*"])
             for g in gl:
                 fl = sp.glob(g)
                 for fsf in fl:
@@ -82,7 +84,7 @@ class LocalCopy(OpBase):
                         if chkdiff(fsf, fdf):
                             rv = await copy2(fsf, fdf)
                             if rv == 0:
-                                if 'exec' in self.opts:
+                                if "exec" in self.opts:
                                     fdf.chmod(496)
                                 tc += 1
                             else:
@@ -93,7 +95,7 @@ class LocalCopy(OpBase):
             if fc == 0:
                 e.clr()
                 if e.bctck():
-                    print('clr failure!')
+                    print("clr failure!")
             if tc > 0:
                 tv = self.npl2[0]
                 if tv in ldlls:

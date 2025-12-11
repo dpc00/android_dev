@@ -17,24 +17,24 @@ async def wsetup(in1):
     for si in srcs:
         try:
             rv = in1.add_watch(str(pdir[si]), flags.MODIFY)
-            #await asyncio.sleep(0)
+            # await asyncio.sleep(0)
             wdsi[rv] = (si, pdir[si])
             if not pdir[si].is_file():
                 for pth, dirs, files in os.walk(pdir[si], topdown=True):
-                    if '.git' in pth:
+                    if ".git" in pth:
                         break
-                    if '.git' in dirs:
-                        dirs.remove('.git')
-                    if '__pycache__' in dirs:
-                        dirs.remove('__pycache__')
+                    if ".git" in dirs:
+                        dirs.remove(".git")
+                    if "__pycache__" in dirs:
+                        dirs.remove("__pycache__")
                     for dir in dirs:
                         cp = path.join(pth, dir)
                         rv = in1.add_watch(cp, flags.MODIFY)
                         wdsi[rv] = (si, cp)
-                        #await asyncio.sleep(0)
+                        # await asyncio.sleep(0)
         except:
             pass
-    print(len(wdsi), 'watches')
+    print(len(wdsi), "watches")
 
 
 async def updts():
@@ -71,18 +71,18 @@ async def rt2():
     global cel
     cl = await cel.run_in_executor(None, clean)
     if cl:
-        print('backups appear done')
+        print("backups appear done")
     else:
-        print('backups appear pending')
+        print("backups appear pending")
         rv1 = await opexec()
-        print('rv1', rv1)
+        print("rv1", rv1)
     await sleep(20)
     cel.create_task(rt2())
 
 
 def main():
     global cel, wdsi, in1
-    print('-main')
+    print("-main")
     with INotify() as in1:
         cel = asyncio.get_event_loop()
         print(cel)
@@ -93,5 +93,5 @@ def main():
         cel.run_forever()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -4,7 +4,7 @@ import pickle
 dep = set()
 
 
-class Edge():
+class Edge:
     def __init__(self, di, si):
         self.di = di
         self.si = si
@@ -13,9 +13,9 @@ class Edge():
         self.rcdt = time.time()
         self.rudt = self.rcdt
 
-
     def __hash__(self):
         from bhash import bhash
+
         return bhash((self.di, self.si))
 
     def __eq__(self, other):
@@ -29,13 +29,13 @@ class Edge():
 
     def clr(self):
         if self.udt != self.cdt:
-            print('-clr', self.di, self.si)
+            print("-clr", self.di, self.si)
             self.udt = self.cdt
             saveedges()
 
     def rclr(self):
         if self.rudt != self.rcdt:
-            print('-rclr', self.di, self.si)
+            print("-rclr", self.di, self.si)
             self.rudt = self.rcdt
             saveedges()
 
@@ -54,8 +54,7 @@ class Edge():
         saveedges()
 
     def __repr__(self):
-        return repr(
-            (self.di, self.si, self.cdt, self.udt, self.rcdt, self.rudt))
+        return repr((self.di, self.si, self.cdt, self.udt, self.rcdt, self.rudt))
 
 
 # change detected time
@@ -72,7 +71,8 @@ def findEdge(di, si):
 
 def loadedges():
     from config import paths, pre
-    edgepf = pre('FLAGS') / 'edges.pp'
+
+    edgepf = pre("FLAGS") / "edges.pp"
     global dep
     try:
         dep = set()
@@ -84,7 +84,8 @@ def loadedges():
 
 def saveedges():
     from config import pre
-    edgepf = pre('FLAGS') / 'edges.pp'
+
+    edgepf = pre("FLAGS") / "edges.pp"
     global dep
     with open(edgepf, "wb") as fh:
         pickle.dump(dep, fh)
@@ -97,5 +98,5 @@ def lrtset(di, si):
 
 loadedges()
 
-if __name__ == '__main__':
-    lrtset('git', 'pyth')
+if __name__ == "__main__":
+    lrtset("git", "pyth")

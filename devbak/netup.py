@@ -3,22 +3,24 @@ from asyncio.subprocess import PIPE
 
 
 async def netup():
-    con = open_connection("www.bitbucket.org",80)
+    con = open_connection("www.bitbucket.org", 80)
     try:
         (r, w) = await wait_for(con, 2)
-        w.write(b'HEAD')
-        w.write(b'/')
+        w.write(b"HEAD")
+        w.write(b"/")
         await w.drain()
         w.close()
         await w.wait_closed()
-        #await r.read()
+        # await r.read()
         await netup2()
         return True
     except Exception as e:
-        print('nu exception:',e)
+        print("nu exception:", e)
         return False
 
+
 cmd2 = "termux-wifi-connectioninfo | jq -r '.ip'"
+
 
 async def netup2():
     p = await create_subprocess_shell(cmd2, stdout=PIPE)
@@ -26,8 +28,8 @@ async def netup2():
     rv = await p.stdout.read()
     rv = rv.decode().strip()
     print(rv)
-    return rv != '0.0.0.0'
+    return rv != "0.0.0.0"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(run(netup()))

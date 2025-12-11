@@ -33,7 +33,7 @@ def findFirstRecord(infile):
 
     while True:
         data = infile.read(6553600)
-        data = data.lstrip('\x00')
+        data = data.lstrip("\x00")
         if data:
             return infile.tell() - len(data)
 
@@ -65,7 +65,7 @@ def findNextRecord(infile, journalSize):
             recordlen = struct.unpack_from("I", infile.read(4))[0]
             if recordlen:
                 infile.seek(-4, 1)
-                return (infile.tell() + recordlen)
+                return infile.tell() + recordlen
         except struct.error:
             if infile.tell() >= journalSize:
                 sys.exit()
@@ -148,11 +148,13 @@ class Usn(object):
         self.fileAttributes = self.convertAttributes(fileAttributes)
         self.fileNameLength = struct.unpack_from("H", infile.read(2))[0]
         self.fileNameOffset = struct.unpack_from("H", infile.read(2))[0]
-        filename = struct.unpack("{}s".format(self.fileNameLength), infile.read(self.fileNameLength))[0]
+        filename = struct.unpack(
+            "{}s".format(self.fileNameLength), infile.read(self.fileNameLength)
+        )[0]
         self.filename = filename.replace("\x00", "")
 
     def convertFileReference(self, buf):
-        byteArray = map(lambda x: '%02x' % ord(x), buf)
+        byteArray = map(lambda x: "%02x" % ord(x), buf)
 
         byteString = ""
         for i in byteArray[::-1]:
@@ -185,7 +187,7 @@ class Usn(object):
     def convertTimestamp(self, timestamp):
         # The USN record's "timestamp" property is a Win32 FILETIME value
         # This function returns that value in a human-readable format
-        return str(datetime(1601, 1, 1) + timedelta(microseconds=timestamp / 10.))
+        return str(datetime(1601, 1, 1) + timedelta(microseconds=timestamp / 10.0))
 
     def convertReason(self, reason):
         # Returns the USN reasons attribute in a human-readable format
@@ -211,12 +213,27 @@ class Usn(object):
 
 def main():
     p = ArgumentParser()
-    p.add_argument("-c", "--csv", help="Return USN records in comma-separated format", action="store_true")
+    p.add_argument(
+        "-c",
+        "--csv",
+        help="Return USN records in comma-separated format",
+        action="store_true",
+    )
     p.add_argument("-f", "--file", help="Parse the given USN journal file")
-    p.add_argument("-g", "--grep",
-                   help="'grep' for a specific file name in a USN record, and only provide records which match")
-    p.add_argument("-q", "--quick", help="Parse a large journal file quickly", action="store_true")
-    p.add_argument("-v", "--verbose", help="Return all USN properties for each record (JSON)", action="store_true")
+    p.add_argument(
+        "-g",
+        "--grep",
+        help="'grep' for a specific file name in a USN record, and only provide records which match",
+    )
+    p.add_argument(
+        "-q", "--quick", help="Parse a large journal file quickly", action="store_true"
+    )
+    p.add_argument(
+        "-v",
+        "--verbose",
+        help="Return all USN properties for each record (JSON)",
+        action="store_true",
+    )
     args = p.parse_args()
 
     if args.file:
@@ -234,8 +251,10 @@ def main():
                 dataPointer = findFirstRecordQuick(f, journalSize)
                 f.seek(dataPointer)
             else:
-                sys.exit("[ - ] The USN journal file must be at least 1GB in size " \
-                         "to use the '--quick' functionality\n[ - ] Exitting...")
+                sys.exit(
+                    "[ - ] The USN journal file must be at least 1GB in size "
+                    "to use the '--quick' functionality\n[ - ] Exitting..."
+                )
         else:
             dataPointer = findFirstRecord(f)
             f.seek(dataPointer)
@@ -250,17 +269,23 @@ def main():
 
             elif args.csv:
                 print
-                "{},{},{},{}".format(u.timestamp, u.filename, u.fileAttributes, u.reason)
+                "{},{},{},{}".format(
+                    u.timestamp, u.filename, u.fileAttributes, u.reason
+                )
 
             elif args.grep:
                 if args.grep.lower() == u.filename.lower():
                     print
-                    "{} | {} | {} | {}".format(u.timestamp, u.filename, u.fileAttributes, u.reason)
+                    "{} | {} | {} | {}".format(
+                        u.timestamp, u.filename, u.fileAttributes, u.reason
+                    )
 
             else:
                 print
-                "{} | {} | {} | {}".format(u.timestamp, u.filename, u.fileAttributes, u.reason)
+                "{} | {} | {} | {}".format(
+                    u.timestamp, u.filename, u.fileAttributes, u.reason
+                )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

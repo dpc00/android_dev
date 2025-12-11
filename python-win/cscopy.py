@@ -8,12 +8,18 @@ global ldlls_dirty, rdlls_dirty
 async def fsync(sd, td, tcfc):
     if await netup():
         # print('fsync', sd, td)
-        cmd = 'rclone sync "' + str(sd) + '" "' + str(td) + '" --progress --drive-import-formats xlsx'
-        #cmd += ' --exclude .git/**'
-        #cmd += ' --exclude __pycache__/**'
-        #cmd += ' --exclude **/qucs/PHILC*.*'
-        #cmd += ' --exclude **/qucs/asco*.*'
-        #cmd += ' --exclude **/qucs/netlist*.*'
+        cmd = (
+            'rclone sync "'
+            + str(sd)
+            + '" "'
+            + str(td)
+            + '" --progress --drive-import-formats xlsx'
+        )
+        # cmd += ' --exclude .git/**'
+        # cmd += ' --exclude __pycache__/**'
+        # cmd += ' --exclude **/qucs/PHILC*.*'
+        # cmd += ' --exclude **/qucs/asco*.*'
+        # cmd += ' --exclude **/qucs/netlist*.*'
         print(cmd)
         rc = await ar.run2(cmd)
         if rc == 0:
@@ -23,15 +29,22 @@ async def fsync(sd, td, tcfc):
             tcfc[1] += 1
     return False
 
+
 async def fmove(sd, td, tcfc):
     if await netup():
         # print('fsync', sd, td)
-        cmd = 'rclone move "' + str(sd) + '" "' + str(td) + '" --progress --create-empty-src-dirs'
-        #cmd += ' --exclude .git/**'
-        #cmd += ' --exclude __pycache__/**'
-        #cmd += ' --exclude **/qucs/PHILC*.*'
-        #cmd += ' --exclude **/qucs/asco*.*'
-        #cmd += ' --exclude **/qucs/netlist*.*'
+        cmd = (
+            'rclone move "'
+            + str(sd)
+            + '" "'
+            + str(td)
+            + '" --progress --create-empty-src-dirs'
+        )
+        # cmd += ' --exclude .git/**'
+        # cmd += ' --exclude __pycache__/**'
+        # cmd += ' --exclude **/qucs/PHILC*.*'
+        # cmd += ' --exclude **/qucs/asco*.*'
+        # cmd += ' --exclude **/qucs/netlist*.*'
         print(cmd)
         rc = await ar.run2(cmd)
         if rc == 0:
@@ -45,8 +58,13 @@ async def fmove(sd, td, tcfc):
 async def fcopy(sd, td, tcfc):
     if await netup():
         # print('fcopy', sd, td)
-        cmd = 'rclone copy "' + str(sd) + '" "' + str(
-            td) + '" --ignore-times --no-traverse --progress'
+        cmd = (
+            'rclone copy "'
+            + str(sd)
+            + '" "'
+            + str(td)
+            + '" --ignore-times --no-traverse --progress'
+        )
         # if not sd.is_file():
         #    cmd += ' --exclude ".git/**" --exclude "__pycache__/**"'
         print(cmd)
@@ -75,6 +93,7 @@ async def fdel(td, tcfc):
 class BVars:
     def __init__(self, di, si, tcfc):
         from config import pdir, tdir
+
         self.si = si
         self.di = di
         self.sd = pdir(si)
@@ -90,6 +109,7 @@ class BVars:
 
     async def init2(self):
         from dirlist import ldlld, rdlld, dllcmp
+
         self.dls = await ldlld(self.si)
         if self.dls is None:
             return
@@ -101,6 +121,7 @@ class BVars:
     def skip_matching(self):
         # handle slip through mismatched on times or more recent
         from os import utime
+
         for rf in self.f2d.copy():
             for lf in self.f2c.copy():
                 # TODO: use Path
@@ -109,22 +130,22 @@ class BVars:
                         # TODO: correct for conflicting times
                         self.f2d.remove(rf)
                         self.f2c.remove(lf)
-                        print('time conflict', rf.nm)
-                        print(rf.mt, '--', lf.mt)
-                        b1 = abs(rf.mt - lf.mt) <= .00101
+                        print("time conflict", rf.nm)
+                        print(rf.mt, "--", lf.mt)
+                        b1 = abs(rf.mt - lf.mt) <= 0.00101
                         b2 = rf.mt < lf.mt
                         if b1:
-                            print('time diff is only', rf.mt - lf.mt)
+                            print("time diff is only", rf.mt - lf.mt)
                         if b1 or b2:
-                            print('retrograding local timestamp', lf.nm)
+                            print("retrograding local timestamp", lf.nm)
                             nt = int(rf.mt * 1000) * 1000000
-                            print('to', nt)
+                            print("to", nt)
                             utime(self.sd / lf.nm, ns=(nt, nt))
                             self.ac1 += 1
                     else:
                         b1 = rf.mt > lf.mt
                         if b1:
-                            print('newer file on cloud', rf.nm)
+                            print("newer file on cloud", rf.nm)
                             self.f2d.remove(rf)
                             self.f2c.remove(lf)
 
@@ -141,7 +162,7 @@ class BVars:
                         self.f2d.remove(rf)
 
     async def do_moves(self):
-        for (rf, lf) in self.f2m.copy():
+        for rf, lf in self.f2m.copy():
             # TODO: use Path
             cfp1 = lf.nm
             cfp2 = rf.nm
@@ -149,7 +170,6 @@ class BVars:
             if await fmove(self.td / cfp1, self.td / cfp2.parent, self.tcfc):
                 self.ac2 += 1
                 self.f2m.remove((rf, lf))
-
 
     async def do_deletions(self):
         for rf in self.f2d.copy():  # do deletions
@@ -163,8 +183,9 @@ class CSCopy(OpBase):
     async def __call__(self):
         from edge import findEdge
         from dirlist import ldlls, rdlls
+
         tcfc = [0, 0]
-        print('CSCopy')
+        print("CSCopy")
         if not await netup():
             return 0, 1
         di, si = self.npl1
@@ -175,11 +196,11 @@ class CSCopy(OpBase):
             return 0, 1
         bv.ac1 = 0
         bv.ac2 = 0
-        print(len(bv.f2d), 'todelete', len(bv.f2c), 'tocopy', len(bv.f2m), 'tomove')
+        print(len(bv.f2d), "todelete", len(bv.f2c), "tocopy", len(bv.f2m), "tomove")
         bv.skip_matching()
         await bv.do_copying()
         await bv.do_moves()
-        if 'delete' in self.opts and self.opts['delete']:
+        if "delete" in self.opts and self.opts["delete"]:
             await bv.do_deletions()
         if bv.ac2:
             del rdlls[di]

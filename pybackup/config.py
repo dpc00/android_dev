@@ -236,14 +236,14 @@ def initConfig():
     gre1 = GitRepo(worktree, tag="git_repo", rmts=["github"])
     addSrcDir("git_repo", gre1)
 
-    #gre2 = GitRemote(
-        #worktree,
-        #url="https://www.bitbucket.org/dpchitester/android_dev.git",
-        #tag="bitbucket",
-        #rmt="bitbucket",
-    #)
+    # gre2 = GitRemote(
+    # worktree,
+    # url="https://www.bitbucket.org/dpchitester/android_dev.git",
+    # tag="bitbucket",
+    # rmt="bitbucket",
+    # )
     #    addTgtDir("bitbucket", gre2)
-    
+
     gre3 = GitRemote(
         worktree,
         url="https://github.com/dpc00/android_dev.git",
@@ -267,7 +267,7 @@ def initConfig():
     addTgtDir("blog2", src("proj") / "blog2")
     addTgtDir("blog2netspend", tgt("blog2") / "netspend")
     addTgtDir("blog2directexpress", tgt("blog2") / "directexpress")
-    
+
     npl1 = ("bash", "home")
     op1 = LocalCopy(
         npl1,
@@ -278,10 +278,10 @@ def initConfig():
                 ".bashrc",
                 ".bashrc0",
                 ".profile",
-                #".plaid-cli/**/*",
-                #".plaidrc",
-                #".git-credentials",
-                #".gitconfig",
+                # ".plaid-cli/**/*",
+                # ".plaidrc",
+                # ".git-credentials",
+                # ".gitconfig",
             ]
         },
     )
@@ -298,25 +298,25 @@ def initConfig():
                 ".bashrc0",
                 ".profile",
                 ".config/rclone/*",
-                #".plaid-cli/**/*",
-                #".plaidrc",
-                #".git-credentials",
+                # ".plaid-cli/**/*",
+                # ".plaidrc",
+                # ".git-credentials",
                 # ".gitconfig",
             ]
         },
     )
     addArc(op2)
 
-    #npl1 = ("bin", "bash")
-    #op3 = LocalCopy(
-        #npl1,
-        #npl1,
-        #{
-            #"files": ["termux-*", "pbu", "ppc", "rbu", "rcu", "qe", "ftp*", "nt"],
-            #"exec": True,
-        #},
-    #)
-    #addArc(op3)
+    # npl1 = ("bin", "bash")
+    # op3 = LocalCopy(
+    # npl1,
+    # npl1,
+    # {
+    # "files": ["termux-*", "pbu", "ppc", "rbu", "rcu", "qe", "ftp*", "nt"],
+    # "exec": True,
+    # },
+    # )
+    # addArc(op3)
 
     npl1 = ("bash", "bin")
     op4 = LocalCopy(
@@ -329,50 +329,44 @@ def initConfig():
     )
     addArc(op4)
 
-    #npl1 = ("sh", "bash")
-    #op5 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
-    #addArc(op5)
+    # npl1 = ("sh", "bash")
+    # op5 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
+    # addArc(op5)
 
-    #npl1 = ("bash", "sh")
-    #op6 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
-    #addArc(op6)
+    # npl1 = ("bash", "sh")
+    # op6 = LocalCopy(npl1, npl1, {"files": ["*.sh", "*.env"], "exec": True})
+    # addArc(op6)
 
-    #npl1 = ("blogds", "blog")
-    #op7 = LocalCopy(npl1, npl1, {"files": ["blog.js"]})
-    #addArc(op7)
+    # npl1 = ("blogds", "blog")
+    # op7 = LocalCopy(npl1, npl1, {"files": ["blog.js"]})
+    # addArc(op7)
 
-    #npl1 = ("blog", "blogds")
-    #op8 = LocalCopy(npl1, npl1, {"files": ["*.db", "blog.js"]})
-    #addArc(op8)
+    # npl1 = ("blog", "blogds")
+    # op8 = LocalCopy(npl1, npl1, {"files": ["*.db", "blog.js"]})
+    # addArc(op8)
 
-    #npl1 = ("plaid-node", "blogds")
-    #op9 = LocalCopy(npl1, npl1, {"files": ["*.db"]})
-    #addArc(op9)
+    # npl1 = ("plaid-node", "blogds")
+    # op9 = LocalCopy(npl1, npl1, {"files": ["*.db"]})
+    # addArc(op9)
 
     # npl1 = ('termux-backup', 'home')
     # op1 = LocalCopy(npl1, npl1, {'files': ['**/*.*']})
     # addArc(op1)
 
-    #npl1 = ("backups", "blogds")
-    #op10 = LocalCopy(npl1, npl1, {"files": ["*.db"]})
-    #addArc(op10)
+    # npl1 = ("backups", "blogds")
+    # op10 = LocalCopy(npl1, npl1, {"files": ["*.db"]})
+    # addArc(op10)
 
     npl1 = ("blog2", "docs")
-    op11 = LocalCopy(npl1, npl1, {
-        "files": ["*.py", "*.csv", "finance.db", "*.txt"]
-    })
+    op11 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "finance.db", "*.txt"]})
     addArc(op11)
-    
+
     npl1 = ("blog2netspend", "netspend")
-    op12 = LocalCopy(npl1, npl1, {
-        "files": ["*.py", "*.csv", "test.db", "*.txt"]
-    })
+    op12 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "test.db", "*.txt"]})
     addArc(op12)
-    
+
     npl1 = ("blog2directexpress", "directexpress")
-    op13 = LocalCopy(npl1, npl1, {
-        "files": ["*.py", "*.csv", "test.db", "*.txt"]
-    })
+    op13 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "test.db", "*.txt"]})
     addArc(op13)
 
     if "NOGIT" not in os.environ:
@@ -386,9 +380,9 @@ def initConfig():
 
         # npl1 = ("bitbucket", "git_repo")
         # op13 = GitPush(
-            # npl1,
-            # None,
-            # {"wt": worktree, "rmt": "bitbucket"},
+        # npl1,
+        # None,
+        # {"wt": worktree, "rmt": "bitbucket"},
         # )
         # addArc(op13)
 
@@ -412,7 +406,11 @@ def initConfig():
 
     # for cs in ("gd", "db", "od"):
     for cs in ("gd",):
-        for si in ("proj", "vids", "zips",):
+        for si in (
+            "proj",
+            "vids",
+            "zips",
+        ):
             if src(si).is_relative_to(ppre("sd")):
                 p1 = src(si).relative_to(ppre("sd"))
             elif src(si).is_relative_to(src("home").parent):

@@ -28,7 +28,7 @@ ot = ""
 
 for sym in na.keys():
     for it in na[sym]:
-        ot += f'{sym:32} {it["path"]:18} {it["line"]:4} {it["msg"]}\n'
+        ot += f"{sym:32} {it['path']:18} {it['line']:4} {it['msg']}\n"
 
 with open("tool/lint-all.jtxt.rfm", "w") as fh:
     fh.write(ot)

@@ -41,8 +41,9 @@ class Mkzip(OpBase):
         from edge import Edge, findEdge
         from status import onestatus
         from dirlist import ldlls, ldlls_dirty
+
         global ldlls_dirty
-        print('Mkzip')
+        print("Mkzip")
         anyd = False
         tc = 0
         fc = 0
@@ -51,11 +52,11 @@ class Mkzip(OpBase):
         if e.bctck():
             di2, si2 = self.npl2
             sd = pdir(si2)
-            zf = self.opts.get('zipfile', 'temp.zip')
+            zf = self.opts.get("zipfile", "temp.zip")
             rp = Path(zf)
             zp = tdir(di2) / rp.stem
             try:
-                fp = make_archive(zp, 'zip', sd, '.', True)
+                fp = make_archive(zp, "zip", sd, ".", True)
                 print(fp)
                 maxt = maxmt(sd)
                 utime(fp, ns=(maxt, maxt))

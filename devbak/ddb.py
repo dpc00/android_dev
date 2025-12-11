@@ -1,10 +1,10 @@
 import subprocess
 import json
 
-dircmd1 = 'ls -AgGlR --block-size=1 --time-style=+%s --color=never '
-dircmd2_1 = ['rclone', 'lsf']
-dircmd2_2 = ['--recursive', '--format', 'pst', '--files-only']
-dircmd2ex = ['--exclude', ".git/**", '--exclude', "__pycache__/**"]
+dircmd1 = "ls -AgGlR --block-size=1 --time-style=+%s --color=never "
+dircmd2_1 = ["rclone", "lsf"]
+dircmd2_2 = ["--recursive", "--format", "pst", "--files-only"]
+dircmd2ex = ["--exclude", ".git/**", "--exclude", "__pycache__/**"]
 
 
 def cdircmd1(dir):
@@ -24,7 +24,7 @@ dircmd = cdircmd2
 
 
 def getdll(dir):
-    print('getdll', str(dir))
+    print("getdll", str(dir))
     cmd = dircmd(dir)
     pp = subprocess.run(cmd, capture_output=True)
     if pp.returncode == 0:
@@ -39,7 +39,7 @@ def getdll(dir):
 def getdlstr(dir):
     st = getdll(dir)
     if st is not None:
-        st = '\n'.join(st)
+        st = "\n".join(st)
         return st.encode()
     else:
-        return b''
+        return b""

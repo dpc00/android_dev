@@ -1,16 +1,27 @@
 from datetime import datetime
-from pyswip import Prolog, Functor, Atom, Variable, Query, Term, registerForeign, getList, putList, putTerm
+from pyswip import (
+    Prolog,
+    Functor,
+    Atom,
+    Variable,
+    Query,
+    Term,
+    registerForeign,
+    getList,
+    putList,
+    putTerm,
+)
 from toposort import topological_sort
 
 pl = Prolog()
 
 pl.consult("/sdcard/projects/prolog/main.pl")
-mkfdl = Functor('mkfdl', 0)
-fl = Functor('fl', 1)
-retract = Functor('retract', 1)
-assertf = Functor('assert', 1)
-rfmt2_1 = Functor('rfmt2_1', 0)
-rfmt2_2 = Functor('rfmt2_2', 0)
+mkfdl = Functor("mkfdl", 0)
+fl = Functor("fl", 1)
+retract = Functor("retract", 1)
+assertf = Functor("assert", 1)
+rfmt2_1 = Functor("rfmt2_1", 0)
+rfmt2_2 = Functor("rfmt2_2", 0)
 
 Fl = Variable()
 

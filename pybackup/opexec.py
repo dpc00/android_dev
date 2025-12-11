@@ -50,29 +50,35 @@ def nts():
     ts.reverse()
     return ts
 
+
 n = 1
+
 
 def proc_nodes(L):
     import concurrent.futures as cf
+
     global n
     tpe = cf.ThreadPoolExecutor(max_workers=4)
+
     def f1(op):
         global n
         sc, fc = op()
         updatets(n)
         n += 1
+
     for node in L:
         # print("node:", node)
         ss = changed_ops(node)
         for op in ss:
             if nodeps(op.npl1[0]):
                 tpe.submit(f1, op)
-                #f1(op)
+                # f1(op)
             else:
                 f1(op)
     tpe.shutdown()
     updatets(n)
     n += 1
+
 
 def opExec():
     print("-opexec")

@@ -8,10 +8,11 @@ import asyncrun
 import config
 
 ldhd = None
-ldhpf = pre('FLAGS') / 'ldhd.pp'
+ldhpf = pre("FLAGS") / "ldhd.pp"
 
 rdhd = None
-rdhpf = pre('FLAGS') / 'rdhd.pp'
+rdhpf = pre("FLAGS") / "rdhd.pp"
+
 
 def ldh_f(si, dh=None):
     global ldhd
@@ -108,12 +109,12 @@ async def rdhck(Di):
 loadldh()
 loadrdh()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ldhd = {}
     for si in srcs:
         asyncio.run(ldhset(si))
     saveldh()
     for di in tdirs:
-        if di.startswith('gd_'):
+        if di.startswith("gd_"):
             asyncio.run(rdhset(di))
     saverdh()

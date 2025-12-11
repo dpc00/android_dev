@@ -6,7 +6,7 @@ from tstamp import rtset
 def init():
     global dl1, dl2, ds1, ds2, f2c, f2d
     for si in srcs:
-        dt = 'gd_' + tag(si)
+        dt = "gd_" + tag(si)
         if dt in tags:
             di = tagid(dt)
             print(tag(si), tag(di))
@@ -17,10 +17,10 @@ def init():
                 ds2 = set(dl2)
                 f2c = ds1 - ds2
                 f2d = ds2 - ds1
-                print('to delete', len(f2d))
-                print('to copy', len(f2c))
-                #if len(f2c):
-                #rtset(si)
+                print("to delete", len(f2d))
+                print("to copy", len(f2c))
+                # if len(f2c):
+                # rtset(si)
 
 
 init()

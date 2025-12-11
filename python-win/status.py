@@ -28,7 +28,7 @@ def changed_ops(T=None):
 
 async def stsupdate(Si, Dh):
     # print(Si, end=' ')
-    print(Si, end=' ')
+    print(Si, end=" ")
     # N1 = srcts[Si]
     for e in dep:
         if e.si == Si:
@@ -38,7 +38,7 @@ async def stsupdate(Si, Dh):
 
 async def rstsupdate(Di, Dh):
     # print(Si, end=' ')
-    print(Di, end=' ')
+    print(Di, end=" ")
     # N1 = srcts[Si]
     for e in dep:
         if e.di == Di:
@@ -75,7 +75,7 @@ async def statuses():
 async def rstatuses():
     SDl = []
     for Di in tgts:
-        if Di.startswith('gd_') or Di == 'bitbucket':
+        if Di.startswith("gd_") or Di == "bitbucket":
             (Dh, changed) = await rckers[Di]()
             if changed:
                 SDl.append((Di, Dh))
@@ -83,26 +83,26 @@ async def rstatuses():
 
 
 async def updatets(N):
-    print('Status', N)
+    print("Status", N)
     Sl = await statuses()
     if Sl:
-        print("changed: ", end='')
-        for (Si, Dh) in Sl:
+        print("changed: ", end="")
+        for Si, Dh in Sl:
             await stsupdate(Si, Dh)
         print()
 
 
 async def rupdatets(N):
-    print('RStatus', N)
+    print("RStatus", N)
     Dl = await rstatuses()
     if Dl:
-        print("rchanged: ", end='')
-        for (Di, Dh) in Dl:
+        print("rchanged: ", end="")
+        for Di, Dh in Dl:
             await rstsupdate(Di, Dh)
         print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from dirlist import saveldlls, saverdlls
     from fmd5h import savefmd5h
 

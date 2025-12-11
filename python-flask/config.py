@@ -20,6 +20,7 @@ account = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 [Account2]
 ....
 """
+
 import configparser
 import time
 import shutil
@@ -33,18 +34,18 @@ class Config:
 
     def get_plaid_client_config(self) -> str:
         return {
-            'client_id': self.config['PLAID']['client_id'],
-            'secret': self.config['PLAID']['secret'],
-            'environment': self.config['PLAID'].get('environment', 'sandbox'),
-            'suppress_warnings': self.config['PLAID'].get('suppress_warnings', True),
+            "client_id": self.config["PLAID"]["client_id"],
+            "secret": self.config["PLAID"]["secret"],
+            "environment": self.config["PLAID"].get("environment", "sandbox"),
+            "suppress_warnings": self.config["PLAID"].get("suppress_warnings", True),
         }
 
     @property
     def environment(self):
-        return self.config['PLAID']['environment']
+        return self.config["PLAID"]["environment"]
 
     def get_dbfile(self) -> str:
-        return self.config['plaid-sync']['dbfile']
+        return self.config["plaid-sync"]["dbfile"]
 
     def get_all_config_sections(self) -> str:
         """
@@ -52,25 +53,22 @@ class Config:
         this is to check if adding a new account would create a duplicate
         section with that name.
         """
-        return [
-            account
-            for account in self.config.sections()
-        ]
+        return [account for account in self.config.sections()]
 
     def get_enabled_accounts(self) -> str:
         return [
             account
             for account in self.config.sections()
             if (
-                account != 'PLAID'
-                and account != 'plaid-sync'
-                and 'access_token' in self.config[account]
-                and not self.config[account].getboolean('disabled', False)
+                account != "PLAID"
+                and account != "plaid-sync"
+                and "access_token" in self.config[account]
+                and not self.config[account].getboolean("disabled", False)
             )
         ]
 
     def get_account_access_token(self, account_name: str) -> str:
-        return self.config[account_name]['access_token']
+        return self.config[account_name]["access_token"]
 
     def add_account(self, account_name: str, access_token: str):
         """
@@ -81,7 +79,7 @@ class Config:
         shutil.copyfile(self.config_file, backup_file)
 
         self.config.add_section(account_name)
-        self.config.set(account_name, 'access_token', access_token)
+        self.config.set(account_name, "access_token", access_token)
 
         print("Overwriting existing config file: %s" % self.config_file)
         with open(self.config_file, "w") as f:

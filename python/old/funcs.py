@@ -4,11 +4,12 @@ from os.path import exists, isdir
 from os import fsdecode, getenv, lstat, utime, mkdir, rmdir
 from glob import glob
 from gb_env import *
+
 print("-- funcs.py --")
 
 
 def lk(n):
-    dir = pre['bkx'] + str(n)
+    dir = pre["bkx"] + str(n)
     print(dir)
     if not isdir(dir):
         try:
@@ -19,7 +20,7 @@ def lk(n):
 
 
 def unlk(n):
-    dir = pre['bkx'] + str(n)
+    dir = pre["bkx"] + str(n)
     print(dir)
     if isdir(dir):
         try:
@@ -47,13 +48,13 @@ def prefn(p, n):
 
 
 def dhfn(p):
-    return pre['dh'] + '_' + p
+    return pre["dh"] + "_" + p
 
 
 def bctck(n2, n1):
     try:
-        ts1 = lstat(prefn('rtbk', n1)).st_mtime_ns
-        ts2 = lstat(prefn('ct', n2)).st_mtime_ns
+        ts1 = lstat(prefn("rtbk", n1)).st_mtime_ns
+        ts2 = lstat(prefn("ct", n2)).st_mtime_ns
         if ts1 > ts2:
             return 0
         return 1
@@ -64,8 +65,8 @@ def bctck(n2, n1):
 
 def bctclr(n2, n1):
     try:
-        fs1 = lstat(prefn('rtbk', n1))
-        utime(prefn('ct', n2), ns=(fs1.st_atime_ns, fs1.st_mtime_ns))
+        fs1 = lstat(prefn("rtbk", n1))
+        utime(prefn("ct", n2), ns=(fs1.st_atime_ns, fs1.st_mtime_ns))
         return 0
     except Exception as e:
         print(e)
@@ -73,17 +74,16 @@ def bctclr(n2, n1):
 
 
 def rtset(n1):
-    utime(prefn('rtbk', n1))
+    utime(prefn("rtbk", n1))
     return 0
 
 
 def sha256sum(d):
-    aproc = Popen([
-        'ls', '-AgGlR', '--block-size=1', '--time-style=+%s', '--color=never',
-        d
-    ],
-                  stdout=PIPE)
-    bproc = Popen(['sha256sum'], stdin=aproc.stdout, stdout=PIPE)
+    aproc = Popen(
+        ["ls", "-AgGlR", "--block-size=1", "--time-style=+%s", "--color=never", d],
+        stdout=PIPE,
+    )
+    bproc = Popen(["sha256sum"], stdin=aproc.stdout, stdout=PIPE)
     aproc.stdout.close()
     return fsdecode(bproc.communicate()[0])
 
@@ -94,12 +94,12 @@ def dhstrd(si):
 
 def dhstrf(si):
     try:
-        with open(dhfn(si), 'r') as fh:
+        with open(dhfn(si), "r") as fh:
             return fh.read()
     except:
-        with open(dhfn(si), 'w') as fh:
-            fh.write('first write')
-            return ''
+        with open(dhfn(si), "w") as fh:
+            fh.write("first write")
+            return ""
 
 
 def dhck(si):
@@ -122,7 +122,7 @@ def dhset(si):
     (ofn, dir) = dhsv(si)
     # dhmsg(ofn, dir)
     dh = dhstrd(si)
-    with open(ofn, 'w') as fh:
+    with open(ofn, "w") as fh:
         fh.write(dh)
     return 0
 
@@ -132,11 +132,10 @@ def srun(cmd):
 
 
 def btest():
-    for (t, s) in dep():
+    for t, s in dep():
         (n2, n1) = ts2(t, s)
         res = bctck(n2, n1)
-        print(t + ': ct' + str(n1) + ' ' + s + ': rtbk' + str(n2) + ' res: ' +
-              str(res))
+        print(t + ": ct" + str(n1) + " " + s + ": rtbk" + str(n2) + " res: " + str(res))
 
 
 def depchk(k1, d1):

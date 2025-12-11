@@ -13,23 +13,27 @@ body = """
 </div>
 """
 
+
 def acConnect(dom):
-  dom.setLayout("", body)
-  dom.focus("input")
+    dom.setLayout("", body)
+    dom.focus("input")
+
 
 def acSubmit(dom):
-  dom.alert("Hello, " + dom.getContent("input") + "!")
-  dom.focus("input")
+    dom.alert("Hello, " + dom.getContent("input") + "!")
+    dom.focus("input")
+
 
 def acClear(dom):
-  if ( dom.confirm("Are you sure?") ):
-    dom.setContent("input", "")
-  dom.focus("input")
+    if dom.confirm("Are you sure?"):
+        dom.setContent("input", "")
+    dom.focus("input")
+
 
 callbacks = {
-  "": acConnect,  # The action label for a new connection is an empty string.
-  "Submit": acSubmit,
-  "Clear": acClear,
+    "": acConnect,  # The action label for a new connection is an empty string.
+    "Submit": acSubmit,
+    "Clear": acClear,
 }
-  
+
 Atlas.launch(callbacks)

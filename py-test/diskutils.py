@@ -1,8 +1,9 @@
-'''
+"""
 Created on Jul 1, 2016
 
 @author: Phil
-'''
+"""
+
 import os
 import stat
 
@@ -22,10 +23,11 @@ def lstat(p):
 def checkStats(s):
     return True
 
+
 def rmDir(p):
     try:
         os.rmdir(p)
-        fcstats.fcstats['ddel'] += 1
+        fcstats.fcstats["ddel"] += 1
         return (None, p)
     except Exception as e:
         utils.errlog(e)
@@ -40,12 +42,13 @@ def delFile(f):
     else:
         try:
             os.unlink(f)
-            fcstats.fcstats['fdel'] += 1
-            fcstats.fcstats['bdel'] += stats.st_size
+            fcstats.fcstats["fdel"] += 1
+            fcstats.fcstats["bdel"] += stats.st_size
             return (None, stats.st_size)
         except Exception as e:
             utils.errlog(e)
             return (e, None)
+
 
 def fileExists(fp):
     (err1, stats) = lstat(fp)
@@ -77,17 +80,14 @@ def insert(f, stats, memo):
     mode = stats.st_mode
     if not stat.S_ISLNK(mode):
         if stat.S_ISREG(mode):
-            memo['files'][f] = {
-                'mtime': stats.st_mtime,
-                'size': stats.st_size
-            }
+            memo["files"][f] = {"mtime": stats.st_mtime, "size": stats.st_size}
         else:
             if stat.S_ISDIR(mode):
-                memo['dirs'][f] = {
-                    'mtime': stats.st_mtime
-                }
+                memo["dirs"][f] = {"mtime": stats.st_mtime}
+
 
 rd_cache = {}
+
 
 def readDir(p):
     if p in rd_cache.keys():
@@ -96,7 +96,7 @@ def readDir(p):
         try:
             rv = os.listdir(p)
             if len(rd_cache) > 130:
-                for i in range(len(rd_cache.keys())//2):
+                for i in range(len(rd_cache.keys()) // 2):
                     for k in rd_cache.keys():
                         del rd_cache[k]
                         break
@@ -106,7 +106,9 @@ def readDir(p):
             utils.errlog(e)
             return (e, None)
 
+
 rs_cache = {}
+
 
 def readStats(p):
     if p in rs_cache.keys():
@@ -116,7 +118,7 @@ def readStats(p):
             rv = os.lstat(p)
             # rv = os.listdir(p)
             if len(rs_cache) > 130:
-                for _ in range(len(rs_cache.keys())//2):
+                for _ in range(len(rs_cache.keys()) // 2):
                     for k in rs_cache.keys():
                         del rs_cache[k]
                         break
@@ -126,16 +128,13 @@ def readStats(p):
             utils.errlog(e)
             return (e, None)
 
+
 def dget(dp):
     (err1, fl) = readDir(dp)
     if err1:
         return (err1, None)
     else:
-        memo = {
-            'p': dp,
-            'files': {},
-            'dirs': {}
-        }
+        memo = {"p": dp, "files": {}, "dirs": {}}
         for de in fl:
             fdp = os.path.join(dp, de)
             (err2, stats) = readStats(fdp)
@@ -148,37 +147,41 @@ def dget(dp):
                 insert(de, stats, memo)
         return (None, memo)
 
+
 def filesList(p, es):
     (err1, dgv) = dget(p)
     if err1:
         return (err1, None)
     else:
         if es is None or len(es) == 0:
-            return (None, dgv['files'])
+            return (None, dgv["files"])
         else:
             files = {}
-            for f in dgv['files'].keys():
+            for f in dgv["files"].keys():
                 if os.path.splitext(f)[1].lower() in es:
-                    files[f] = dgv['files'][f]
+                    files[f] = dgv["files"][f]
             return (None, files)
+
 
 def dirsList(p):
     (err1, dgv) = dget(p)
     if err1:
         return (err1, None)
     else:
-        return (None, dgv['dirs'])
+        return (None, dgv["dirs"])
+
 
 def mkDirs(dr, mode):
     dirPath = os.path.normpath(dr)
     if mode is None:
-        mode = int('0777')
+        mode = int("0777")
     try:
         os.makedirs(dirPath, mode, True)
     except Exception as e:
         utils.errlog(e)
         return (e, False)
     return (None, True)
+
 
 # fl = filesList('e:\\Projects\\tools', {'.js'})
 # print(fl)

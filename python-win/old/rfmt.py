@@ -6,7 +6,7 @@ from config import pdir
 
 print("-- rfmt.py --")
 
-cmd = 'yapf -i -r -vv ' + str(pdir('python') / '*.py')
+cmd = "yapf -i -r -vv " + str(pdir("python") / "*.py")
 print(cmd)
 res = run(cmd, shell=True)
 exit(res)

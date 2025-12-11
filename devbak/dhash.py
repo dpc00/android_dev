@@ -5,7 +5,7 @@ from bkenv import *
 from ddb import *
 
 dhd = None
-dhpf = pre['FLAGS'] / 'dhd.pp'
+dhpf = pre["FLAGS"] / "dhd.pp"
 
 
 def dhstrf(si, dh=None):
