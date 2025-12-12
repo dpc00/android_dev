@@ -30,11 +30,11 @@ dbstart()
 
 
 class AssetObj:
-    def __init__(self, name, balance, id, labelinput):
+    def __init__(self, name, balance, id):
         self.name = name
         self.balance = balance
         self.id = id
-        self.labelinput = labelinput
+        self.labelinput = None
 
 
 def load_asset_balances():
@@ -47,19 +47,25 @@ def load_asset_balances():
         aid = ass["asset_id"]
         anm = name.replace(" ", "")
         balance = ass["current_balance"]
+        drows[anm] = AssetObj(name, balance, aid)
+
+def gen_widgets():
+    for anm in drows.keys():
+        ao = drows[anm]
+        balance = ao.balance
         if balance:
             fvl = f"{balance:>4.2f}"
         else:
             fvl = ""
         lblin = LabeledInput(
-            Label(name),
+            Label(ao.name),
             Input(
                 value=fvl,
                 id=anm,
-                # validators=[Function(validNumSet, "Not a valid amount set!")],
             ),
         )
-        drows[anm] = AssetObj(name, balance, aid, lblin)
+        ao.labelinput = lblin
+        yield lblin
 
 
 def find_yesterdays_ending_balances():
@@ -256,14 +262,14 @@ class CompoundApp(App):
     def compute_total_assets(self):
         return sum(ao.labelinput.num.num for ao in drows.values())
 
+    def on_load(self):
+        load_asset_balances()
+
     def compose(self) -> ComposeResult:
         global lv
         self.composing = True
-        load_asset_balances()
-
-        for anm in drows.keys():
-            yield drows[anm].labelinput
-        # yield Pretty([])
+        for l in gen_widgets():
+            yield l
         yield Button("Save", id="data_save")
         self.ta = Num(0)
         yield self.ta
