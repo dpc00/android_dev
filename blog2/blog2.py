@@ -251,6 +251,10 @@ class CompoundApp(App):
         align: center bottom;
     }
     """
+    total_assets = Reactive(0)
+
+    def compute_total_assets(self):
+        return sum(ao.labelinput.num.num for ao in drows.values())
 
     def compose(self) -> ComposeResult:
         global lv
@@ -261,6 +265,8 @@ class CompoundApp(App):
             yield drows[anm].labelinput
         # yield Pretty([])
         yield Button("Save", id="data_save")
+        self.ta = Num(0)
+        yield self.ta
         yield lv
         self.composing = False
 
@@ -270,6 +276,8 @@ class CompoundApp(App):
         lv.add_column("amount")
         lv.add_column("balance")
         lv_update()
+        self.ta.num = self.total_assets
+        
 
     def on_input_changed(self, ev):
         if self.composing:
@@ -285,7 +293,8 @@ class CompoundApp(App):
             ao.balance = eiv2
             ao.labelinput.num.num = eiv2
             # self.notify(str(ao.balance), timeout=2)
-
+            self.ta.num = self.total_assets
+        
     def on_button_pressed(self, msg):
         if msg.button.id == "data_save":
             update_asset_balances()
