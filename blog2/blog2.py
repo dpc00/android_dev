@@ -34,7 +34,6 @@ class AssetObj:
         self.name = name
         self.balance = balance
         self.id = id
-        self.labelinput = None
 
 
 def load_asset_balances():
@@ -61,10 +60,10 @@ def gen_widgets():
             Label(ao.name),
             Input(
                 value=fvl,
-                id=anm,
             ),
+            id = anm
         )
-        ao.labelinput = lblin
+        # ao.labelinput = lblin
         yield lblin
 
 
@@ -157,8 +156,10 @@ class LabeledInput(Widget):
 
     DEFAULT_CSS = """
     LabeledInput {
+        width: 80%;
+        margin: 1;
         layout: horizontal;
-        height: auto;
+        height: 4;
     }
     LabeledInput Label {
         padding: 1;
@@ -171,12 +172,12 @@ class LabeledInput(Widget):
     }
     """
 
-    def __init__(self, label: Label, input: Input) -> None:
+    def __init__(self, label: Label, input: Input, id=None) -> None:
         self.label = label
         self.input = input
         self.init_value = input.value
         self.num = Num(round(float(input.value), 2))
-        super().__init__()
+        super().__init__(id=id)
 
     def compose(self) -> ComposeResult:
         yield self.label
@@ -249,10 +250,6 @@ class CompoundApp(App):
     Screen {
         align: center middle;
     }
-    LabeledInput {
-        width: 80%;
-        margin: 1;
-    }
     Button {
         align: center bottom;
     }
@@ -260,7 +257,8 @@ class CompoundApp(App):
     total_assets = Reactive(0)
 
     def compute_total_assets(self):
-        return sum(ao.labelinput.num.num for ao in drows.values())
+        lis = self.query(LabeledInput)
+        return sum(li.num.num for li in lis)
 
     def on_load(self):
         load_asset_balances()
@@ -288,7 +286,8 @@ class CompoundApp(App):
     def on_input_changed(self, ev):
         if self.composing:
             return
-        eid = ev.input.id
+        li = ev.input.parent
+        eid = li.id
         eiv = ev.input.value
         if eiv == "":
             eiv = None
@@ -297,7 +296,7 @@ class CompoundApp(App):
         if eiv2 != ao.balance:
             print(f"{ao.name} changed {ao.balance}->{eiv2}")
             ao.balance = eiv2
-            ao.labelinput.num.num = eiv2
+            li.num.num = eiv2
             # self.notify(str(ao.balance), timeout=2)
             self.ta.num = self.total_assets
         
@@ -311,8 +310,9 @@ class CompoundApp(App):
                     fvl = f"{ao.balance:>6.2f}"
                 else:
                     fvl = ""
-                ao.labelinput.input.value = fvl
-                ao.labelinput.num.num = ao.balance
+                li = self.query_one(LabeledInput,"#" + anm)
+                li.input.value = fvl
+                li.num.num = ao.balance
             lv_update()
 
     def log_balance_changes(self):
