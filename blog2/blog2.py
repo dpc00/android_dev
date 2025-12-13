@@ -48,6 +48,7 @@ def load_asset_balances():
         balance = ass["current_balance"]
         drows[anm] = AssetObj(name, balance, aid)
 
+
 def gen_widgets():
     for anm in drows.keys():
         ao = drows[anm]
@@ -61,7 +62,7 @@ def gen_widgets():
             Input(
                 value=fvl,
             ),
-            id = anm
+            id=anm,
         )
         # ao.labelinput = lblin
         yield lblin
@@ -73,7 +74,7 @@ def find_yesterdays_ending_balances():
         select asset_id from asset;
     """)
     rows = c1.fetchall()
-    ydd = datetime.date.today() - datetime.timedelta(days=5)
+    ydd = datetime.date.today() - datetime.timedelta(days=8)
     db = {}
     for ass in rows:
         aid = ass["asset_id"]
@@ -92,7 +93,7 @@ def find_yesterdays_ending_balances():
 
 def get_todays_transactions():
     global conn, cursor
-    sdd = datetime.date.today() - datetime.timedelta(days=5)
+    sdd = datetime.date.today() - datetime.timedelta(days=8)
     sr = cursor.execute(
         """
         select * from blog
@@ -113,31 +114,32 @@ def get_todays_transactions():
     return trs
 
 
+def update_asset_balance(ao):
+    global conn, cursor
+    row = cursor.execute(
+        """
+            select * from asset where asset_id = ?;
+        """,
+        [ao.id],
+    ).fetchone()
+    if row:
+        rcb = row["current_balance"]
+        if rcb != ao.balance:
+            cursor.execute(
+                """
+                   update asset set current_balance = ?
+                   where asset_id = ?
+                """,
+                [ao.balance, ao.id],
+            )
+            conn.commit()
+
+
 def update_asset_balances():
     global conn, cursor
     for anm in drows.keys():
         ao = drows[anm]
-        row = cursor.execute(
-            """
-            select * from asset where asset_id = ?;
-        """,
-            [ao.id],
-        ).fetchone()
-        if row:
-            rcb = row["current_balance"]
-            print(
-                f"current_balance {rcb} {type(rcb)} ao.balance {ao.balance} {type(ao.balance)}"
-            )
-            if rcb != ao.balance:
-                print(f"row {ao.id}:{ao.name} needs update {rcb}->{ao.balance}")
-                cursor.execute(
-                    """
-                   update asset set current_balance = ?
-                   where asset_id = ?
-                """,
-                    [ao.balance, ao.id],
-                )
-                conn.commit()
+        update_asset_balance(ao)
 
 
 class Num(Label):
@@ -225,11 +227,7 @@ def txtpa(txt):
     return res1
 
 
-class TransactionDataTable(DataTable):
-    pass
-
-
-lv = TransactionDataTable()
+lv = DataTable()
 
 
 def lv_update():
@@ -258,7 +256,11 @@ class CompoundApp(App):
 
     def compute_total_assets(self):
         lis = self.query(LabeledInput)
-        return sum(li.num.num for li in lis)
+        ta = 0
+        for li in lis:
+            if li.id in drows:
+                ta += li.num.num
+        return ta
 
     def on_load(self):
         load_asset_balances()
@@ -281,49 +283,41 @@ class CompoundApp(App):
         lv.add_column("balance")
         lv_update()
         self.ta.num = self.total_assets
-        
 
     def on_input_changed(self, ev):
         if self.composing:
             return
         li = ev.input.parent
-        eid = li.id
-        eiv = ev.input.value
-        if eiv == "":
-            eiv = None
-        eiv2 = txtp(eiv)
-        ao = drows[eid]
-        if eiv2 != ao.balance:
-            print(f"{ao.name} changed {ao.balance}->{eiv2}")
-            ao.balance = eiv2
-            li.num.num = eiv2
-            # self.notify(str(ao.balance), timeout=2)
+        if li.id in drows:
+            li.num.num = txtp(ev.input.value)
             self.ta.num = self.total_assets
-        
+
+    def update_labeledinput(self, anm):
+        ao = drows[anm]
+        if ao.balance:
+            fvl = f"{ao.balance:>6.2f}"
+        else:
+            fvl = ""
+        li = self.query_one("#" + anm, LabeledInput)
+        li.input.value = fvl
+        li.num.num = ao.balance
+
     def on_button_pressed(self, msg):
         if msg.button.id == "data_save":
-            update_asset_balances()
             self.log_balance_changes()
-            for anm in drows.keys():
-                ao = drows[anm]
-                if ao.balance:
-                    fvl = f"{ao.balance:>6.2f}"
-                else:
-                    fvl = ""
-                li = self.query_one(LabeledInput,"#" + anm)
-                li.input.value = fvl
-                li.num.num = ao.balance
             lv_update()
 
     def log_balance_changes(self):
         global conn, cursor
-        for anm in drows.keys():
-            ao = drows[anm]
-            cin = ao.labelinput.input
-            ai = txtpa(cin.value)
-            ai = list(ai)
+        lis = self.query(LabeledInput)
+        for li in lis:
+            if li.id not in drows:
+                continue
+            ao = drows[li.id]
+            cin = li.input
+            ai = list(txtpa(cin.value))
             if ai is None or len(ai) == 0:
-                return
+                continue
             acc = ai[0]
             # see if initial/prev bal in, enter if not
             row = cursor.execute(
@@ -332,12 +326,17 @@ class CompoundApp(App):
             """,
                 [ao.id],
             ).fetchone()
-            if row is not None:
-                print(
-                    f"{row['balance']=}, {acc=} row['balance']==acc {row['balance'] == acc}"
+            if row is None:
+                t = datetime.datetime.now()
+                cursor.execute(
+                    """
+                        insert into blog (time, asset_id, amount, balance) values (?,?,?,?);
+                    """,
+                    [t, ao.id, 0, round(acc, 2)],
                 )
-            if row is None or row["balance"] != acc:
-                if row is None or round(row["balance"], 2) != acc:
+                conn.commit()
+            elif row["balance"] != acc:
+                if round(row["balance"], 2) != acc:
                     t = datetime.datetime.now()
                     cursor.execute(
                         """
@@ -346,6 +345,8 @@ class CompoundApp(App):
                         [t, ao.id, acc - row["balance"], round(acc, 2)],
                     )
                     conn.commit()
+                    ao.balance = round(acc, 2)
+                    update_asset_balance(ao)
             for i in range(1, len(ai)):
                 acc += ai[i]
                 t = datetime.datetime.now()
@@ -356,6 +357,9 @@ class CompoundApp(App):
                     [t, ao.id, ai[i], round(acc, 2)],
                 )
                 conn.commit()
+                ao.balance = round(acc, 2)
+                update_asset_balance(ao)
+            self.update_labeledinput(li.id)
 
 
 if __name__ == "__main__":
