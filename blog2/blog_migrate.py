@@ -23,6 +23,7 @@ def f1():
         (
             time TIMESTAMP,
             asset_id INTEGER,
+            source_receipt INTEGER, 
             type INTEGER,
             amount REAL,
             balance REAL
