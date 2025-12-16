@@ -211,8 +211,8 @@ def txtp(txt):
 
 
 nt = {
-    "cr": 1,
-    "de": 2,
+    "in": 1,
+    "ex": 2,
     "ti": 3,
     "to": 4,
     "rr": 5,
@@ -221,11 +221,11 @@ nt = {
 ntc = 0
 
 
-class CR(float):
+class IN(float):
     pass
 
 
-class DE(float):
+class EX(float):
     pass
 
 
@@ -264,15 +264,15 @@ def txtpa(txt):
             match ntc2:
                 case 0:
                     if val > 0:
-                        return CR(val)
+                        return IN(val)
                     elif val < 0:
-                        return DE(val)
+                        return EX(val)
                     else:
                         return None
                 case 1:
-                    return CR(val)
+                    return IN(val)
                 case 2:
-                    return DE(val)
+                    return EX(val)
                 case 3:
                     return TI(val)
                 case 4:

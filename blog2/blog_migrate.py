@@ -23,9 +23,12 @@ def f1():
         (
             time TIMESTAMP,
             asset_id INTEGER,
-            source_receipt INTEGER, 
-            type INTEGER,
-            amount REAL,
+            cat INTEGER,
+            income REAL,
+            expense REAL,
+            transfer_in REAL,
+            transfer_out REAL,
+            refund_return REAL,
             balance REAL
          );
     """)
@@ -42,13 +45,14 @@ def f1():
         if aid not in acc:
             acc[aid] = bal
         amt = bal - acc[aid]
-        ty = 0 if amt > 0 else 1 if amt < 0 else None
+        cr = amt if amt > 0 else None
+        de = amt if amt < 0 else None
         cursor.execute(
             """
-            insert into blog2 (time, asset_id, type, amount, balance)
+            insert into blog2 (time, asset_id, income, expense, balance)
             values (?,?,?,?,?);
         """,
-            [tm, aid, ty, amt, bal],
+            [tm, aid, cr, de, bal],
         )
         acc[aid] = bal
     # conn.commit()
