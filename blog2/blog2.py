@@ -191,7 +191,9 @@ class LabeledInput(Widget):
         self.num.num = float(self.init_value)
 
 
-rex = r"([+\-]?\s*(?:[0-9,]*)(?:[\.][0-9]*)?)"
+rex1 = r"([+\-]?\s*(?:[0-9,]*)(?:[\.][0-9]*)?)"
+rex2 = r"([a-z]{2})"
+rex3 = "(?:" + rex1[1:] + "|(?:" + rex2[1:]
 
 
 def validNumSet(iv):
@@ -201,18 +203,84 @@ def validNumSet(iv):
 
 def txtp(txt):
     def f1(a, c):
+        print(f"HEY! {a=} {type(a)=}")
+        print(f"HEY! {c=} {type(c)=}")
         return a + c
 
     return reduce(f1, txtpa(txt), 0)
 
 
+nt = {
+    "cr": 1,
+    "de": 2,
+    "ti": 3,
+    "to": 4,
+    "rr": 5,
+}
+
+ntc = 0
+
+
+class CR(float):
+    pass
+
+
+class DE(float):
+    pass
+
+
+class TI(float):
+    pass
+
+
+class TO(float):
+    pass
+
+
+class RR(float):
+    pass
+
+
 def txtpa(txt):
     def f1(s):
+        global ntc
+        print(f"txtpa {txt=}")
+        if type(s) == tuple:
+            raise ValueError()
         s = re.sub(r"\s+", "", s)
         s = re.sub(r",", "", s)
+        print(f"{s=} {rex2=}")
+        if re.match(rex2, s):
+            if s in nt:
+                ntc = nt[s]
+            return None
+        if s == "":
+            return None
+        val = None
         try:
-            return round(float(s), 2)
+            val = round(float(s), 2)
+            print(f"{val=} {ntc=}")
+            ntc2, ntc = ntc, 0
+            match ntc2:
+                case 0:
+                    if val > 0:
+                        return CR(val)
+                    elif val < 0:
+                        return DE(val)
+                    else:
+                        return None
+                case 1:
+                    return CR(val)
+                case 2:
+                    return DE(val)
+                case 3:
+                    return TI(val)
+                case 4:
+                    return TO(val)
+                case 5:
+                    return RR(val)
         except Exception as e:
+            print(f"{e=}")
             return None
 
     def f2(n):
@@ -220,8 +288,10 @@ def txtpa(txt):
 
     if not txt:
         return []
+    ntc = 0
     txt = txt.strip()
-    res1 = re.findall(rex, txt)
+    res1 = re.findall(rex3, txt)
+    print(f"{res1=}")
     res1 = map(f1, res1)
     res1 = filter(f2, res1)
     return res1
