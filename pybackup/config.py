@@ -357,17 +357,17 @@ def initConfig():
     # op10 = LocalCopy(npl1, npl1, {"files": ["*.db"]})
     # addArc(op10)
 
-    npl1 = ("blog2", "docs")
-    op11 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "finance.db", "*.txt"]})
-    addArc(op11)
+    #npl1 = ("blog2", "docs")
+    #op11 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "finance.db", "*.txt"]})
+    #addArc(op11)
 
-    npl1 = ("blog2netspend", "netspend")
-    op12 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "test.db", "*.txt"]})
-    addArc(op12)
+    #npl1 = ("blog2netspend", "netspend")
+    #op12 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "test.db", "*.txt"]})
+    #addArc(op12)
 
-    npl1 = ("blog2directexpress", "directexpress")
-    op13 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "test.db", "*.txt"]})
-    addArc(op13)
+    #npl1 = ("blog2directexpress", "directexpress")
+    #op13 = LocalCopy(npl1, npl1, {"files": ["*.py", "*.csv", "test.db", "*.txt"]})
+    #addArc(op13)
 
     if "NOGIT" not in os.environ:
         npl1 = ("git_index", "git_worktree")
