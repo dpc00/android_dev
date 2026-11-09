@@ -1,0 +1,11 @@
+# --- omp .gitignore basics (2026-11-09) ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
